@@ -1,0 +1,38 @@
+{
+  "_comment": "Local models (ADR-026). Downloaded by scripts/download_models.py into LLM/models/ (git-ignored), pinned to a Hugging Face revision and checked by SHA-256. All Apache-2.0.",
+  "models": [
+    {
+      "role": "chat",
+      "name": "qwen3-4b-instruct-2507-q4_k_m",
+      "repo": "unsloth/Qwen3-4B-Instruct-2507-GGUF",
+      "revision": "a06e946bb6b655725eafa393f4a9745d460374c9",
+      "file": "Qwen3-4B-Instruct-2507-Q4_K_M.gguf",
+      "size": 2497281120,
+      "sha256": "3605803b982cb64aead44f6c1b2ae36e3acdb41d8e46c8a94c6533bc4c67e597",
+      "license": "apache-2.0",
+      "upstream": "Qwen/Qwen3-4B-Instruct-2507"
+    },
+    {
+      "role": "embedding",
+      "name": "nomic-embed-text-v1.5-q8_0",
+      "repo": "nomic-ai/nomic-embed-text-v1.5-GGUF",
+      "revision": "0188c9bf409793f810680a5a431e7b899c46104c",
+      "file": "nomic-embed-text-v1.5.Q8_0.gguf",
+      "size": 146146432,
+      "sha256": "3e24342164b3d94991ba9692fdc0dd08e3fd7362e0aacc396a9a5c54a544c3b7",
+      "license": "apache-2.0",
+      "upstream": "nomic-ai/nomic-embed-text-v1.5"
+    },
+    {
+      "role": "reranker",
+      "name": "bge-reranker-v2-m3-q8_0",
+      "repo": "gpustack/bge-reranker-v2-m3-GGUF",
+      "revision": "3093af03b1a635e67b084b1d8c03c5f5e020fd05",
+      "file": "bge-reranker-v2-m3-Q8_0.gguf",
+      "size": 635676416,
+      "sha256": "a43c7c9b11a4c1517e5bf95151960e1621d1b72f7a493364b01e386cf1aaa1d3",
+      "license": "apache-2.0",
+      "upstream": "BAAI/bge-reranker-v2-m3"
+    }
+  ]
+}

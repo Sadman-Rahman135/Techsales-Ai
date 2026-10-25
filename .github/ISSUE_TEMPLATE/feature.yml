@@ -1,0 +1,40 @@
+name: Feature / plan task
+description: A unit of work from docs/IMPLEMENTATION_PLAN.md
+labels: ["plan"]
+body:
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: P0 = required MVP, P1 = production-oriented improvement, P2 = optional stretch.
+      options:
+        - P0
+        - P1
+        - P2
+    validations:
+      required: true
+  - type: input
+    id: section
+    attributes:
+      label: Plan section
+      placeholder: "§7.1 Upload and validation"
+    validations:
+      required: true
+  - type: textarea
+    id: tasks
+    attributes:
+      label: Tasks
+      description: Copy the relevant checkboxes from the plan.
+      value: |
+        - [ ]
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance and evidence
+      description: How we prove it works. Close only when tests, a manual test, and a screenshot/demo exist.
+      value: |
+        - [ ] Automated tests
+        - [ ] Manual test steps recorded
+        - [ ] Screenshot or demo in docs/demos/

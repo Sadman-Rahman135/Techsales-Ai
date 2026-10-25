@@ -1,0 +1,56 @@
+SELECT current_user, (SELECT rolbypassrls FROM pg_roles WHERE rolname = current_user) AS bypasses_rls;
+  current_user   | bypasses_rls
+-----------------+--------------
+ knowledgeai_app | f
+(1 row)
+
+BEGIN;
+INSERT INTO organizations (name, slug) VALUES ('TechCare', 'techcare-demo'), ('Other Co', 'other-demo');
+SELECT set_config('app.organization_id', (SELECT id::text FROM organizations WHERE slug = 'techcare-demo'), true) IS NOT NULL AS tenant_set;
+ tenant_set
+------------
+ t
+(1 row)
+
+INSERT INTO documents (organization_id, title, audience) SELECT id, 'Return policy', 'public' FROM organizations WHERE slug = 'techcare-demo';
+SELECT title FROM documents;
+     title
+---------------
+ Return policy
+(1 row)
+
+SELECT set_config('app.organization_id', '', true) = '' AS tenant_cleared;
+ tenant_cleared
+----------------
+ t
+(1 row)
+
+SELECT count(*) AS documents_visible_without_tenant FROM documents;
+ documents_visible_without_tenant
+----------------------------------
+                                0
+(1 row)
+
+SELECT set_config('app.organization_id', (SELECT id::text FROM organizations WHERE slug = 'other-demo'), true) IS NOT NULL AS switched_to_other;
+ switched_to_other
+-------------------
+ t
+(1 row)
+
+SELECT count(*) AS documents_visible_to_other_tenant FROM documents;
+ documents_visible_to_other_tenant
+-----------------------------------
+                                 0
+(1 row)
+
+SAVEPOINT s1;
+INSERT INTO documents (organization_id, title, audience) SELECT id, 'Smuggled', 'public' FROM organizations WHERE slug = 'techcare-demo';
+ERROR:  new row violates row-level security policy for table "documents"
+ROLLBACK TO SAVEPOINT s1;
+INSERT INTO audit_events (organization_id, actor_label, action, target_type) SELECT id, 'system', 'demo', 'none' FROM organizations WHERE slug = 'other-demo';
+SAVEPOINT s2;
+UPDATE audit_events SET action = 'tampered';
+ERROR:  audit_events is append-only (UPDATE blocked)
+CONTEXT:  PL/pgSQL function audit_events_append_only() line 3 at RAISE
+ROLLBACK TO SAVEPOINT s2;
+ROLLBACK;

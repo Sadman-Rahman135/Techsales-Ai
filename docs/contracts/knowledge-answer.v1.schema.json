@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "endpoint": "POST /api/v1/internal/knowledge/answer",
+  "request": {
+    "description": "Request body of `knowledge-answer.v1`.",
+    "properties": {
+      "audience": {
+        "default": "public",
+        "description": "Requested scope. Only `public` is granted to this credential.",
+        "enum": [
+          "public",
+          "employee"
+        ],
+        "title": "Audience",
+        "type": "string"
+      },
+      "channel": {
+        "const": "voice",
+        "default": "voice",
+        "title": "Channel",
+        "type": "string"
+      },
+      "conversation_id": {
+        "description": "The caller's call or session ID",
+        "maxLength": 128,
+        "minLength": 1,
+        "title": "Conversation Id",
+        "type": "string"
+      },
+      "question": {
+        "maxLength": 2000,
+        "minLength": 1,
+        "title": "Question",
+        "type": "string"
+      },
+      "request_id": {
+        "anyOf": [
+          {
+            "maxLength": 64,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "description": "The caller's ID, echoed back",
+        "title": "Request Id"
+      }
+    },
+    "required": [
+      "question",
+      "conversation_id"
+    ],
+    "title": "KnowledgeQuestion",
+    "type": "object"
+  },
+  "response": {
+    "$defs": {
+      "AnswerStatus": {
+        "enum": [
+          "answered",
+          "insufficient_evidence",
+          "escalated",
+          "error",
+          "direct"
+        ],
+        "title": "AnswerStatus",
+        "type": "string"
+      },
+      "KnowledgeCitation": {
+        "properties": {
+          "document_id": {
+            "format": "uuid",
+            "title": "Document Id",
+            "type": "string"
+          },
+          "page_start": {
+            "title": "Page Start",
+            "type": "integer"
+          },
+          "version_id": {
+            "format": "uuid",
+            "title": "Version Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "document_id",
+          "version_id",
+          "page_start"
+        ],
+        "title": "KnowledgeCitation",
+        "type": "object"
+      }
+    },
+    "description": "Response body of `knowledge-answer.v1`.",
+    "properties": {
+      "answer": {
+        "title": "Answer",
+        "type": "string"
+      },
+      "answer_status": {
+        "$ref": "#/$defs/AnswerStatus"
+      },
+      "citations": {
+        "items": {
+          "$ref": "#/$defs/KnowledgeCitation"
+        },
+        "title": "Citations",
+        "type": "array"
+      },
+      "contract_version": {
+        "const": "knowledge-answer.v1",
+        "default": "knowledge-answer.v1",
+        "title": "Contract Version",
+        "type": "string"
+      },
+      "grounded": {
+        "title": "Grounded",
+        "type": "boolean"
+      },
+      "request_id": {
+        "title": "Request Id",
+        "type": "string"
+      },
+      "speech_summary": {
+        "description": "At most two sentences, no citation markers: safe to speak",
+        "title": "Speech Summary",
+        "type": "string"
+      },
+      "trace_id": {
+        "title": "Trace Id",
+        "type": "string"
+      }
+    },
+    "required": [
+      "request_id",
+      "answer_status",
+      "grounded",
+      "answer",
+      "speech_summary",
+      "citations",
+      "trace_id"
+    ],
+    "title": "KnowledgeAnswer",
+    "type": "object"
+  },
+  "title": "knowledge-answer.v1"
+}

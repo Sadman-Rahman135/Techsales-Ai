@@ -1,0 +1,35 @@
+# §16 deployment rehearsal, 2026-10-20T05:52Z: scripts/rehearse_deploy.py from clean volumes (no secrets are printed)
+
+building the release images (compose profile app) …
+starting the rehearsal stack …
+bucket knowledgeai-rehearsal: created
+bucket knowledgeai-rehearsal: write, read and delete work
+PASS only the HTTPS edge is published: published: ['127.0.0.1:8443']
+PASS the settings pass the staging guards (TLS, S3, ClamAV, secrets)
+PASS readiness: postgres, chroma (TLS), storage (S3/TLS), worker, queue: []
+PASS a connection without TLS is refused: refused: connection failed: connection to server at "172.21.0.6", port 5432 failed: FATAL:  no pg_hba.conf entry for hos
+PASS HTTPS edge serves the chat with HSTS
+PASS safe headers on the edge
+PASS a cross-site POST to the BFF is refused (CSRF): 403
+PASS the guest cookie is Secure, HttpOnly, SameSite=Lax
+PASS ClamAV blocks a test virus before storage; the audit log names it: 422 FILE_MALWARE_DETECTED; audit: Eicar-Test-Signature; clamd: instream(172.21.0.8@45234): Eicar-Test-Signature FOUND
+  smoke PASS health: live, ready (development)
+  smoke PASS upload + publish: processed and published document 01a157dc-9092-7046-a57c-6e69a9d869fb
+  smoke PASS ask + citation open: answered and cited; the source link opens the original
+  smoke PASS internal API: voice contract knowledge-answer.v1 answered and cited
+  smoke PASS revoke (delete): deleted: link gone, no longer answered (insufficient_evidence)
+PASS smoke test: health, upload, ask, citation open, publish, revoke, internal API
+PASS a deleted document's original is purged from S3: objects 1 → 0
+PASS every API and worker connection to Postgres uses TLS, as separate logins: knowledgeai_app/knowledgeai-api, knowledgeai_worker/knowledgeai-worker
+
+12 of 12 checks passed
+Edge: https://localhost:8443 (trust data\rehearsal-root.crt to open it without a warning)
+
+# Rollback drill: scripts/rehearse_deploy.py --rollback-drill (same stack)
+
+PASS a document is published and answering before the drill
+PASS app rollback: api, worker and web run the previous image tag; the document still answers: knowledgeai-backend:rehearsal-previous, knowledgeai-web:rehearsal-previous, knowledgeai-backend:rehearsal-previous
+PASS index rollback: rebuilt into a new collection, served from it, switched back; answers on both: rebuilt knowledge_chunks_next with fake-embedding@hash-v2: versions=1 chunks=1 rows_rewritten=0 fail
+PASS the drill's document is deleted again
+
+4 of 4 checks passed

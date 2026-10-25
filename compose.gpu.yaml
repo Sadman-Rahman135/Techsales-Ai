@@ -1,0 +1,43 @@
+# GPU override for the local models (ADR-026): CUDA build of the same llama.cpp release, all layers on the GPU.
+# Needs an NVIDIA GPU with Docker GPU support (Docker Desktop/WSL2 or the NVIDIA container toolkit).
+#   docker compose -f compose.yaml -f compose.gpu.yaml --profile llm up -d
+# (or set COMPOSE_FILE=compose.yaml;compose.gpu.yaml in .env on Windows, ":" as the separator elsewhere)
+services:
+  llm:
+    image: ghcr.io/ggml-org/llama.cpp:server-cuda-b11580
+    command: ["-m", "/models/Qwen3-4B-Instruct-2507-Q4_K_M.gguf", "--alias", "qwen3-4b-instruct-2507-q4_k_m",
+              "--host", "0.0.0.0", "--port", "8080", "-c", "8192", "--jinja", "--parallel", "2",
+              "-ngl", "99"]
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+  embedder:
+    image: ghcr.io/ggml-org/llama.cpp:server-cuda-b11580
+    command: ["-m", "/models/nomic-embed-text-v1.5.Q8_0.gguf", "--alias", "nomic-embed-text-v1.5-q8_0",
+              "--embedding", "--pooling", "mean", "--host", "0.0.0.0", "--port", "8080",
+              "-c", "2048", "-b", "2048", "-ub", "2048", "-ngl", "99"]
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+  reranker:
+    image: ghcr.io/ggml-org/llama.cpp:server-cuda-b11580
+    command: ["-m", "/models/bge-reranker-v2-m3-Q8_0.gguf", "--alias", "bge-reranker-v2-m3-q8_0",
+              "--reranking", "--host", "0.0.0.0", "--port", "8080",
+              "-c", "4096", "-b", "4096", "-ub", "4096", "-ngl", "99"]
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]

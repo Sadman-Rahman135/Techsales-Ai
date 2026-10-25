@@ -1,0 +1,47 @@
+## Anonymous customer (public audience, BFF session reference)
+$ POST /chat/ask  'Why is my DemoPrinter-X2 printing faded pages?'
+  -> 200 {"answer_status": "answered", "grounded": true, "answer": "If pages are still faded, gently shake the toner cartridge and reinstall it. [1] Faded prints usually mean low toner or a low print density setting. [1]", "citations": [{"position": 1, "document_id": "01a15413-5e0e-731f-9540-572330df0ffa", "version_id": "01a15413-5e11-77ac-8745-4163ee6a496a", "chunk_id": "01a153f5-78f1-72fa-be41-1b7a29e3c73a:01a15413-5e11-77ac-8745-4163ee6a496a:0", "title": "DemoPrinter-X2 Troubleshooting Guide", "page_start": 1, "page_end": 1, "section": "DemoPrinter-X2 Troubleshooting Guide > Faded or light prints",
+$ POST /chat/ask  follow-up in the same conversation: 'How do I clear a paper jam?'
+  -> 200 {"answer_status": "answered", "answer": "Turn the printer off before you clear a paper jam. [1] Open the rear access door and pull the jammed paper out slowly with both hands. [1]"}
+$ POST /chat/ask  'Do you sell electric bikes?'
+  -> 200 {"answer_status": "insufficient_evidence", "grounded": false, "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.", "citations": []}
+$ POST /chat/ask  'Where is my order TC-123456?'
+  -> 200 {"answer_status": "direct", "answer": "I can't look up orders or repairs in this chat yet. Contact support with your order number (it starts with TC-, on your receipt) and they'll check it for you."}
+$ POST /chat/ask  employee-only question as a customer: 'When can we waive the diagnostic fee?'
+  -> 200 {"answer_status": "insufficient_evidence", "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.", "citations": []}
+$ POST /chat/ask  without a session or token
+  -> 401 {"error": {"code": "UNAUTHENTICATED", "message": "Sign in or start a chat session.", "request_id": "req-9abb222efbab4394851d9a75034ca650"}}
+
+## Streaming (SSE): POST /chat/ask/stream
+$ POST /chat/ask/stream 'What does error code E-04 mean on the printer?'  -> 200 text/event-stream; charset=utf-8
+  event: meta   data: {"request_id": "req-de875757d5f547b798dbb2d14285e8fd", "trace_id": "trace-3f2a24e121524268b09ff0ceb82430d8"}
+  event: status data: {"stage": "searching"}
+  event: delta  data: {"text": "Code: E-04; Meaning: Toner cartridge not detected; What to do: Reinstall the cartridge until it clicks. [S1] Code: E-07; Meaning: Fuser overheated; What to do: Turn the printer off for 30 minutes. [S1]"}
+  event: status data: {"stage": "checking"}
+  event: final  data: {"answer_status": "answered", "answer": "Code: E-04; Meaning: Toner cartridge not detected; What to do: Reinstall the cartridge until it clicks. [1] Code: E-07; Meaning: Fuser overheated; What to do: Turn the printer off for 30 minutes. [1]", "citations": [{"position": 1, "title": "DemoPrinter-X2 Tr
+
+## Conversation history and feedback
+$ GET /conversations (same session)
+  -> 200 [{"id": "01a15420-5f10-715c-b7e1-bf77877b8c72", "title": "What does error code E-04 mean on the printer?", "updated_at": "2026-10-19T12:26:10.061954Z", "message_count": 2}, {"id": "01a15420-5ede-712a-8ff8-b88b4393f873", "title": "When can we waive the diagnostic fee?", "updated_at": "2026-10-19T12:26:10.011949Z", "message_count": 2}, {"id": "01a15420-5e9e-7c37-840d-572652ed5782", "title": "Where is my order TC-123456?", "updated_at": "2026-10-19T12:26:09.948041Z", "message_count": 2}, {"id": "01a15420-5e83-75f2-ba34-c36115f0df15", "title": "Do you sell electric bikes?", "updated_at": "2026-10-
+$ GET /conversations/{id}
+  -> 200 {"id": "01a15420-5e01-757c-b21b-6ec6ce163d95", "created_at": "2026-10-19T12:26:09.786535Z", "updated_at": "2026-10-19T12:26:09.861830Z", "messages": [{"id": "01a15420-5e06-74ac-a548-b86a8f32d618", "role": "user", "content": "Why is my DemoPrinter-X2 printing faded pages?", "created_at": "2026-10-19T12:26:09.786535Z", "answer_id": null, "answer_status": null, "grounded": null, "citations": []}, {"id": "01a15420-5e09-7376-b946-14ad3e568d35", "role": "assistant", "content": "If pages are still faded, gently shake the toner cartridge and reinstall it. [1] Faded prints usually mean low toner or a l
+  -> roles: ['user', 'assistant', 'user', 'assistant'], first answer citations: [(1, 'DemoPrinter-X2 Troubleshooting Guide', 1)]
+$ GET /conversations/{id} from another session
+  -> 404 {"error": {"code": "NOT_FOUND", "message": "Conversation not found.", "request_id": "req-15164260285d4e339e1af25f317ecbe5"}}
+$ POST /answers/{id}/feedback  not_helpful + note
+  -> 201 {"id": "01a15420-5f74-7880-aab4-ef8337b1b0a8"}
+
+## Signed-in employee (employee audience)
+$ POST /chat/ask  'When can we waive the diagnostic fee?'
+  -> 200 {"answer_status": "answered", "answer": "The diagnostic fee is 49 dollars. [1] Waive the diagnostic fee when the customer approves the repair or when the device is under warranty. [1]", "citations": [{"position": 1, "document_id": "01a15413-5f1a-780f-bdbd-5e944dab5856", "version_id": "01a15413-5f1d-7d9b-84cb-0448c6a1d988", "chunk_id": "01a153f5-78f1-72fa-be41-1b7a29e3c73a:01a15413-5f1d-7d9b-84cb-0448c6a1d988:1", "title": "Repair Desk Procedures", "page_start": 1, "page_end": 1, "section": "Repair Desk Procedures > Diagnostic fee", "quote": "The diagnostic fee is 49 dollars.", "preview_url": nu
+
+## Voice contract (§9.2): POST /internal/knowledge/answer
+$ POST /internal/knowledge/answer (service token)
+  -> 200 {"request_id": "voice-request-123", "answer_status": "answered", "grounded": true, "answer": "TechCare stores are open Monday to Saturday from 9am to 9pm, and on Sunday from 11am to 6pm. [1] Stores are closed on New Year's Day, Thanksgiving and Christmas Day. [2]", "speech_summary": "TechCare stores are open Monday to Saturday from 9am to 9pm, and on Sunday from 11am to 6pm. Stores are closed on New Year's Day, Thanksgiving and Christmas Day.", "citations": [{"document_id": "01a15413-5d49-7b7f-aaae-ae660de1005a", "version_id": "01a15413-5d4d-7179-93b7-c3508aef5ac4", "page_start": 1}, {"documen
+$ POST /internal/knowledge/answer audience=employee
+  -> 403 {"error": {"code": "FORBIDDEN", "message": "This credential can only ask public questions.", "request_id": "req-c2967c6d90c04d58852bbe9ac7dce284"}}
+$ POST /internal/knowledge/answer without a token
+  -> 401 {"error": {"code": "UNAUTHENTICATED", "message": "Service credential required.", "request_id": "req-df5d0a60394741e3a995f40e4e813ec4"}}
+
+## Rate limit: 11 questions in a minute from one anonymous session (limit 10)
+  -> [200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 429], Retry-After=60, code=RATE_LIMITED

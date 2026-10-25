@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+/* Design tokens: design-system/MASTER.md §2 (colors), §3 (type), §4 (shape), §10 (chart marks).
+   Components use these semantic utilities (bg-surface, text-fg-muted, …), never raw hex. */
+@theme {
+  --font-heading: var(--font-lexend), var(--font-noto-bengali), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-source-sans), var(--font-noto-bengali), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  --color-bg: #f8fafc;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f1f5f9;
+  --color-fg: #0f172a;
+  --color-fg-muted: #475569;
+  --color-accent: #0369a1;
+  --color-on-accent: #ffffff;
+  --color-user-bubble: #e0f2fe;
+  --color-success: #047857;
+  --color-warning: #b45309;
+  --color-danger: #b91c1c;
+  --color-border: #e2e8f0;
+  --color-border-strong: #64748b;
+  --color-ring: #0369a1;
+  --color-scrim: #0f172a; /* modal backdrop, used at 55% */
+
+  --color-mark-pass: #047857;
+  --color-mark-fail: #b91c1c;
+  --color-mark-series: #0369a1;
+  --color-mark-track: #e2e8f0;
+  --color-mark-target: #0f172a;
+
+  --radius-control: 0.5rem;
+  --radius-card: 0.75rem;
+  --radius-sheet: 1rem;
+  --ease-enter: cubic-bezier(0.2, 0, 0, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+}
+
+@layer base {
+  /* The chat's empty-state illustration (components/ui/illos-ai-chat-empty-state.tsx): decorative, brand blues.
+     Its own dark mode keys off a .dark class this app doesn't use, so both themes are set here. */
+  :root {
+    --illos-ramp-1: #075985;
+    --illos-ramp-2: #0284c7;
+    --illos-ramp-3: #38bdf8;
+    --illos-ramp-4: #bae6fd;
+    --illos-mark: #0369a1;
+    --illos-spark: #082f49;
+  }
+
+  :root[data-theme="dark"] {
+    --illos-ramp-1: #7dd3fc;
+    --illos-ramp-2: #38bdf8;
+    --illos-ramp-3: #0284c7;
+    --illos-ramp-4: #075985;
+    --illos-mark: #38bdf8;
+    --illos-spark: #ffffff;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --illos-ramp-1: #7dd3fc;
+      --illos-ramp-2: #38bdf8;
+      --illos-ramp-3: #0284c7;
+      --illos-ramp-4: #075985;
+      --illos-mark: #38bdf8;
+      --illos-spark: #ffffff;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --color-bg: #0b1220;
+    --color-surface: #151e2e;
+    --color-surface-muted: #1c2738;
+    --color-fg: #f1f5f9;
+    --color-fg-muted: #a3b1c6;
+    --color-accent: #38bdf8;
+    --color-on-accent: #0b1220;
+    --color-user-bubble: #0c3a5b;
+    --color-success: #34d399;
+    --color-warning: #fbbf24;
+    --color-danger: #f87171;
+    --color-border: #273449;
+    --color-border-strong: #7a8aa3;
+    --color-ring: #38bdf8;
+    --color-scrim: #000000;
+    --color-mark-pass: #059669;
+    --color-mark-fail: #dc2626;
+    --color-mark-series: #0284c7;
+    --color-mark-track: #273449;
+    --color-mark-target: #f1f5f9;
+    color-scheme: dark;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --color-bg: #0b1220;
+      --color-surface: #151e2e;
+      --color-surface-muted: #1c2738;
+      --color-fg: #f1f5f9;
+      --color-fg-muted: #a3b1c6;
+      --color-accent: #38bdf8;
+      --color-on-accent: #0b1220;
+      --color-user-bubble: #0c3a5b;
+      --color-success: #34d399;
+      --color-warning: #fbbf24;
+      --color-danger: #f87171;
+      --color-border: #273449;
+      --color-border-strong: #7a8aa3;
+      --color-ring: #38bdf8;
+      --color-scrim: #000000;
+    --color-scrim: #000000;
+      --color-mark-pass: #059669;
+      --color-mark-fail: #dc2626;
+      --color-mark-series: #0284c7;
+      --color-mark-track: #273449;
+      --color-mark-target: #f1f5f9;
+      color-scheme: dark;
+    }
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.625;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0ms !important;
+      animation: none !important;
+    }
+  }
+}

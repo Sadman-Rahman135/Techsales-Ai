@@ -1,0 +1,77 @@
+# Acceptance gates for KnowledgeAI (blueprint §3). Spec and definitions: docs/evaluation.md
+# CI and the evaluation report UI read this file; change thresholds here only, in a reviewed PR.
+version: 1
+dataset: golden-v1
+
+gates:
+  - id: G1
+    name: Retrieval
+    metric: recall_at_5
+    comparator: ">="
+    target: 0.90
+    regression_tolerance: 0.03   # max drop vs main before a merge fails
+    min_sample: 80
+    blocking: [merge, release]
+  - id: G2
+    name: Grounding
+    metric: supported_claim_rate
+    comparator: ">="
+    target: 0.95
+    min_sample: 30               # answers in the manual audit
+    blocking: [release]
+  - id: G3
+    name: Abstention
+    metric: invented_policy_count
+    comparator: "=="
+    target: 0
+    min_sample: 25
+    blocking: [merge]
+  - id: G4
+    name: Citation validity
+    metric: valid_citation_rate
+    comparator: "=="
+    target: 1.0
+    blocking: [merge]
+  - id: G5
+    name: Access control
+    metric: unauthorized_exposure_count
+    comparator: "=="
+    target: 0
+    min_sample: 60
+    blocking: [merge]
+  - id: G6
+    name: Document lifecycle
+    metric: inactive_version_citation_count
+    comparator: "=="
+    target: 0
+    min_sample: 12
+    blocking: [merge]
+  - id: G7
+    name: Reliability
+    metric: duplicate_or_orphan_chunk_count
+    comparator: "=="
+    target: 0
+    blocking: [merge]
+  - id: G8
+    name: Operability
+    metric: clean_machine_setup
+    comparator: "=="
+    target: pass
+    max_minutes: 30
+    blocking: [release]
+  - id: G9
+    name: Performance
+    metric: latency_ms
+    status_until_agreed: no_target
+    proposal:                    # agree at M5, then move into `target`
+      retrieval: {p50: 300, p95: 800}
+      first_token: {p50: 1500, p95: 3000}
+      full_answer: {p50: 4000, p95: 8000}
+    blocking: [report]
+  - id: G10
+    name: Accessibility
+    proposed: true               # not in blueprint §3; confirm before enforcing
+    metric: axe_serious_or_critical_count
+    comparator: "=="
+    target: 0
+    blocking: [merge]

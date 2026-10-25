@@ -1,0 +1,66 @@
+# Exploration queries (docs/evaluation.md §1 `exploration`): free-form development questions. NEVER used for gate
+# numbers: the runner reports them with `gated: false`. Add anything here; tune on these, never on golden-v1.
+#
+#   cd backend
+#   .venv/Scripts/python -m app.evaluation.runner --dataset ../evaluation/exploration/dev-queries.yaml \
+#       --organization techcare-golden --out ../evaluation/reports/exploration.json
+dataset: exploration
+k: 5
+
+cases:
+  - {id: X01, persona: customer, category: exploration, question: "my printer says E-04 what now", expect: any}
+  - {id: X02, persona: customer, category: exploration, question: "laptop warranty vs care plus which is better", expect: any}
+  - {id: X03, persona: customer, category: exploration, question: "can i bring back headphones i opened", expect: any}
+  - {id: X04, persona: customer, category: exploration, question: "is the hub compatible with 5ghz wifi", expect: any}
+  - {id: X05, persona: customer, category: exploration, question: "what happens to my photos after you move them to my new laptop", expect: any}
+  - {id: X06, persona: customer, category: exploration, question: "free delivery threshold", expect: any}
+  - {id: X07, persona: employee, category: exploration, question: "customer wants 600 dollar refund no receipt what do i do", expect: any}
+  - {id: X08, persona: customer, category: exploration, question: "do gift cards work online", expect: any}
+  # §15 "fix top evaluation regressions": misspellings (golden-v1 typo cases failed 2 of 6). New wording, labelled so
+  # the fix is measured here, not on golden-v1 (ADR-022). The last two must still be refused.
+  - {id: X09, persona: customer, category: typo, question: "When does exprss delivery arrive?", source: {title: Shipping and Delivery, page: 1}, facts: ["next business day"]}
+  - {id: X10, persona: customer, category: typo, question: "How many accidentl damage claims does Care+ allow per year?", source: {title: Care+ Protection Plan Terms, page: 2}, facts: ["two"]}
+  - {id: X11, persona: customer, category: typo, question: "Is thefft covered by Care+?", source: {title: Care+ Protection Plan Terms, page: 2}, facts: ["not covered"]}
+  - {id: X12, persona: customer, category: typo, question: "How soon are store pikcup orders ready?", source: {title: Shipping and Delivery, page: 2}, facts: ["2 hours"]}
+  - {id: X13, persona: customer, category: typo, question: "How long does standrd delivery take?", source: {title: Shipping and Delivery, page: 1}, facts: ["3 to 5 business days"]}
+  - {id: X14, persona: customer, category: typo, question: "What does a trade-in devise have to do?", source: {title: Trade-In Program, page: 1}, facts: ["power on"]}
+  - {id: X15, persona: customer, category: unanswerable, question: "Do you repair refrigerater compressors?", expect: insufficient_evidence}
+  - {id: X16, persona: customer, category: unanswerable, question: "What does error H9 mean on the Smart Hub H1?", expect: insufficient_evidence}
+
+  # §8.5 retrieval upgrades (P1): labelled so hybrid search, reranking and follow-up rewriting are measured here,
+  # never tuned on golden-v1. Exact codes, everyday paraphrases, model-specific facts, two-document questions,
+  # follow-ups that only make sense with the previous turn, and two that must still be refused.
+  - {id: X17, persona: customer, category: exact_code, question: "P-11 on my X2 Pro printer?", source: {title: DemoPrinter-X2 Pro Troubleshooting Guide, page: 2}, facts: ["tray size"]}
+  - {id: X18, persona: customer, category: exact_code, question: "hub shows H-01", source: {title: Smart Hub H1 Setup Guide, page: 2}, facts: ["router"]}
+  - {id: X19, persona: customer, category: exact_code, question: "E-02 DemoPrinter-X2", source: {title: DemoPrinter-X2 Troubleshooting Guide, page: 2}, facts: ["paper"]}
+  - {id: X20, persona: customer, category: exact_code, question: "what do I do about H-07", source: {title: Smart Hub H1 Setup Guide, page: 2}, facts: ["15 minutes"]}
+  - {id: X21, persona: customer, category: exact_code, question: "X2 Pro shows E-09", source: {title: DemoPrinter-X2 Pro Troubleshooting Guide, page: 2}, facts: ["lid"]}
+  - {id: X22, persona: customer, category: positive, question: "how many days does a normal parcel take to arrive", source: {title: Shipping and Delivery, page: 1}, facts: ["3 to 5"]}
+  - {id: X23, persona: customer, category: positive, question: "can I swap my old tablet for store credit, and how much do I get", source: {title: Trade-In Program, page: 1}, facts: ["200"]}
+  - {id: X24, persona: customer, category: positive, question: "what do I need to bring to collect an order in store", source: {title: Shipping and Delivery, page: 2}, facts: ["photo ID"]}
+  - {id: X25, persona: customer, category: positive, question: "do you keep a copy of my files after moving them to my new computer", source: {title: Data Transfer Service, page: 1}, facts: ["24 hours"]}
+  - {id: X26, persona: customer, category: positive, question: "my phone glass is cracked, can you fix it today", source: {title: Phone Screen Repair Service, page: 1}, facts: ["same day"]}
+  - {id: X27, persona: customer, category: positive, question: "is moving my data over free if I buy a laptop from you", source: {title: Data Transfer Service, page: 1}, facts: ["free"]}
+  - {id: X28, persona: customer, category: near_model, question: "Which charger does the TechBook 14 use?", source: {title: TechBook 14 User Guide, page: 1}, facts: ["65 W"]}
+  - {id: X29, persona: customer, category: near_model, question: "How do I open the setup menu on a TechBook 14 Pro?", source: {title: TechBook 14 Pro User Guide, page: 2}, facts: ["F10"]}
+  - {id: X30, persona: customer, category: near_model, question: "does the techbook 14 pro have hdmi", source: {title: TechBook 14 Pro User Guide, page: 3}, facts: ["HDMI"]}
+  - {id: X31, persona: customer, category: near_model, question: "Can the X2 Pro printer use 5 GHz wifi?", source: {title: DemoPrinter-X2 Pro Troubleshooting Guide, page: 3}, facts: ["5 GHz"]}
+  - {id: X32, persona: customer, category: multi_document, question: "What warranty comes with a screen repair, and how long does Care+ cover accidental damage?", sources: [{title: Phone Screen Repair Service, page: 1}, {title: Care+ Protection Plan Terms, page: 1}], facts: ["90 day", "24 months"]}
+  - {id: X33, persona: customer, category: multi_document, question: "Is delivery free over 50 dollars, and can I still cancel before my order ships?", sources: [{title: Shipping and Delivery, page: 1}, {title: Order Changes and Cancellations, page: 1}], facts: ["free", "ships"]}
+  - {id: X34, persona: customer, category: follow_up, conversation: x1, question: "How much is a screen repair for a large phone?", source: {title: Phone Screen Repair Service, page: 1}, facts: ["199"]}
+  - {id: X35, persona: customer, category: follow_up, conversation: x1, question: "and does it come with a warranty?", source: {title: Phone Screen Repair Service, page: 1}, facts: ["90 day"]}
+  - {id: X36, persona: customer, category: follow_up, conversation: x2, question: "What does E-04 mean on the DemoPrinter-X2 Pro?", source: {title: DemoPrinter-X2 Pro Troubleshooting Guide, page: 2}, facts: ["duplex"]}
+  - {id: X37, persona: customer, category: follow_up, conversation: x2, question: "How do I fix it?", source: {title: DemoPrinter-X2 Pro Troubleshooting Guide, page: 2}, facts: ["Reseat"]}
+  - {id: X38, persona: employee, category: follow_up, conversation: x3, question: "What is the diagnostic fee?", source: {title: Repair Desk Procedures, page: 1}, facts: ["49"]}
+  - {id: X39, persona: employee, category: follow_up, conversation: x3, question: "When can we waive it?", source: {title: Repair Desk Procedures, page: 1}, facts: ["approves"]}
+  - {id: X40, persona: customer, category: unanswerable, question: "What does error E-05 mean on the DemoPrinter-X2?", expect: insufficient_evidence}
+  - {id: X41, persona: customer, category: unanswerable, question: "How much does Care+ cost?", expect: insufficient_evidence}
+  # Hard negatives for the reranker threshold (ADR-028): on-topic questions the documents don't answer.
+  - {id: X42, persona: customer, category: unanswerable, question: "What is the battery capacity in mAh of the TechBook 14?", expect: insufficient_evidence}
+  - {id: X43, persona: customer, category: unanswerable, question: "Does the Smart Hub H1 work with Alexa?", expect: insufficient_evidence}
+  - {id: X44, persona: customer, category: unanswerable, question: "How much does express delivery cost?", expect: insufficient_evidence}
+  - {id: X45, persona: customer, category: unanswerable, question: "What is the price of the DemoPrinter-X2 Pro?", expect: insufficient_evidence}
+  - {id: X46, persona: customer, category: unanswerable, question: "How long does a laptop screen repair take?", expect: insufficient_evidence}
+  - {id: X47, persona: customer, category: unanswerable, question: "Which error code means low ink on the DemoPrinter-X2?", expect: insufficient_evidence}
+  - {id: X48, persona: customer, category: unanswerable, question: "What is the warranty on the E3 earbuds?", expect: insufficient_evidence}
+  - {id: X49, persona: customer, category: unanswerable, question: "How many loyalty points do I earn per dollar?", expect: insufficient_evidence}

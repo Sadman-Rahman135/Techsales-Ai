@@ -1,0 +1,220 @@
+# Local development stack (blueprint §5, docs/architecture.md §7).
+# Ports bind to 127.0.0.1 only: data services are never reachable from the network.
+# Start: docker compose up -d     Check: docker compose ps     Stop: docker compose down (volumes are kept)
+#
+# The whole app from its images (§15 M7, profile "app"): migrate once, then api, worker and web.
+#   docker compose --profile app up -d --build      web http://127.0.0.1:13000 · api http://127.0.0.1:18000
+# It reads secrets from .env (same file as local development) and talks to postgres/chroma over the compose
+# network. Ports differ from `npm run dev` (3000) and `fastapi dev` (8000), so both can run side by side.
+name: knowledgeai
+
+x-backend-env: &backend-env
+  # Overrides .env's 127.0.0.1 addresses: inside the network the services are reached by name.
+  DATABASE_URL: postgresql+psycopg://knowledgeai_app:${APP_DB_PASSWORD:-knowledgeai-app-dev-only}@postgres:5432/knowledgeai
+  MIGRATION_DATABASE_URL: postgresql+psycopg://knowledgeai:${POSTGRES_PASSWORD:-knowledgeai-dev-only}@postgres:5432/knowledgeai
+  CHROMA_HOST: chroma
+  CHROMA_PORT: "8000"
+  # The local models (ADR-026), served by the `llm` and `embedder` services below. No key, no cost.
+  LLM_PROVIDER: local
+  LLM_MODEL: qwen3-4b-instruct-2507-q4_k_m
+  LLM_BASE_URL: http://llm:8080/v1
+  EMBEDDING_PROVIDER: local
+  EMBEDDING_MODEL: nomic-embed-text-v1.5-q8_0
+  EMBEDDING_DIMENSION: "768"
+  EMBEDDING_BASE_URL: http://embedder:8080/v1
+  EMBEDDING_QUERY_PREFIX: "search_query: "
+  EMBEDDING_DOCUMENT_PREFIX: "search_document: "
+  CHROMA_COLLECTION: knowledge_chunks_local_v1   # a new embedding model means a new collection (ADR-013)
+  # Hybrid retrieval with the local reranker (ADR-028): settings chosen on evaluation/exploration/, checked on golden.
+  RERANKER_PROVIDER: local
+  RERANKER_BASE_URL: http://reranker:8080/v1
+  RERANK_RELAXED_SCORE: "1.5"
+  RERANK_RELAXED_COVERAGE: "0.4"
+
+x-backend: &backend
+  image: knowledgeai-backend:${KNOWLEDGEAI_VERSION:-local}   # a release builds and runs one tag; rollback = the previous tag
+  build: ./backend
+  profiles: [app]
+  env_file:
+    - path: .env
+      required: true
+  environment: *backend-env
+  volumes:
+    - uploads:/srv/knowledgeai/data/uploads
+  networks: [app, data]
+
+services:
+  postgres:
+    image: postgres:18.6-alpine
+    environment:
+      POSTGRES_DB: knowledgeai
+      POSTGRES_USER: knowledgeai
+      # Dev-only credential; the backend refuses it outside development/test (app/config.py).
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-knowledgeai-dev-only}
+      # Password of the non-superuser role the API connects as (created by the init script below).
+      APP_DB_PASSWORD: ${APP_DB_PASSWORD:-knowledgeai-app-dev-only}
+    ports:
+      - "127.0.0.1:55432:5432"   # 55432 on the host avoids clashing with a locally installed Postgres on 5432
+    volumes:
+      - pgdata:/var/lib/postgresql   # Postgres 18 images keep data under a versioned subdirectory
+      - ./infra/docker/postgres/init:/docker-entrypoint-initdb.d:ro
+    networks: [data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U knowledgeai -d knowledgeai"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  chroma:
+    image: chromadb/chroma:1.5.9   # matches the pinned Python client (docs/dependency-versions.md)
+    ports:
+      - "127.0.0.1:8001:8000"
+    volumes:
+      - chromadata:/data
+    networks: [data]
+
+  s3:
+    # S3-compatible object store (SeaweedFS) for the S3 adapter's tests and the deployment rehearsal; development
+    # itself stores originals on disk. Dev-only credentials; real buckets are configured as in infra/deploy/s3/.
+    image: chrislusf/seaweedfs:4.48
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - >-
+        printf '{"identities":[{"name":"knowledgeai","credentials":[{"accessKey":"%s","secretKey":"%s"}],
+        "actions":["Read","Write","List","Tagging","Admin"]}]}' "$$S3_ACCESS_KEY_ID" "$$S3_SECRET_ACCESS_KEY"
+        > /tmp/s3.json && exec weed server -dir=/data -ip.bind=0.0.0.0 -master.volumeSizeLimitMB=64
+        -s3 -s3.port=8333 -s3.config=/tmp/s3.json
+    environment:
+      S3_ACCESS_KEY_ID: ${S3_DEV_ACCESS_KEY_ID:-knowledgeai-dev}
+      S3_SECRET_ACCESS_KEY: ${S3_DEV_SECRET_ACCESS_KEY:-knowledgeai-dev-only-s3-secret}
+    ports:
+      - "127.0.0.1:8333:8333"
+    volumes:
+      - s3data:/data
+    networks: [data]
+
+  # Local models (ADR-026): llama.cpp's OpenAI-compatible server, models from LLM/models (scripts/download_models.py).
+  # CPU by default (the VM); on a machine with an NVIDIA GPU add compose.gpu.yaml. No API key, no cost.
+  llm:
+    image: ghcr.io/ggml-org/llama.cpp:server-b11580   # released 2026-10-13
+    profiles: [llm, app]
+    command: ["-m", "/models/Qwen3-4B-Instruct-2507-Q4_K_M.gguf", "--alias", "qwen3-4b-instruct-2507-q4_k_m",
+              "--host", "0.0.0.0", "--port", "8080", "-c", "8192", "--jinja", "--parallel", "2"]
+    volumes:
+      - ./LLM/models:/models:ro
+    ports:
+      - "127.0.0.1:8080:8080"   # for `fastapi dev` and the evaluation runner on the host
+    networks: [app]
+    restart: unless-stopped
+
+  embedder:
+    image: ghcr.io/ggml-org/llama.cpp:server-b11580
+    profiles: [llm, app]
+    command: ["-m", "/models/nomic-embed-text-v1.5.Q8_0.gguf", "--alias", "nomic-embed-text-v1.5-q8_0",
+              "--embedding", "--pooling", "mean", "--host", "0.0.0.0", "--port", "8080",
+              "-c", "2048", "-b", "2048", "-ub", "2048"]
+    volumes:
+      - ./LLM/models:/models:ro
+    ports:
+      - "127.0.0.1:8081:8080"
+    networks: [app]
+    restart: unless-stopped
+
+  reranker:
+    # Scores (question, passage) pairs for the evidence check (§8.5, ADR-028). Optional: RERANKER_PROVIDER=none
+    # turns it off; the app then grades evidence by term coverage alone.
+    image: ghcr.io/ggml-org/llama.cpp:server-b11580
+    profiles: [llm, app]
+    command: ["-m", "/models/bge-reranker-v2-m3-Q8_0.gguf", "--alias", "bge-reranker-v2-m3-q8_0",
+              "--reranking", "--host", "0.0.0.0", "--port", "8080", "-c", "4096", "-b", "4096", "-ub", "4096"]
+    volumes:
+      - ./LLM/models:/models:ro
+    ports:
+      - "127.0.0.1:8082:8080"
+    networks: [app]
+    restart: unless-stopped
+
+  migrate:
+    <<: *backend
+    command: ["python", "-m", "alembic", "upgrade", "head"]
+    networks: [data]
+    healthcheck:
+      disable: true
+    restart: "no"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  api:
+    <<: *backend
+    environment:
+      <<: *backend-env
+      DB_APPLICATION_NAME: knowledgeai-api
+      # The voice service may call from the app network too (the token is still required); docs/operations.md §11.
+      INTERNAL_API_ALLOWED_NETWORKS: 127.0.0.0/8,::1/128,172.31.250.0/24
+    ports:
+      - "127.0.0.1:18000:8000"
+    restart: unless-stopped
+    depends_on:
+      llm:
+        condition: service_started
+      embedder:
+        condition: service_started
+      reranker:
+        condition: service_started
+      migrate:
+        condition: service_completed_successfully
+      chroma:
+        condition: service_started
+
+  worker:
+    <<: *backend
+    command: ["python", "-m", "app.ingestion.worker"]
+    environment:
+      <<: *backend-env
+      # Its own login (§16 separate service accounts; infra/docker/postgres/init), same RLS as the API's.
+      DATABASE_URL: postgresql+psycopg://knowledgeai_worker:${WORKER_DB_PASSWORD:-knowledgeai-worker-dev-only}@postgres:5432/knowledgeai
+      DB_APPLICATION_NAME: knowledgeai-worker
+    healthcheck:
+      disable: true   # no HTTP; its heartbeat is the api's `worker` health check
+    stop_grace_period: 60s   # SIGTERM finishes the current job first (docs/operations.md §5)
+    restart: unless-stopped
+    depends_on:
+      llm:
+        condition: service_started
+      embedder:
+        condition: service_started
+      reranker:
+        condition: service_started
+      migrate:
+        condition: service_completed_successfully
+      chroma:
+        condition: service_started
+
+  web:
+    image: knowledgeai-web:${KNOWLEDGEAI_VERSION:-local}
+    build: ./frontend
+    profiles: [app]
+    environment:
+      API_BASE_URL: http://api:8000
+    networks: [app]   # reaches the api only, never postgres/chroma (docs/architecture.md §1)
+    ports:
+      - "127.0.0.1:13000:3000"
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+
+# Trust boundaries from docs/architecture.md §1: web ↔ api on `app`; api/worker ↔ postgres/chroma on `data`.
+networks:
+  app:
+    ipam:
+      config:
+        - subnet: 172.31.250.0/24   # fixed, so the internal API can allow callers from it
+  data:
+
+volumes:
+  pgdata:
+  chromadata:
+  uploads:   # originals uploaded through the containers (local storage backend); S3 in staging/production
+  s3data:

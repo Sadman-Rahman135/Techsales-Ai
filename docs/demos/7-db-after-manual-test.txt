@@ -1,0 +1,19 @@
+           action           |   target_type    |        title         |                actor_label                | created_at
+----------------------------+------------------+----------------------+-------------------------------------------+------------
+ document.deleted           | document         | Scanned Service Form | user:01a153f5-7930-7979-b9ab-a608a767bb39 | 11:49:30
+ auth.login                 | user             |                      | user:01a153f5-7930-7979-b9ab-a608a767bb39 | 11:49:19
+ document.deleted           | document         | Laptop warranty      | user:01a153f5-7930-7979-b9ab-a608a767bb39 | 11:45:53
+ document.version.published | document_version |                      | user:01a153f5-7976-70b4-938b-d764e24089c6 | 11:45:49
+ document.version.uploaded  | document_version |                      | user:01a153f5-7976-70b4-938b-d764e24089c6 | 11:45:47
+ auth.login                 | user             |                      | user:01a153f5-7976-70b4-938b-d764e24089c6 | 11:45:47
+(6 rows)
+
+ version_number |          title          | chunk_index | page_start | page_end |                    section                    | token_count
+----------------+-------------------------+-------------+------------+----------+-----------------------------------------------+-------------
+              1 | TechCare Returns Policy |           0 |          1 |        1 | TechCare Returns Policy                       |          26
+              1 | TechCare Returns Policy |           1 |          1 |        1 | TechCare Returns Policy > Laptops and tablets |          54
+              1 | TechCare Returns Policy |           2 |          2 |        2 | TechCare Returns Policy > Phones              |          50
+              1 | TechCare Returns Policy |           0 |          1 |        1 | TechCare Returns Policy                       |          26
+              1 | TechCare Returns Policy |           1 |          1 |        1 | TechCare Returns Policy > Laptops and tablets |          54
+              1 | TechCare Returns Policy |           2 |          2 |        2 | TechCare Returns Policy > Phones              |          50
+(6 rows)

@@ -1,0 +1,197 @@
+# Deployment rehearsal (blueprint §16; docs/deployment.md §5). The release images with deployed-style settings:
+# TLS on every hop, S3 storage, ClamAV, TLS-only Postgres, separate service accounts, and nothing published
+# except the HTTPS edge on 127.0.0.1:8443. Only the models stay the offline substitutes (the provider is a §19
+# decision), so APP_ENV stays `development`; scripts/rehearse_deploy.py checks separately that the same settings
+# pass the staging guards.
+#
+# Don't run this file by hand: `backend/.venv/Scripts/python scripts/rehearse_deploy.py` generates the secrets
+# (data/rehearsal.env, git-ignored), builds, starts, migrates, seeds and smoke-tests it.
+name: knowledgeai-rehearsal
+
+x-backend-env: &backend-env
+  APP_ENV: development   # only because the models are the substitutes; everything else is deployed-style
+  LOG_LEVEL: INFO
+  TENANT_TIMEZONE: America/Chicago
+  DATABASE_URL: postgresql+psycopg://knowledgeai_app:${APP_DB_PASSWORD:?}@postgres:5432/knowledgeai?sslmode=require
+  MIGRATION_DATABASE_URL: postgresql+psycopg://knowledgeai:${POSTGRES_PASSWORD:?}@postgres:5432/knowledgeai?sslmode=require
+  DB_APPLICATION_NAME: knowledgeai-api
+  CHROMA_HOST: chroma-tls
+  CHROMA_PORT: "443"
+  CHROMA_SSL: "true"
+  CHROMA_COLLECTION: ${CHROMA_COLLECTION:-knowledge_chunks}   # the index rollback switches this (deployment.md §7)
+  STORAGE_BACKEND: s3
+  S3_BUCKET: knowledgeai-rehearsal
+  S3_ENDPOINT_URL: https://s3-tls
+  S3_ACCESS_KEY_ID: ${S3_ACCESS_KEY_ID:?}
+  S3_SECRET_ACCESS_KEY: ${S3_SECRET_ACCESS_KEY:?}
+  MALWARE_SCANNER: clamd
+  CLAMD_HOST: clamav
+  CLAMD_PORT: "3310"
+  EMBEDDING_PROVIDER: fake
+  EMBEDDING_MODEL: fake-embedding
+  EMBEDDING_DIMENSION: "384"
+  LLM_PROVIDER: fake
+  LLM_MODEL: fake-llm
+  LLM_DAILY_BUDGET_USD: "25"
+  AUTH_JWT_SECRET: ${AUTH_JWT_SECRET:?}
+  INTERNAL_SERVICE_TOKEN: ${INTERNAL_SERVICE_TOKEN:?}
+  CUSTOMER_LOOKUP_SECRET: ${CUSTOMER_LOOKUP_SECRET:?}
+  INTERNAL_API_ALLOWED_NETWORKS: 172.31.251.0/24
+  # Trust the rehearsal CA for Chroma (httpx) and S3 (boto3). A real host trusts public/provider CAs instead.
+  SSL_CERT_FILE: /ca/root.crt
+  AWS_CA_BUNDLE: /ca/root.crt
+
+x-backend: &backend
+  image: knowledgeai-backend:${KNOWLEDGEAI_VERSION:-local}
+  environment: *backend-env
+  volumes:
+    - cadata:/ca:ro   # the public root certificate only (Caddy's own key material stays root-only)
+  networks: [app, data]
+  depends_on:
+    ca:
+      condition: service_completed_successfully
+    postgres:
+      condition: service_healthy
+
+services:
+  caddy:
+    image: caddy:2.11.7
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddydata:/data
+    ports:
+      - "127.0.0.1:8443:8443"   # the only published port: the HTTPS edge
+    networks:
+      edge: {}
+      data:
+        aliases: [chroma-tls, s3-tls]
+    healthcheck:
+      test: ["CMD", "test", "-f", "/data/caddy/certificates/local/postgres/postgres.key"]
+      interval: 2s
+      retries: 30
+
+  ca:
+    # Copies the rehearsal CA's public certificate where the unprivileged app containers can read it.
+    image: caddy:2.11.7
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - until [ -f /caddy/caddy/pki/authorities/local/root.crt ]; do sleep 1; done;
+        install -m 644 /caddy/caddy/pki/authorities/local/root.crt /ca/root.crt
+    volumes:
+      - caddydata:/caddy:ro
+      - cadata:/ca
+    network_mode: none
+    restart: "no"
+    depends_on:
+      caddy:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:18.6-alpine
+    environment:
+      POSTGRES_DB: knowledgeai
+      POSTGRES_USER: knowledgeai
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?}
+      APP_DB_PASSWORD: ${APP_DB_PASSWORD:?}
+      WORKER_DB_PASSWORD: ${WORKER_DB_PASSWORD:?}
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - >-
+        until [ -f /caddy/caddy/certificates/local/postgres/postgres.key ]; do sleep 1; done;
+        install -o postgres -g postgres -m 600 /caddy/caddy/certificates/local/postgres/postgres.key /etc/server.key &&
+        install -o postgres -g postgres -m 644 /caddy/caddy/certificates/local/postgres/postgres.crt /etc/server.crt &&
+        exec docker-entrypoint.sh postgres -c ssl=on -c ssl_cert_file=/etc/server.crt -c ssl_key_file=/etc/server.key
+        -c hba_file=/etc/rehearsal/pg_hba.conf
+    volumes:
+      - pgdata:/var/lib/postgresql
+      - ../../docker/postgres/init:/docker-entrypoint-initdb.d:ro
+      - ./pg_hba.conf:/etc/rehearsal/pg_hba.conf:ro
+      - caddydata:/caddy:ro
+    networks: [data]   # no published port
+    depends_on:
+      caddy:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U knowledgeai -d knowledgeai"]
+      interval: 3s
+      retries: 30
+
+  chroma:
+    image: chromadb/chroma:1.5.9
+    volumes:
+      - chromadata:/data
+    networks: [data]   # reached only through chroma-tls
+
+  s3:
+    image: chrislusf/seaweedfs:4.48
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - >-
+        printf '{"identities":[{"name":"knowledgeai","credentials":[{"accessKey":"%s","secretKey":"%s"}],
+        "actions":["Read","Write","List","Tagging","Admin"]}]}' "$$S3_ACCESS_KEY_ID" "$$S3_SECRET_ACCESS_KEY"
+        > /tmp/s3.json && exec weed server -dir=/data -ip.bind=0.0.0.0 -master.volumeSizeLimitMB=64
+        -s3 -s3.port=8333 -s3.config=/tmp/s3.json
+    environment:
+      S3_ACCESS_KEY_ID: ${S3_ACCESS_KEY_ID:?}
+      S3_SECRET_ACCESS_KEY: ${S3_SECRET_ACCESS_KEY:?}
+    volumes:
+      - s3data:/data
+    networks: [data]   # reached only through s3-tls
+
+  clamav:
+    image: clamav/clamav:1.5.4   # signatures are baked into the image; freshclam updates them while it runs
+    networks: [data]
+
+  migrate:
+    <<: *backend
+    command: ["python", "-m", "alembic", "upgrade", "head"]
+    restart: "no"
+    healthcheck:
+      disable: true
+
+  api:
+    <<: *backend
+    restart: unless-stopped
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+
+  worker:
+    <<: *backend
+    command: ["python", "-m", "app.ingestion.worker"]
+    environment:
+      <<: *backend-env
+      DATABASE_URL: postgresql+psycopg://knowledgeai_worker:${WORKER_DB_PASSWORD:?}@postgres:5432/knowledgeai?sslmode=require
+      DB_APPLICATION_NAME: knowledgeai-worker
+    healthcheck:
+      disable: true
+    stop_grace_period: 60s
+    restart: unless-stopped
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+
+  web:
+    image: knowledgeai-web:${KNOWLEDGEAI_VERSION:-local}
+    environment:
+      API_BASE_URL: http://api:8000
+    networks: [edge, app]
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+
+networks:
+  edge: {}
+  app:
+    ipam:
+      config:
+        - subnet: 172.31.251.0/24
+  data: {}
+
+volumes:
+  caddydata:
+  cadata:
+  pgdata:
+  chromadata:
+  s3data:

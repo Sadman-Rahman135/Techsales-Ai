@@ -1,0 +1,5183 @@
+{
+  "dataset": "golden-v1",
+  "questions": 117,
+  "environment": {
+    "base_url": "http://127.0.0.1:18001",
+    "client_os": "Windows 11",
+    "client_cpus": 12,
+    "python": "3.12.10",
+    "llm_model": "fake:fake-llm",
+    "embedding_model": "fake:fake-embedding",
+    "note": "API, worker and data services in Docker on the same machine; offline substitute models"
+  },
+  "sequential": {
+    "requests": 200,
+    "http_status": {
+      "200": 200
+    },
+    "outcomes": {
+      "answered": 161,
+      "insufficient_evidence": 39
+    },
+    "errors": 0,
+    "retrieval_ms": {
+      "p50": 9,
+      "p95": 10,
+      "n": 200
+    },
+    "first_token_ms": {
+      "p50": 24,
+      "p95": 26,
+      "n": 161
+    },
+    "full_ms": {
+      "p50": 37,
+      "p95": 47,
+      "n": 200
+    },
+    "tokens_per_answer": {
+      "embedding": 12.2,
+      "prompt": 437.3,
+      "completion": 101.8,
+      "llm_calls": 1.0,
+      "estimated_cost_usd": 0.0
+    }
+  },
+  "concurrent": {
+    "concurrency": 20,
+    "requests": 100,
+    "http_status": {
+      "200": 100
+    },
+    "outcomes": {
+      "answered": 81,
+      "insufficient_evidence": 19
+    },
+    "errors": 0,
+    "retrieval_ms": {
+      "p50": 119,
+      "p95": 232,
+      "n": 100
+    },
+    "first_token_ms": {
+      "p50": 472,
+      "p95": 659,
+      "n": 81
+    },
+    "full_ms": {
+      "p50": 782,
+      "p95": 907,
+      "n": 100
+    },
+    "tokens_per_answer": {
+      "embedding": 12.1,
+      "prompt": 437.3,
+      "completion": 101.9,
+      "llm_calls": 1.0,
+      "estimated_cost_usd": 0.0
+    },
+    "throughput_rps": 24.7
+  },
+  "samples": [
+    {
+      "phase": "sequential",
+      "case_id": "G001",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-313c25a7897f44b7a148f42ebe04fe5c",
+      "first_token_ms": 23,
+      "full_ms": 39,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 504,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 85,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G002",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-cef68e8c28d9457085fd7faea2ac9666",
+      "first_token_ms": 24,
+      "full_ms": 43,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 382,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 85,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G003",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-8ceca314c2894496bd52faf6799fc69c",
+      "first_token_ms": 25,
+      "full_ms": 41,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 404,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 112,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G004",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-2a4cd7afd34e402d9e546fae70ba5efc",
+      "first_token_ms": 26,
+      "full_ms": 45,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 376,
+        "embedding": 10,
+        "llm_calls": 1,
+        "completion": 83,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G005",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-0cc7f63311144b3097842b6a1179c8d8",
+      "first_token_ms": 25,
+      "full_ms": 38,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 377,
+        "embedding": 10,
+        "llm_calls": 1,
+        "completion": 83,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G006",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-5ccfa00dd6e7400a81d61aa1c9d09b78",
+      "first_token_ms": 27,
+      "full_ms": 40,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 422,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 107,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G007",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-a3ee7ce20c484a78aa96616bb7e8af8e",
+      "first_token_ms": 23,
+      "full_ms": 38,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 423,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 96,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G008",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-8ab1a4128f954820861f5458ee18b721",
+      "first_token_ms": 25,
+      "full_ms": 40,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 389,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 110,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G009",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-6910f21c081541ebaeba69fcec315b28",
+      "first_token_ms": 24,
+      "full_ms": 39,
+      "retrieval_ms": 11,
+      "tokens": {
+        "prompt": 393,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 58,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G010",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-6dfeecfa9ac74d469b6b778a1133b1b6",
+      "first_token_ms": 24,
+      "full_ms": 39,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 486,
+        "embedding": 9,
+        "llm_calls": 1,
+        "completion": 108,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G011",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-96e2cb73dd6e44d6b90e5d4e492c8031",
+      "first_token_ms": 24,
+      "full_ms": 37,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 369,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 63,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G012",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-dfa5cb909a074a5e82a926af08de88cb",
+      "first_token_ms": 24,
+      "full_ms": 38,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 386,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 102,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G013",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-88a870c406a54c95891b219974016d54",
+      "first_token_ms": 25,
+      "full_ms": 38,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 425,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 109,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G014",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-5e018699cd22442e9acdf0797be2cf98",
+      "first_token_ms": 26,
+      "full_ms": 39,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 407,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 102,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G015",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-2fcbc92669a7446ca402874d8628e1ad",
+      "first_token_ms": 25,
+      "full_ms": 38,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 422,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 113,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G016",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-d495835fc2354053858871fd49569397",
+      "first_token_ms": 24,
+      "full_ms": 39,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 395,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 95,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G017",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-64e45afb6d8a47d4a86b90bf4d4d2d7f",
+      "first_token_ms": 25,
+      "full_ms": 37,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 415,
+        "embedding": 20,
+        "llm_calls": 1,
+        "completion": 98,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G018",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-2ac5ef6e2f614cf089750e0b3e16bdc1",
+      "first_token_ms": 25,
+      "full_ms": 39,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 387,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 96,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G019",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-eb911c7932004e169aa91733a796a24b",
+      "first_token_ms": 24,
+      "full_ms": 37,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 391,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 102,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G020",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-70bcc65010a84b75afe1dd94bdf155f2",
+      "first_token_ms": 23,
+      "full_ms": 36,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 505,
+        "embedding": 10,
+        "llm_calls": 1,
+        "completion": 109,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G021",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-b49c458fd5be494b8ec04ef2a922798b",
+      "first_token_ms": 26,
+      "full_ms": 40,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 517,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 113,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G022",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-1a4822a9b6f648e48cb73eb8f080b13f",
+      "first_token_ms": 25,
+      "full_ms": 37,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 394,
+        "embedding": 16,
+        "llm_calls": 1,
+        "completion": 100,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G023",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-61104b44418042f68c92b53b7cc03efd",
+      "first_token_ms": 24,
+      "full_ms": 38,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 559,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 113,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G024",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-550fe1cd08e6467890b4dbe94de37d05",
+      "first_token_ms": 26,
+      "full_ms": 40,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 405,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 57,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G025",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-a2f9deb94ea342cf95b823e0ea2b75c2",
+      "first_token_ms": 24,
+      "full_ms": 37,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 410,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 92,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G026",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-fcfd4babde6243daaac776c39fbb2636",
+      "first_token_ms": 25,
+      "full_ms": 36,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 410,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 92,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G027",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-431bfbc08f044e298be39fe2f47ae32f",
+      "first_token_ms": 23,
+      "full_ms": 36,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 404,
+        "embedding": 9,
+        "llm_calls": 1,
+        "completion": 49,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G028",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-800eb115629043e29cec2db7d58493b0",
+      "first_token_ms": 24,
+      "full_ms": 38,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 423,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 111,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G029",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-c7b3faf81ab74e6dab25d222ad13eb52",
+      "first_token_ms": 24,
+      "full_ms": 36,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 420,
+        "embedding": 10,
+        "llm_calls": 1,
+        "completion": 115,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G030",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-569e79441325452c88b27b556141fdc3",
+      "first_token_ms": 24,
+      "full_ms": 36,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 515,
+        "embedding": 8,
+        "llm_calls": 1,
+        "completion": 94,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G031",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-e4b9cd77ce7247c59e22af6d24f76ef1",
+      "first_token_ms": 24,
+      "full_ms": 37,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 413,
+        "embedding": 10,
+        "llm_calls": 1,
+        "completion": 98,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G032",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-6a738861f14749f7b84c1a0430cfc5e8",
+      "first_token_ms": 25,
+      "full_ms": 38,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 413,
+        "embedding": 10,
+        "llm_calls": 1,
+        "completion": 94,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G033",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-11dfb9b7613c45e9a0e303c32041771d",
+      "first_token_ms": 23,
+      "full_ms": 35,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 412,
+        "embedding": 9,
+        "llm_calls": 1,
+        "completion": 110,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G034",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-0ca211e7b7ae47949fb5d4e4116b9660",
+      "first_token_ms": 24,
+      "full_ms": 36,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 431,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 90,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G035",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-37f1034b15994793830f87adf30c446b",
+      "first_token_ms": 24,
+      "full_ms": 38,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 426,
+        "embedding": 7,
+        "llm_calls": 1,
+        "completion": 88,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G036",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-fd0bb9e87f874c11b2195e216a53b573",
+      "first_token_ms": 24,
+      "full_ms": 38,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 430,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 90,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G037",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-4b4742485d9b404f813e26f6aab1221a",
+      "first_token_ms": 25,
+      "full_ms": 37,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 416,
+        "embedding": 10,
+        "llm_calls": 1,
+        "completion": 51,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G038",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-e5a80fe51f2145ab8eaffab673b7bcb1",
+      "first_token_ms": 25,
+      "full_ms": 37,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 415,
+        "embedding": 9,
+        "llm_calls": 1,
+        "completion": 96,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G039",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-e880e14b57e24ab7ad91f60035fbc5e8",
+      "first_token_ms": 22,
+      "full_ms": 35,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 506,
+        "embedding": 6,
+        "llm_calls": 1,
+        "completion": 82,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G040",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-a6719e26117748fe88ffb1c9bf590596",
+      "first_token_ms": 22,
+      "full_ms": 36,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 397,
+        "embedding": 10,
+        "llm_calls": 1,
+        "completion": 99,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G041",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-a778e1b339d34b309b7b1c876cac1e6b",
+      "first_token_ms": 25,
+      "full_ms": 38,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 399,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 99,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G042",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-91b41b54abb2414e8530f8967156c51d",
+      "first_token_ms": 25,
+      "full_ms": 37,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 418,
+        "embedding": 10,
+        "llm_calls": 1,
+        "completion": 56,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G043",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-4eeef94964b8418a93d3dcf6919c3b0c",
+      "first_token_ms": 23,
+      "full_ms": 36,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 421,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 99,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G044",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-84671884fe774e23b22dbb1a021e5952",
+      "first_token_ms": 25,
+      "full_ms": 38,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 464,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 113,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G045",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-c3caf03a747d4ca0a9b5c821ea78218f",
+      "first_token_ms": 25,
+      "full_ms": 36,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 439,
+        "embedding": 9,
+        "llm_calls": 1,
+        "completion": 113,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G046",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-65523abdab0c4d528af7affe75c806f0",
+      "first_token_ms": 23,
+      "full_ms": 35,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 449,
+        "embedding": 20,
+        "llm_calls": 1,
+        "completion": 106,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G047",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-01ff16e21d6c4e3196af741f68e6c466",
+      "first_token_ms": 25,
+      "full_ms": 37,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 465,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 109,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G048",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-f77016b442eb4e1b811d08ba38ed9101",
+      "first_token_ms": 24,
+      "full_ms": 37,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 439,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 95,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G049",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-1ea5586a627d4318a022819b9047bacf",
+      "first_token_ms": 145,
+      "full_ms": 157,
+      "retrieval_ms": 8,
+      "tokens": {
+        "prompt": 467,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 111,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G050",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-d226070ec20d48fe994e031e819faa85",
+      "first_token_ms": 25,
+      "full_ms": 38,
+      "retrieval_ms": 11,
+      "tokens": {
+        "prompt": 496,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 120,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G051",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-9c2c341852b143aca9dee86d5b7a94da",
+      "first_token_ms": null,
+      "full_ms": 45,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 65,
+        "embedding": 24,
+        "llm_calls": 1,
+        "completion": 9,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G052",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-f9fde905a10840d5afc7a12028858d23",
+      "first_token_ms": 26,
+      "full_ms": 38,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 447,
+        "embedding": 8,
+        "llm_calls": 1,
+        "completion": 125,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G053",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-8a7c5d40b622410c8688041f1bc1c9ec",
+      "first_token_ms": 26,
+      "full_ms": 39,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 451,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 108,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G054",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-a76b3ae2b4344ea4a0786a490c119a78",
+      "first_token_ms": 23,
+      "full_ms": 35,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 447,
+        "embedding": 8,
+        "llm_calls": 1,
+        "completion": 112,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G055",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-3d1594df75814f6ead6c40c0dce0fc02",
+      "first_token_ms": 23,
+      "full_ms": 38,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 447,
+        "embedding": 8,
+        "llm_calls": 1,
+        "completion": 125,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G068",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-77d18c4547544f928455c86700f6ba56",
+      "first_token_ms": 23,
+      "full_ms": 37,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 414,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 112,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G069",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-24418de5808f49c1bc1cd247a1f1914e",
+      "first_token_ms": 24,
+      "full_ms": 39,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 414,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 132,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G070",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-1ea9d40bd580419baf2358d3a89ce778",
+      "first_token_ms": 25,
+      "full_ms": 38,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 417,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 117,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G071",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-891c4c9067494752857adab6bafef73b",
+      "first_token_ms": 27,
+      "full_ms": 42,
+      "retrieval_ms": 11,
+      "tokens": {
+        "prompt": 417,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 117,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G072",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-427cd47b3bfc49e3aa992c8285fdb5cc",
+      "first_token_ms": 25,
+      "full_ms": 38,
+      "retrieval_ms": 11,
+      "tokens": {
+        "prompt": 595,
+        "embedding": 9,
+        "llm_calls": 1,
+        "completion": 124,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G073",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-917441300ecc44b0b48ffb97a5a395d3",
+      "first_token_ms": 25,
+      "full_ms": 36,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 423,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 133,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G074",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-cecc554274864233906416d034c2a5c0",
+      "first_token_ms": 24,
+      "full_ms": 36,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 595,
+        "embedding": 9,
+        "llm_calls": 1,
+        "completion": 133,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G075",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-43324363594048f9b424ab5d1d337cef",
+      "first_token_ms": 24,
+      "full_ms": 36,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 414,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 132,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G076",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-5246b0ff07384abcab591e4d8429319a",
+      "first_token_ms": 24,
+      "full_ms": 36,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 417,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 127,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G077",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-a3d21d2847f5404bab214161b02c6dfe",
+      "first_token_ms": 24,
+      "full_ms": 37,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 385,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 59,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G078",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-a7bb738b54594cb69fecdb47eaa84285",
+      "first_token_ms": 25,
+      "full_ms": 37,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 390,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 61,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G079",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-fb99c5c273bf401eb76a3b5765eca540",
+      "first_token_ms": 24,
+      "full_ms": 37,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 398,
+        "embedding": 16,
+        "llm_calls": 1,
+        "completion": 106,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G080",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-bde5d263f8e84ff9aada1d4a4a8c714b",
+      "first_token_ms": 23,
+      "full_ms": 35,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 410,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 98,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G081",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-e5f5f51e9e9d4090bd51a920e5776051",
+      "first_token_ms": 27,
+      "full_ms": 41,
+      "retrieval_ms": 11,
+      "tokens": {
+        "prompt": 429,
+        "embedding": 19,
+        "llm_calls": 1,
+        "completion": 111,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G083",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-8f183cb99bea423cbed4939284da5043",
+      "first_token_ms": 27,
+      "full_ms": 40,
+      "retrieval_ms": 12,
+      "tokens": {
+        "prompt": 408,
+        "embedding": 19,
+        "llm_calls": 1,
+        "completion": 112,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G084",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-8fcb87f83a4c41aa844b6e547810a320",
+      "first_token_ms": 25,
+      "full_ms": 38,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 426,
+        "embedding": 16,
+        "llm_calls": 1,
+        "completion": 107,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G085",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-eea323d87e3a4560b0bf852aa97adc6d",
+      "first_token_ms": 25,
+      "full_ms": 39,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 450,
+        "embedding": 20,
+        "llm_calls": 1,
+        "completion": 113,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G086",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-61e9d86944af4fe29c5a317b05502185",
+      "first_token_ms": 23,
+      "full_ms": 36,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 448,
+        "embedding": 18,
+        "llm_calls": 1,
+        "completion": 108,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G087",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-b757fd7f3f474eb69eb44227895bd9e6",
+      "first_token_ms": 23,
+      "full_ms": 35,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 504,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 111,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G088",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-71eb5d9007cd423db90840d8a7aa588d",
+      "first_token_ms": 28,
+      "full_ms": 42,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 422,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 107,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G089",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-3aa3f4dc8c2541a7905b46221376c00f",
+      "first_token_ms": 26,
+      "full_ms": 39,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 406,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 102,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G090",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-6fd70ff58de443b4a583a900a1996957",
+      "first_token_ms": 26,
+      "full_ms": 40,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 464,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 113,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G091",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-b8d0268a9d8c4231840e9e1db9821917",
+      "first_token_ms": 27,
+      "full_ms": 41,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 515,
+        "embedding": 8,
+        "llm_calls": 1,
+        "completion": 94,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G092",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-48ed6e64df454c84afa6978472b8e0bb",
+      "first_token_ms": 25,
+      "full_ms": 39,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 451,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 108,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G093",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-ee461f7238754a458b4c17da82f4a63a",
+      "first_token_ms": null,
+      "full_ms": 52,
+      "retrieval_ms": 13,
+      "tokens": {
+        "prompt": 56,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 4,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G094",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-57f1301f31624c1d8ea3b2104550359e",
+      "first_token_ms": 24,
+      "full_ms": 35,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 494,
+        "embedding": 5,
+        "llm_calls": 1,
+        "completion": 136,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G095",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-a136a240077a468fb875bac40e908736",
+      "first_token_ms": null,
+      "full_ms": 44,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 58,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 5,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G096",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-3845a9b1ee084fd585f4e66df3b79017",
+      "first_token_ms": 24,
+      "full_ms": 37,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 656,
+        "embedding": 5,
+        "llm_calls": 1,
+        "completion": 129,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G097",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-51bee9363e3e4cffa18e3b135340b41f",
+      "first_token_ms": 25,
+      "full_ms": 36,
+      "retrieval_ms": 11,
+      "tokens": {
+        "prompt": 436,
+        "embedding": 7,
+        "llm_calls": 1,
+        "completion": 109,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G098",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-5a2f1bb165374cd6a7ddce23c1d639c7",
+      "first_token_ms": null,
+      "full_ms": 45,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 57,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 5,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G099",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-4454821dae8049c49c77ebd3dbdc7cf9",
+      "first_token_ms": null,
+      "full_ms": 43,
+      "retrieval_ms": 8,
+      "tokens": {
+        "prompt": 57,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 5,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G100",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-389f425df9e644289e3bbe3c2b1b7ebf",
+      "first_token_ms": null,
+      "full_ms": 45,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 58,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 4,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G101",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-614ae2c7a2db4b8cbe26728cf50c9b37",
+      "first_token_ms": null,
+      "full_ms": 43,
+      "retrieval_ms": 8,
+      "tokens": {
+        "prompt": 57,
+        "embedding": 8,
+        "llm_calls": 1,
+        "completion": 1,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G102",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-5ed5e408e8394172be8e95bad2939e27",
+      "first_token_ms": null,
+      "full_ms": 44,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 57,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 6,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G103",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-4e9846cbf1f64bb385a11f925fd0fb2d",
+      "first_token_ms": null,
+      "full_ms": 46,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 59,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 5,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G104",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-b807ac07985945b7b7e2569162f4aec5",
+      "first_token_ms": null,
+      "full_ms": 46,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 57,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 5,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G105",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-bf595787f8cd411695bcf396eea29c44",
+      "first_token_ms": null,
+      "full_ms": 47,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 59,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 3,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G106",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-75e70a3c755e4b039e0c3dbecfb78cad",
+      "first_token_ms": null,
+      "full_ms": 45,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 59,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 3,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G107",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-91bcc09216a24d3898f9c684fca9bbbc",
+      "first_token_ms": null,
+      "full_ms": 46,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 59,
+        "embedding": 16,
+        "llm_calls": 1,
+        "completion": 6,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G108",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-b6a5740715bf4631983436ea3baa9a59",
+      "first_token_ms": null,
+      "full_ms": 46,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 62,
+        "embedding": 21,
+        "llm_calls": 1,
+        "completion": 8,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G109",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-8a8b874d066e4be48e0b3295cc7a005f",
+      "first_token_ms": null,
+      "full_ms": 47,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 59,
+        "embedding": 17,
+        "llm_calls": 1,
+        "completion": 7,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G110",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-66531152f3b94d7794c2e2ff15cc82ef",
+      "first_token_ms": null,
+      "full_ms": 46,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 59,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 5,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G111",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-b51a27f09363463a8f810be825de601f",
+      "first_token_ms": null,
+      "full_ms": 43,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 59,
+        "embedding": 16,
+        "llm_calls": 1,
+        "completion": 6,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G112",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-47aeaf8ea2464211a61835b68987a9ac",
+      "first_token_ms": null,
+      "full_ms": 44,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 61,
+        "embedding": 19,
+        "llm_calls": 1,
+        "completion": 7,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G113",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-4aa98420b51f4860b84dc9d1f03dd6e7",
+      "first_token_ms": null,
+      "full_ms": 44,
+      "retrieval_ms": 8,
+      "tokens": {
+        "prompt": 56,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 5,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G114",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-f59282f42ca546db81e63c5535c8c088",
+      "first_token_ms": null,
+      "full_ms": 46,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 58,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 6,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G115",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-3f0f6e26945b42bc97481538445988a9",
+      "first_token_ms": null,
+      "full_ms": 46,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 58,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 6,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G116",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-f82df63e127a454fb09152b5e1725949",
+      "first_token_ms": null,
+      "full_ms": 47,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 59,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 5,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G117",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-f8b433667b574abcb1d38d77b83429c7",
+      "first_token_ms": null,
+      "full_ms": 45,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 59,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 5,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G118",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-a1bdc31b8ca34e5493877e9cc76bd1da",
+      "first_token_ms": null,
+      "full_ms": 47,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 60,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 4,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G119",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-d896d42cc58941f281b5aa8bec5eca5e",
+      "first_token_ms": null,
+      "full_ms": 46,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 58,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 6,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G120",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-dc4d3eef63d8402d9d4c07fdebb1182b",
+      "first_token_ms": null,
+      "full_ms": 46,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 58,
+        "embedding": 16,
+        "llm_calls": 1,
+        "completion": 7,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G121",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-8b85f873bd454ddaa6d35af9c3723613",
+      "first_token_ms": null,
+      "full_ms": 50,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 58,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 4,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G122",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-0778f976bbc24a97ba08ff27578f15d9",
+      "first_token_ms": null,
+      "full_ms": 55,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 58,
+        "embedding": 16,
+        "llm_calls": 1,
+        "completion": 7,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G124",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-8d27750a3d8446d293fdbbfda676dcdd",
+      "first_token_ms": null,
+      "full_ms": 53,
+      "retrieval_ms": 11,
+      "tokens": {
+        "prompt": 59,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 5,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G125",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-f692b2251b6b4959955df49ed93db1b5",
+      "first_token_ms": null,
+      "full_ms": 53,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 75,
+        "embedding": 46,
+        "llm_calls": 1,
+        "completion": 21,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G126",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-fa208836d91f4665a50fedacf9bd2f5d",
+      "first_token_ms": null,
+      "full_ms": 50,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 60,
+        "embedding": 17,
+        "llm_calls": 1,
+        "completion": 7,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G127",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-d0bacfe96598490e824a8f7b01326e5e",
+      "first_token_ms": null,
+      "full_ms": 52,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 73,
+        "embedding": 37,
+        "llm_calls": 1,
+        "completion": 13,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G128",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-072bbe2312c34fa4bc56d4e5f8953a1e",
+      "first_token_ms": null,
+      "full_ms": 47,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 63,
+        "embedding": 20,
+        "llm_calls": 1,
+        "completion": 7,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G129",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-2afa781d9b2945fa9407ff4d287483b6",
+      "first_token_ms": null,
+      "full_ms": 46,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 65,
+        "embedding": 24,
+        "llm_calls": 1,
+        "completion": 9,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G130",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-f44140bfdcb84933b596ffa44e694aac",
+      "first_token_ms": null,
+      "full_ms": 44,
+      "retrieval_ms": 8,
+      "tokens": {
+        "prompt": 61,
+        "embedding": 19,
+        "llm_calls": 1,
+        "completion": 8,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G131",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-d3608be8c38748b2a807be5f2f1b41d4",
+      "first_token_ms": null,
+      "full_ms": 46,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 67,
+        "embedding": 30,
+        "llm_calls": 1,
+        "completion": 12,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G001",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-bc7d8d1b7c6d483882691176a93cc060",
+      "first_token_ms": 24,
+      "full_ms": 37,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 504,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 85,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G002",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-b97d7f5cc2ad4eb595369920904ec6b7",
+      "first_token_ms": 24,
+      "full_ms": 36,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 382,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 85,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G003",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-ff28073513ad452a8f13c0472b5b928b",
+      "first_token_ms": 23,
+      "full_ms": 36,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 404,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 112,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G004",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-e4bbf3aafdd347ea919392eb16637b65",
+      "first_token_ms": 25,
+      "full_ms": 37,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 376,
+        "embedding": 10,
+        "llm_calls": 1,
+        "completion": 83,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G005",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-b17a77224e61475c9a77e959fab21c70",
+      "first_token_ms": 22,
+      "full_ms": 35,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 377,
+        "embedding": 10,
+        "llm_calls": 1,
+        "completion": 83,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G006",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-21046d46c4714f119a54d1eba5a63a5e",
+      "first_token_ms": 24,
+      "full_ms": 36,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 422,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 107,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G007",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-bdd905d194514104a90b8fffd063b7b5",
+      "first_token_ms": 26,
+      "full_ms": 37,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 423,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 96,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G008",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-fb48ce9ad4e84992bd99217a0b85325a",
+      "first_token_ms": 23,
+      "full_ms": 35,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 389,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 110,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G009",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-018e8ea2e300438f8eacfb197baad1c4",
+      "first_token_ms": 24,
+      "full_ms": 36,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 393,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 58,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G010",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-a22b092ab28c4a6394487b53702e37c3",
+      "first_token_ms": 25,
+      "full_ms": 38,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 486,
+        "embedding": 9,
+        "llm_calls": 1,
+        "completion": 108,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G011",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-ed1ef339078045a6a521d00f04a07264",
+      "first_token_ms": 23,
+      "full_ms": 37,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 369,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 63,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G012",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-0c311df329cd4dccb2e634c2128032c3",
+      "first_token_ms": 24,
+      "full_ms": 37,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 386,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 102,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G013",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-c907e60d75c8472389e7369b91f03589",
+      "first_token_ms": 25,
+      "full_ms": 37,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 425,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 109,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G014",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-84417cd8047545caa3f15b7ca9826a03",
+      "first_token_ms": 25,
+      "full_ms": 37,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 407,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 102,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G015",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-ce6cf7ff11ad4409a27599b878b48ec6",
+      "first_token_ms": 24,
+      "full_ms": 37,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 422,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 113,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G016",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-4d801c4f51c94a128165d802118f88bf",
+      "first_token_ms": 24,
+      "full_ms": 38,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 395,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 95,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G017",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-c53e77ec04844d6e8f2122485195e342",
+      "first_token_ms": 23,
+      "full_ms": 36,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 415,
+        "embedding": 20,
+        "llm_calls": 1,
+        "completion": 98,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G018",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-eb5c0c6681bb4177aa46be836d9a945d",
+      "first_token_ms": 22,
+      "full_ms": 35,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 387,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 96,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G019",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-9def5bb79597431ca988da60bf955341",
+      "first_token_ms": 23,
+      "full_ms": 35,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 391,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 102,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G020",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-47a9e8c2fc5c45ce8506a850889f9a06",
+      "first_token_ms": 23,
+      "full_ms": 36,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 505,
+        "embedding": 10,
+        "llm_calls": 1,
+        "completion": 109,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G021",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-df16f9fafda04f7dafe3ae6189934dea",
+      "first_token_ms": 25,
+      "full_ms": 38,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 517,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 113,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G022",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-65d6427763a64a349c9ce0bf7b66d048",
+      "first_token_ms": 25,
+      "full_ms": 38,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 394,
+        "embedding": 16,
+        "llm_calls": 1,
+        "completion": 100,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G023",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-f5c9f3db314947fdb30cd85d205d536f",
+      "first_token_ms": 22,
+      "full_ms": 36,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 559,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 113,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G024",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-ad90b8a960fd4660b10302bf588ce57b",
+      "first_token_ms": 23,
+      "full_ms": 35,
+      "retrieval_ms": 8,
+      "tokens": {
+        "prompt": 405,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 57,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G025",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-8e9ef259a9964cd4805df84655550cbb",
+      "first_token_ms": 23,
+      "full_ms": 36,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 410,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 92,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G026",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-255d0fa6066145168cf187c29073b973",
+      "first_token_ms": 24,
+      "full_ms": 36,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 410,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 92,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G027",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-743684daa4774a57930985d82b6dd7f0",
+      "first_token_ms": 25,
+      "full_ms": 36,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 404,
+        "embedding": 9,
+        "llm_calls": 1,
+        "completion": 49,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G028",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-a85b6a993eed4dd4a789ee85d093893e",
+      "first_token_ms": 25,
+      "full_ms": 38,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 423,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 111,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G029",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-3d17eaf1987c4ee1bb49a6510ecb86e7",
+      "first_token_ms": 22,
+      "full_ms": 33,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 420,
+        "embedding": 10,
+        "llm_calls": 1,
+        "completion": 115,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G030",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-c76c41ed365b4439a6315ce87d970e2b",
+      "first_token_ms": 23,
+      "full_ms": 36,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 515,
+        "embedding": 8,
+        "llm_calls": 1,
+        "completion": 94,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G031",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-da0a4e82dfb448fc84f2d8a8244d9817",
+      "first_token_ms": 23,
+      "full_ms": 36,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 413,
+        "embedding": 10,
+        "llm_calls": 1,
+        "completion": 98,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G032",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-bb44fe73de3f4d80a55d43bdca000295",
+      "first_token_ms": 22,
+      "full_ms": 34,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 413,
+        "embedding": 10,
+        "llm_calls": 1,
+        "completion": 94,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G033",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-7f223262765d4e0aac05f77227fdd771",
+      "first_token_ms": 22,
+      "full_ms": 34,
+      "retrieval_ms": 8,
+      "tokens": {
+        "prompt": 412,
+        "embedding": 9,
+        "llm_calls": 1,
+        "completion": 110,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G034",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-eef36d20ab074abb92a798ecc2594b2f",
+      "first_token_ms": 22,
+      "full_ms": 34,
+      "retrieval_ms": 8,
+      "tokens": {
+        "prompt": 431,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 90,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G035",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-34ff2d70a9e246a8834124c6c17dea1e",
+      "first_token_ms": 24,
+      "full_ms": 37,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 426,
+        "embedding": 7,
+        "llm_calls": 1,
+        "completion": 88,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G036",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-6aafb29ebaba49b2847e38a0afa369af",
+      "first_token_ms": 25,
+      "full_ms": 36,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 430,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 90,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G037",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-afff5958bd06450fa54331a45c1e15cb",
+      "first_token_ms": 25,
+      "full_ms": 36,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 416,
+        "embedding": 10,
+        "llm_calls": 1,
+        "completion": 51,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G038",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-d23db3943c5f4eaaa5d3a51592d927b0",
+      "first_token_ms": 23,
+      "full_ms": 35,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 415,
+        "embedding": 9,
+        "llm_calls": 1,
+        "completion": 96,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G039",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-c53e0d73bbb5447ebb74ccf87f7fee43",
+      "first_token_ms": 22,
+      "full_ms": 34,
+      "retrieval_ms": 8,
+      "tokens": {
+        "prompt": 506,
+        "embedding": 6,
+        "llm_calls": 1,
+        "completion": 82,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G040",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-51078a037dfb413b9a86ca08e90bedf7",
+      "first_token_ms": 23,
+      "full_ms": 34,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 397,
+        "embedding": 10,
+        "llm_calls": 1,
+        "completion": 99,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G041",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-7c660227dc364258b92105e481325405",
+      "first_token_ms": 23,
+      "full_ms": 35,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 399,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 99,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G042",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-612229da66c94012bc37bd27ee28c18b",
+      "first_token_ms": 25,
+      "full_ms": 38,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 418,
+        "embedding": 10,
+        "llm_calls": 1,
+        "completion": 56,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G043",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-10929481224649ffaa4803c8d1686876",
+      "first_token_ms": 24,
+      "full_ms": 37,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 421,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 99,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G044",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-cec3fa61e37d407284df3c9534d8e9db",
+      "first_token_ms": 25,
+      "full_ms": 38,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 464,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 113,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G045",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-376c0948465b4d9ab534563e2b44f28f",
+      "first_token_ms": 22,
+      "full_ms": 34,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 439,
+        "embedding": 9,
+        "llm_calls": 1,
+        "completion": 113,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G046",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-f005cf8749a549d8a68015136c11adc2",
+      "first_token_ms": 24,
+      "full_ms": 35,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 449,
+        "embedding": 20,
+        "llm_calls": 1,
+        "completion": 106,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G047",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-3bc39e2fce074e56aedbc129f26e17d1",
+      "first_token_ms": 23,
+      "full_ms": 35,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 465,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 109,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G048",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-fa12ae2e09984d278afa8ea824d2fb1e",
+      "first_token_ms": 24,
+      "full_ms": 36,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 439,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 95,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G049",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-7904ac9a99184f00890343ca466b1d3a",
+      "first_token_ms": 23,
+      "full_ms": 34,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 467,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 111,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G050",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-d996f29d49794bbf931c229850c72272",
+      "first_token_ms": 23,
+      "full_ms": 37,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 496,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 120,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G051",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-f5d9ab6233a444f4a19f52f39ea78530",
+      "first_token_ms": null,
+      "full_ms": 46,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 65,
+        "embedding": 24,
+        "llm_calls": 1,
+        "completion": 9,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G052",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-ea3a8a12f2da42d4a9d2d411bee2155a",
+      "first_token_ms": 24,
+      "full_ms": 36,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 447,
+        "embedding": 8,
+        "llm_calls": 1,
+        "completion": 125,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G053",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-e5779863df3746b5969e33d83df1d248",
+      "first_token_ms": 22,
+      "full_ms": 35,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 451,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 108,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G054",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-40b2ddf3f864400183956a9bf11ebd8b",
+      "first_token_ms": 22,
+      "full_ms": 33,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 447,
+        "embedding": 8,
+        "llm_calls": 1,
+        "completion": 112,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G055",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-aa270cb1c18b42bb826105128ded67a9",
+      "first_token_ms": 22,
+      "full_ms": 34,
+      "retrieval_ms": 8,
+      "tokens": {
+        "prompt": 447,
+        "embedding": 8,
+        "llm_calls": 1,
+        "completion": 125,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G068",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-46cdb9f5762c48caaa6f16265baed8fe",
+      "first_token_ms": 23,
+      "full_ms": 35,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 414,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 112,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G069",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-14f9728f8fb148cbb65d5101cb8ee1cd",
+      "first_token_ms": 25,
+      "full_ms": 37,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 414,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 132,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G070",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-07c487e831de4e08a0416f3db2fb1cec",
+      "first_token_ms": 22,
+      "full_ms": 34,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 417,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 117,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G071",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-49c782df2d134e07bb89661918d853ca",
+      "first_token_ms": 23,
+      "full_ms": 36,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 417,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 117,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G072",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-46c292338b494d579fbc48070ab7a43d",
+      "first_token_ms": 25,
+      "full_ms": 37,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 595,
+        "embedding": 9,
+        "llm_calls": 1,
+        "completion": 124,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G073",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-e7148e46f86945f3b291dfb701c43446",
+      "first_token_ms": 23,
+      "full_ms": 35,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 423,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 133,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G074",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-7b4411b6ee8d4e6a9c628b66a6dcf1a9",
+      "first_token_ms": 23,
+      "full_ms": 37,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 595,
+        "embedding": 9,
+        "llm_calls": 1,
+        "completion": 133,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G075",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-ffc16bff0fcc431e9a824a71954db053",
+      "first_token_ms": 25,
+      "full_ms": 38,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 414,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 132,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G076",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-a2505d15c8f644f29e1ca42afb9341e5",
+      "first_token_ms": 22,
+      "full_ms": 34,
+      "retrieval_ms": 8,
+      "tokens": {
+        "prompt": 417,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 127,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G077",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-14558e120129466bb789d4de00403a92",
+      "first_token_ms": 22,
+      "full_ms": 35,
+      "retrieval_ms": 8,
+      "tokens": {
+        "prompt": 385,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 59,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G078",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-c4ba5df01b5141a491c1ba0e4ef44c30",
+      "first_token_ms": 22,
+      "full_ms": 34,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 390,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 61,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G079",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-50831fec221045d6887a813adf25be2b",
+      "first_token_ms": 25,
+      "full_ms": 37,
+      "retrieval_ms": 8,
+      "tokens": {
+        "prompt": 398,
+        "embedding": 16,
+        "llm_calls": 1,
+        "completion": 106,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G080",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-155e5f73b7ba4bc6a1828eddbaf1b3c9",
+      "first_token_ms": 24,
+      "full_ms": 37,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 410,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 98,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G081",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-c3ea3314f8d747c5b50eb41df16380af",
+      "first_token_ms": 23,
+      "full_ms": 36,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 429,
+        "embedding": 19,
+        "llm_calls": 1,
+        "completion": 111,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G083",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-0a255e000c414e819ae5e5b2e8fccc89",
+      "first_token_ms": 22,
+      "full_ms": 36,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 408,
+        "embedding": 19,
+        "llm_calls": 1,
+        "completion": 112,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G084",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-6c938f95638047d0bd4c693c3b0a211b",
+      "first_token_ms": 22,
+      "full_ms": 34,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 426,
+        "embedding": 16,
+        "llm_calls": 1,
+        "completion": 107,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G085",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-a5b21874c0b2418088fb2cecef15368f",
+      "first_token_ms": 23,
+      "full_ms": 35,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 450,
+        "embedding": 20,
+        "llm_calls": 1,
+        "completion": 113,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G086",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-d6311bb3033c46bd936feda46a3f181c",
+      "first_token_ms": 23,
+      "full_ms": 37,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 448,
+        "embedding": 18,
+        "llm_calls": 1,
+        "completion": 108,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G087",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-dc2ab5dda1064ae188f516eaceb3ec98",
+      "first_token_ms": 23,
+      "full_ms": 35,
+      "retrieval_ms": 8,
+      "tokens": {
+        "prompt": 504,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 111,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G088",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-32cd3c80033e472491b7f5288d7c3eb6",
+      "first_token_ms": 22,
+      "full_ms": 34,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 422,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 107,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G089",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-1959edef64ea4ef3a9d8c435557bf833",
+      "first_token_ms": 25,
+      "full_ms": 38,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 406,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 102,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G090",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-d3cee30b54314885b190ef968b300feb",
+      "first_token_ms": 26,
+      "full_ms": 40,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 464,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 113,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G091",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-f67e3d4384b74bdeabc02741f2c53f37",
+      "first_token_ms": 26,
+      "full_ms": 40,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 515,
+        "embedding": 8,
+        "llm_calls": 1,
+        "completion": 94,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G092",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-47416b11d7894977b2e8154ad0abf884",
+      "first_token_ms": 26,
+      "full_ms": 41,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 451,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 108,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G093",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-d5c87c6e0ddd4b2ca2836708faccb6a2",
+      "first_token_ms": null,
+      "full_ms": 55,
+      "retrieval_ms": 10,
+      "tokens": {
+        "prompt": 56,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 4,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G094",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-ef69573c781840a993b8104bf65aadc2",
+      "first_token_ms": 22,
+      "full_ms": 36,
+      "retrieval_ms": 9,
+      "tokens": {
+        "prompt": 494,
+        "embedding": 5,
+        "llm_calls": 1,
+        "completion": 136,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G095",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-5c1f3f3a4f9548fb842ab00f7863f316",
+      "first_token_ms": null,
+      "full_ms": 46,
+      "retrieval_ms": 8,
+      "tokens": {
+        "prompt": 58,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 5,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "sequential",
+      "case_id": "G096",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-00016927954347159d0f20ada7a5ca33",
+      "first_token_ms": 22,
+      "full_ms": 35,
+      "retrieval_ms": 8,
+      "tokens": {
+        "prompt": 656,
+        "embedding": 5,
+        "llm_calls": 1,
+        "completion": 129,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G001",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-5acec24f99a346b18e2ca7722e74b5ef",
+      "first_token_ms": 361,
+      "full_ms": 652,
+      "retrieval_ms": 165,
+      "tokens": {
+        "prompt": 504,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 85,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G004",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-c7bebc2f945f409cb8202161856ea863",
+      "first_token_ms": 378,
+      "full_ms": 661,
+      "retrieval_ms": 22,
+      "tokens": {
+        "prompt": 376,
+        "embedding": 10,
+        "llm_calls": 1,
+        "completion": 83,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G005",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-79b4e7b917ae47a7b2566cf6f7c290b1",
+      "first_token_ms": 481,
+      "full_ms": 688,
+      "retrieval_ms": 33,
+      "tokens": {
+        "prompt": 377,
+        "embedding": 10,
+        "llm_calls": 1,
+        "completion": 83,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G002",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-96c9128f350046618522044c38a39ee8",
+      "first_token_ms": 356,
+      "full_ms": 692,
+      "retrieval_ms": 46,
+      "tokens": {
+        "prompt": 382,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 85,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G003",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-0389069670fa4db898e20dd214c97078",
+      "first_token_ms": 396,
+      "full_ms": 701,
+      "retrieval_ms": 18,
+      "tokens": {
+        "prompt": 404,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 112,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G006",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-eedd06beb47f45e0a1eafbe74d2dd636",
+      "first_token_ms": 404,
+      "full_ms": 716,
+      "retrieval_ms": 24,
+      "tokens": {
+        "prompt": 422,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 107,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G007",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-c4ad311089e64671862c7eb19dfbf5ab",
+      "first_token_ms": 479,
+      "full_ms": 715,
+      "retrieval_ms": 37,
+      "tokens": {
+        "prompt": 423,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 96,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G008",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-37c14b46b71f400795ecc736805218b4",
+      "first_token_ms": 535,
+      "full_ms": 742,
+      "retrieval_ms": 108,
+      "tokens": {
+        "prompt": 389,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 110,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G016",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-8b78944e2b0c49fca95324fe61d83c08",
+      "first_token_ms": 488,
+      "full_ms": 750,
+      "retrieval_ms": 74,
+      "tokens": {
+        "prompt": 395,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 95,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G014",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-074e01a252584ba690ecbbb617cf652e",
+      "first_token_ms": 530,
+      "full_ms": 769,
+      "retrieval_ms": 118,
+      "tokens": {
+        "prompt": 407,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 102,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G010",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-6d3b241db91c4a4f8789e8f0ea51d59a",
+      "first_token_ms": 533,
+      "full_ms": 792,
+      "retrieval_ms": 109,
+      "tokens": {
+        "prompt": 486,
+        "embedding": 9,
+        "llm_calls": 1,
+        "completion": 108,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G020",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-9873c2f618bd4e17827d52a8fb5bb5a2",
+      "first_token_ms": 546,
+      "full_ms": 811,
+      "retrieval_ms": 132,
+      "tokens": {
+        "prompt": 505,
+        "embedding": 10,
+        "llm_calls": 1,
+        "completion": 109,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G011",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-30ccc9ef087645339011c6c15d2a91fd",
+      "first_token_ms": 599,
+      "full_ms": 818,
+      "retrieval_ms": 162,
+      "tokens": {
+        "prompt": 369,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 63,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G019",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-72f02b34943242759db293a35dd478aa",
+      "first_token_ms": 640,
+      "full_ms": 828,
+      "retrieval_ms": 197,
+      "tokens": {
+        "prompt": 391,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 102,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G015",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-5d16f15f57644faf85f78b1362d8a295",
+      "first_token_ms": 618,
+      "full_ms": 870,
+      "retrieval_ms": 192,
+      "tokens": {
+        "prompt": 422,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 113,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G012",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-413e2d7547714510b8dd1678191b8be6",
+      "first_token_ms": 644,
+      "full_ms": 878,
+      "retrieval_ms": 208,
+      "tokens": {
+        "prompt": 386,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 102,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G017",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-a9a025ed8fc24834892e10e8d039da3d",
+      "first_token_ms": 707,
+      "full_ms": 895,
+      "retrieval_ms": 238,
+      "tokens": {
+        "prompt": 415,
+        "embedding": 20,
+        "llm_calls": 1,
+        "completion": 98,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G013",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-198e37c32dc046a692d6d2a2d22a47d3",
+      "first_token_ms": 716,
+      "full_ms": 900,
+      "retrieval_ms": 229,
+      "tokens": {
+        "prompt": 425,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 109,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G009",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-2d263855847d4e86aca36a84b1ce4dee",
+      "first_token_ms": 668,
+      "full_ms": 907,
+      "retrieval_ms": 238,
+      "tokens": {
+        "prompt": 393,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 58,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G018",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-1fc041ca766d40138a032861cf692a7f",
+      "first_token_ms": 713,
+      "full_ms": 901,
+      "retrieval_ms": 244,
+      "tokens": {
+        "prompt": 387,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 96,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G027",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-ab1ad1c3f7f449bf930fa442efd6d567",
+      "first_token_ms": 381,
+      "full_ms": 675,
+      "retrieval_ms": 70,
+      "tokens": {
+        "prompt": 404,
+        "embedding": 9,
+        "llm_calls": 1,
+        "completion": 49,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G021",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-23db4091db6642438fb81cbbee1117c3",
+      "first_token_ms": 476,
+      "full_ms": 772,
+      "retrieval_ms": 72,
+      "tokens": {
+        "prompt": 517,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 113,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G023",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-668c07fffb9347f1a0a1394f3979d169",
+      "first_token_ms": 471,
+      "full_ms": 735,
+      "retrieval_ms": 49,
+      "tokens": {
+        "prompt": 559,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 113,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G022",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-c0642ca544614ccb84c0ab0b546d11cf",
+      "first_token_ms": 427,
+      "full_ms": 763,
+      "retrieval_ms": 44,
+      "tokens": {
+        "prompt": 394,
+        "embedding": 16,
+        "llm_calls": 1,
+        "completion": 100,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G029",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-0c57bb4e0c144c8389156a0a7a6db98f",
+      "first_token_ms": 400,
+      "full_ms": 696,
+      "retrieval_ms": 52,
+      "tokens": {
+        "prompt": 420,
+        "embedding": 10,
+        "llm_calls": 1,
+        "completion": 115,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G026",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-2c42c90bc0e34e448e95cd562c4cb621",
+      "first_token_ms": 395,
+      "full_ms": 754,
+      "retrieval_ms": 73,
+      "tokens": {
+        "prompt": 410,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 92,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G024",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-8f8881efcaed4251be296782de542bae",
+      "first_token_ms": 412,
+      "full_ms": 783,
+      "retrieval_ms": 74,
+      "tokens": {
+        "prompt": 405,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 57,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G028",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-105b949def514d90813a9cf172c144ee",
+      "first_token_ms": 444,
+      "full_ms": 759,
+      "retrieval_ms": 29,
+      "tokens": {
+        "prompt": 423,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 111,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G033",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-de8f24b704b84eabb49e26f2e41f4a0b",
+      "first_token_ms": 387,
+      "full_ms": 688,
+      "retrieval_ms": 48,
+      "tokens": {
+        "prompt": 412,
+        "embedding": 9,
+        "llm_calls": 1,
+        "completion": 110,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G025",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-ceb9742b3ebf4b9f98e4c357c8ce772d",
+      "first_token_ms": 551,
+      "full_ms": 812,
+      "retrieval_ms": 103,
+      "tokens": {
+        "prompt": 410,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 92,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G039",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-58d3553c8a4c48a39966f1ddecc33036",
+      "first_token_ms": 402,
+      "full_ms": 645,
+      "retrieval_ms": 103,
+      "tokens": {
+        "prompt": 506,
+        "embedding": 6,
+        "llm_calls": 1,
+        "completion": 82,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G035",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-22ff8a2418144b7c9565361425297ebc",
+      "first_token_ms": 393,
+      "full_ms": 689,
+      "retrieval_ms": 95,
+      "tokens": {
+        "prompt": 426,
+        "embedding": 7,
+        "llm_calls": 1,
+        "completion": 88,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G031",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-6c4bca2cef7347189474ed53fd4613cb",
+      "first_token_ms": 508,
+      "full_ms": 785,
+      "retrieval_ms": 110,
+      "tokens": {
+        "prompt": 413,
+        "embedding": 10,
+        "llm_calls": 1,
+        "completion": 98,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G034",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-a91e1a63291a45b2851cc374fe79be98",
+      "first_token_ms": 430,
+      "full_ms": 739,
+      "retrieval_ms": 89,
+      "tokens": {
+        "prompt": 431,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 90,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G037",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-c48319a3c51e4d42be42c274ab306700",
+      "first_token_ms": 436,
+      "full_ms": 678,
+      "retrieval_ms": 93,
+      "tokens": {
+        "prompt": 416,
+        "embedding": 10,
+        "llm_calls": 1,
+        "completion": 51,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G030",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-b25520286f474132aa09d21321272eac",
+      "first_token_ms": 433,
+      "full_ms": 807,
+      "retrieval_ms": 57,
+      "tokens": {
+        "prompt": 515,
+        "embedding": 8,
+        "llm_calls": 1,
+        "completion": 94,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G040",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-3e4a87c3ee174c208a3644b84495df7a",
+      "first_token_ms": 426,
+      "full_ms": 678,
+      "retrieval_ms": 109,
+      "tokens": {
+        "prompt": 397,
+        "embedding": 10,
+        "llm_calls": 1,
+        "completion": 99,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G036",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-b8bb7b76081a42a8b879b4da1a26907b",
+      "first_token_ms": 490,
+      "full_ms": 697,
+      "retrieval_ms": 153,
+      "tokens": {
+        "prompt": 430,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 90,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G038",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-2635ac8bfe2948d9ae7c3533247d3cc7",
+      "first_token_ms": 472,
+      "full_ms": 688,
+      "retrieval_ms": 123,
+      "tokens": {
+        "prompt": 415,
+        "embedding": 9,
+        "llm_calls": 1,
+        "completion": 96,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G032",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-386f7b87fc564265a74a7c2069022165",
+      "first_token_ms": 499,
+      "full_ms": 782,
+      "retrieval_ms": 132,
+      "tokens": {
+        "prompt": 413,
+        "embedding": 10,
+        "llm_calls": 1,
+        "completion": 94,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G043",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-2eddd746bf3d4909b775579d69e184c5",
+      "first_token_ms": 343,
+      "full_ms": 622,
+      "retrieval_ms": 79,
+      "tokens": {
+        "prompt": 421,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 99,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G044",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-2611cc63a1e1419cbbadc48d1065bb06",
+      "first_token_ms": 346,
+      "full_ms": 621,
+      "retrieval_ms": 87,
+      "tokens": {
+        "prompt": 464,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 113,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G047",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-2adaf3ba1ff6433eb78d6177e0441d31",
+      "first_token_ms": 350,
+      "full_ms": 791,
+      "retrieval_ms": 20,
+      "tokens": {
+        "prompt": 465,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 109,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G041",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-0cc99bdd8e7541b59f5df25ba7a9e67e",
+      "first_token_ms": 540,
+      "full_ms": 918,
+      "retrieval_ms": 66,
+      "tokens": {
+        "prompt": 399,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 99,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G042",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-9500ac9f36fd48d7b75de5dfcadc6afe",
+      "first_token_ms": 419,
+      "full_ms": 907,
+      "retrieval_ms": 22,
+      "tokens": {
+        "prompt": 418,
+        "embedding": 10,
+        "llm_calls": 1,
+        "completion": 56,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G046",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-c0376016560a4b038421bfc421c43c90",
+      "first_token_ms": 439,
+      "full_ms": 867,
+      "retrieval_ms": 43,
+      "tokens": {
+        "prompt": 449,
+        "embedding": 20,
+        "llm_calls": 1,
+        "completion": 106,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G048",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-dcc5b47d3a6b4059a32e839f6c99bb09",
+      "first_token_ms": 403,
+      "full_ms": 832,
+      "retrieval_ms": 45,
+      "tokens": {
+        "prompt": 439,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 95,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G045",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-50eebb17db054bffb76bc0d65f0d3484",
+      "first_token_ms": 473,
+      "full_ms": 886,
+      "retrieval_ms": 69,
+      "tokens": {
+        "prompt": 439,
+        "embedding": 9,
+        "llm_calls": 1,
+        "completion": 113,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G049",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-25135b71cd3c4fe1b35e91828f02b7a7",
+      "first_token_ms": 416,
+      "full_ms": 829,
+      "retrieval_ms": 66,
+      "tokens": {
+        "prompt": 467,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 111,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G050",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-ec3b8303232e4e5b84040c6056d65b3a",
+      "first_token_ms": 439,
+      "full_ms": 854,
+      "retrieval_ms": 75,
+      "tokens": {
+        "prompt": 496,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 120,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G070",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-13687da9a7e846b4a4fe666330d9339d",
+      "first_token_ms": 460,
+      "full_ms": 793,
+      "retrieval_ms": 146,
+      "tokens": {
+        "prompt": 417,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 117,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G072",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-124cd1c1059b478484dafb1a54dff89f",
+      "first_token_ms": 464,
+      "full_ms": 798,
+      "retrieval_ms": 173,
+      "tokens": {
+        "prompt": 595,
+        "embedding": 9,
+        "llm_calls": 1,
+        "completion": 124,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G052",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-f8b182384a754ff282c764ca4bb1c1bb",
+      "first_token_ms": 428,
+      "full_ms": 858,
+      "retrieval_ms": 124,
+      "tokens": {
+        "prompt": 447,
+        "embedding": 8,
+        "llm_calls": 1,
+        "completion": 125,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G054",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-a2980433e9a64006854186c91b492bec",
+      "first_token_ms": 471,
+      "full_ms": 853,
+      "retrieval_ms": 130,
+      "tokens": {
+        "prompt": 447,
+        "embedding": 8,
+        "llm_calls": 1,
+        "completion": 112,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G068",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-50921e56bd1047a6ae1eced1427f1cf4",
+      "first_token_ms": 498,
+      "full_ms": 876,
+      "retrieval_ms": 157,
+      "tokens": {
+        "prompt": 414,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 112,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G071",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-ffc0c45e671d49aea2485c15f441de8b",
+      "first_token_ms": 491,
+      "full_ms": 871,
+      "retrieval_ms": 141,
+      "tokens": {
+        "prompt": 417,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 117,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G053",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-6354a228a88d4c4081896c9c5359d51f",
+      "first_token_ms": 476,
+      "full_ms": 893,
+      "retrieval_ms": 158,
+      "tokens": {
+        "prompt": 451,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 108,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G055",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-07cc9021af634a78878a46ba70302501",
+      "first_token_ms": 471,
+      "full_ms": 891,
+      "retrieval_ms": 155,
+      "tokens": {
+        "prompt": 447,
+        "embedding": 8,
+        "llm_calls": 1,
+        "completion": 125,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G051",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-9e28a1e37e504279b8e846c3727a33ce",
+      "first_token_ms": null,
+      "full_ms": 950,
+      "retrieval_ms": 252,
+      "tokens": {
+        "prompt": 65,
+        "embedding": 24,
+        "llm_calls": 1,
+        "completion": 9,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G069",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-b2c1be47597d45488a619f3d0c12c39b",
+      "first_token_ms": 659,
+      "full_ms": 927,
+      "retrieval_ms": 173,
+      "tokens": {
+        "prompt": 414,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 132,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G073",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-be9c5a59848147bc889836bf665b9c07",
+      "first_token_ms": 508,
+      "full_ms": 675,
+      "retrieval_ms": 77,
+      "tokens": {
+        "prompt": 423,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 133,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G074",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-611acb0c46894a30be0a683758b152de",
+      "first_token_ms": 579,
+      "full_ms": 901,
+      "retrieval_ms": 124,
+      "tokens": {
+        "prompt": 595,
+        "embedding": 9,
+        "llm_calls": 1,
+        "completion": 133,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G080",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-c8208ae1195540a3a52dda2bd1e0868f",
+      "first_token_ms": 450,
+      "full_ms": 678,
+      "retrieval_ms": 61,
+      "tokens": {
+        "prompt": 410,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 98,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G075",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-be2ff93171e941169a40f6dbf537c530",
+      "first_token_ms": 376,
+      "full_ms": 774,
+      "retrieval_ms": 83,
+      "tokens": {
+        "prompt": 414,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 132,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G077",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-ba92eeb4859448e4a913e8c903036bbd",
+      "first_token_ms": 397,
+      "full_ms": 731,
+      "retrieval_ms": 44,
+      "tokens": {
+        "prompt": 385,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 59,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G079",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-19b180ded62b42718a9d8498025086b5",
+      "first_token_ms": 472,
+      "full_ms": 769,
+      "retrieval_ms": 40,
+      "tokens": {
+        "prompt": 398,
+        "embedding": 16,
+        "llm_calls": 1,
+        "completion": 106,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G078",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-d498a606d46d4de695d7395a9e895d8e",
+      "first_token_ms": 537,
+      "full_ms": 773,
+      "retrieval_ms": 124,
+      "tokens": {
+        "prompt": 390,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 61,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G076",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-62c2714a13914fe4aebe00d94f430ff0",
+      "first_token_ms": 408,
+      "full_ms": 793,
+      "retrieval_ms": 18,
+      "tokens": {
+        "prompt": 417,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 127,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G090",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-08421dab6acf4a708f845fb8e87d3c29",
+      "first_token_ms": 402,
+      "full_ms": 648,
+      "retrieval_ms": 106,
+      "tokens": {
+        "prompt": 464,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 113,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G084",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-099fd0f1ed864d828a40b078cb5a1cd0",
+      "first_token_ms": 486,
+      "full_ms": 732,
+      "retrieval_ms": 106,
+      "tokens": {
+        "prompt": 426,
+        "embedding": 16,
+        "llm_calls": 1,
+        "completion": 107,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G081",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-b14bcded43ee4ac093a46c26b715c401",
+      "first_token_ms": 513,
+      "full_ms": 775,
+      "retrieval_ms": 136,
+      "tokens": {
+        "prompt": 429,
+        "embedding": 19,
+        "llm_calls": 1,
+        "completion": 111,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G089",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-1d6da39ebf34425d8f4bb49a9428d36d",
+      "first_token_ms": 560,
+      "full_ms": 729,
+      "retrieval_ms": 200,
+      "tokens": {
+        "prompt": 406,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 102,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G085",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-5f9f8c596e5b4011b348928facc0d10e",
+      "first_token_ms": 546,
+      "full_ms": 775,
+      "retrieval_ms": 187,
+      "tokens": {
+        "prompt": 450,
+        "embedding": 20,
+        "llm_calls": 1,
+        "completion": 113,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G083",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-1fa84b44bfe24b03977c092dc8213e9f",
+      "first_token_ms": 586,
+      "full_ms": 839,
+      "retrieval_ms": 193,
+      "tokens": {
+        "prompt": 408,
+        "embedding": 19,
+        "llm_calls": 1,
+        "completion": 112,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G086",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-1cf198252755445ab5a36ff550544973",
+      "first_token_ms": 539,
+      "full_ms": 790,
+      "retrieval_ms": 163,
+      "tokens": {
+        "prompt": 448,
+        "embedding": 18,
+        "llm_calls": 1,
+        "completion": 108,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G092",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-2e949788568b43a391a4a075314f8836",
+      "first_token_ms": 525,
+      "full_ms": 762,
+      "retrieval_ms": 179,
+      "tokens": {
+        "prompt": 451,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 108,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G091",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-f01c8f5c084b4694b1b5993bf1dc0c92",
+      "first_token_ms": 574,
+      "full_ms": 809,
+      "retrieval_ms": 231,
+      "tokens": {
+        "prompt": 515,
+        "embedding": 8,
+        "llm_calls": 1,
+        "completion": 94,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G088",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-bdffa071de6444f69da1cff1ec85b31a",
+      "first_token_ms": 584,
+      "full_ms": 820,
+      "retrieval_ms": 253,
+      "tokens": {
+        "prompt": 422,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 107,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G087",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-99939e198318454697ad5c700710311e",
+      "first_token_ms": 591,
+      "full_ms": 848,
+      "retrieval_ms": 212,
+      "tokens": {
+        "prompt": 504,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 111,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G094",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-258d2275309b44208620b1a5f64aee2a",
+      "first_token_ms": 395,
+      "full_ms": 586,
+      "retrieval_ms": 148,
+      "tokens": {
+        "prompt": 494,
+        "embedding": 5,
+        "llm_calls": 1,
+        "completion": 136,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G093",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-79afd044ac204fb5933eb55f00f3d231",
+      "first_token_ms": null,
+      "full_ms": 831,
+      "retrieval_ms": 153,
+      "tokens": {
+        "prompt": 56,
+        "embedding": 11,
+        "llm_calls": 1,
+        "completion": 4,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G096",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-3407737b1cd7425b8a14a6e09ddecb6e",
+      "first_token_ms": 378,
+      "full_ms": 663,
+      "retrieval_ms": 89,
+      "tokens": {
+        "prompt": 656,
+        "embedding": 5,
+        "llm_calls": 1,
+        "completion": 129,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G095",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-4eadec19a33a45419dfea13f521f5221",
+      "first_token_ms": null,
+      "full_ms": 741,
+      "retrieval_ms": 47,
+      "tokens": {
+        "prompt": 58,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 5,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G097",
+      "status": 200,
+      "outcome": "answered",
+      "request_id": "req-6c1d885451de47ea99630b5e82fecddc",
+      "first_token_ms": 433,
+      "full_ms": 729,
+      "retrieval_ms": 74,
+      "tokens": {
+        "prompt": 436,
+        "embedding": 7,
+        "llm_calls": 1,
+        "completion": 109,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G100",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-27a8b3ade2374f6aad7e20962e764ce3",
+      "first_token_ms": null,
+      "full_ms": 740,
+      "retrieval_ms": 178,
+      "tokens": {
+        "prompt": 58,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 4,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G113",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-2333e27b93c34801aacac0d0360534ec",
+      "first_token_ms": null,
+      "full_ms": 609,
+      "retrieval_ms": 123,
+      "tokens": {
+        "prompt": 56,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 5,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G101",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-2802cd5ae8924e799d03345cecd1ddb8",
+      "first_token_ms": null,
+      "full_ms": 835,
+      "retrieval_ms": 206,
+      "tokens": {
+        "prompt": 57,
+        "embedding": 8,
+        "llm_calls": 1,
+        "completion": 1,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G104",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-276ee154e995408c9413068634882ea3",
+      "first_token_ms": null,
+      "full_ms": 817,
+      "retrieval_ms": 207,
+      "tokens": {
+        "prompt": 57,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 5,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G103",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-5ba19683542c4185b4030f92c8680569",
+      "first_token_ms": null,
+      "full_ms": 825,
+      "retrieval_ms": 172,
+      "tokens": {
+        "prompt": 59,
+        "embedding": 15,
+        "llm_calls": 1,
+        "completion": 5,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G099",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-e2f5b7c6aa7545679c0a31b577d01b33",
+      "first_token_ms": null,
+      "full_ms": 867,
+      "retrieval_ms": 232,
+      "tokens": {
+        "prompt": 57,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 5,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G102",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-88228454b6f7496c88668ad6e8b8f7e5",
+      "first_token_ms": null,
+      "full_ms": 887,
+      "retrieval_ms": 219,
+      "tokens": {
+        "prompt": 57,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 6,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G098",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-9a7061cf66254fa0a1ce372496ae5949",
+      "first_token_ms": null,
+      "full_ms": 917,
+      "retrieval_ms": 224,
+      "tokens": {
+        "prompt": 57,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 5,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G106",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-4021beae248a4fbd905a811e776b64a6",
+      "first_token_ms": null,
+      "full_ms": 836,
+      "retrieval_ms": 129,
+      "tokens": {
+        "prompt": 59,
+        "embedding": 13,
+        "llm_calls": 1,
+        "completion": 3,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G108",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-0b9f7bcfbd474252a8768a872b9a7b89",
+      "first_token_ms": null,
+      "full_ms": 784,
+      "retrieval_ms": 203,
+      "tokens": {
+        "prompt": 62,
+        "embedding": 21,
+        "llm_calls": 1,
+        "completion": 8,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G105",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-a8cef1785538443cbae26303b988e452",
+      "first_token_ms": null,
+      "full_ms": 837,
+      "retrieval_ms": 128,
+      "tokens": {
+        "prompt": 59,
+        "embedding": 12,
+        "llm_calls": 1,
+        "completion": 3,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G107",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-49ef6dd52a9249c2962516f74f8ad0b2",
+      "first_token_ms": null,
+      "full_ms": 785,
+      "retrieval_ms": 94,
+      "tokens": {
+        "prompt": 59,
+        "embedding": 16,
+        "llm_calls": 1,
+        "completion": 6,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G110",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-025b3596bd754244bcd192187d95625e",
+      "first_token_ms": null,
+      "full_ms": 744,
+      "retrieval_ms": 132,
+      "tokens": {
+        "prompt": 59,
+        "embedding": 14,
+        "llm_calls": 1,
+        "completion": 5,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G112",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-55cf1a11e523400995cd0bb7ce7e3fd2",
+      "first_token_ms": null,
+      "full_ms": 725,
+      "retrieval_ms": 120,
+      "tokens": {
+        "prompt": 61,
+        "embedding": 19,
+        "llm_calls": 1,
+        "completion": 7,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G111",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-eca86bbed0134baca4a5724d4f96b9c7",
+      "first_token_ms": null,
+      "full_ms": 747,
+      "retrieval_ms": 152,
+      "tokens": {
+        "prompt": 59,
+        "embedding": 16,
+        "llm_calls": 1,
+        "completion": 6,
+        "estimated_cost_usd": 0.0
+      }
+    },
+    {
+      "phase": "concurrent",
+      "case_id": "G109",
+      "status": 200,
+      "outcome": "insufficient_evidence",
+      "request_id": "req-765bd951119f4cd9ab31ceb25bbe7902",
+      "first_token_ms": null,
+      "full_ms": 760,
+      "retrieval_ms": 89,
+      "tokens": {
+        "prompt": 59,
+        "embedding": 17,
+        "llm_calls": 1,
+        "completion": 7,
+        "estimated_cost_usd": 0.0
+      }
+    }
+  ]
+}
