@@ -136,7 +136,7 @@ rich-toolkit==0.20.6
 rignore==0.8.1
 rpds-py==2026.9.1
 ruff==0.17.0
-s3transfer==0.19.2
+s3transfer==0.19.3
 sentry-sdk==2.72.0
 shellingham==1.5.4
 six==1.17.0
