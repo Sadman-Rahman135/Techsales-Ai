@@ -112,7 +112,7 @@ pycparser==3.11
 pydantic==2.14.1
 pydantic-core==2.50.1
 pydantic-extra-types==2.11.1
-pydantic-settings==2.15.0
+pydantic-settings==2.16.1
 pygments==2.21.0
 pyjwt==2.15.1
 pymupdf==1.28.2
