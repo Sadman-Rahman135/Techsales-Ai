@@ -27,7 +27,7 @@ dependencies = [
     "opentelemetry-sdk==1.45.1",
     "langsmith==0.14.7",
     "tzdata==2026.5",  # IANA zones for zoneinfo on Windows and slim containers
-    "boto3==1.43.112",  # S3 storage for staging/production (§16); s3transfer held at 0.19.2 in the lock
+    "boto3==1.43.117",  # S3 storage for staging/production (§16); s3transfer held at 0.19.2 in the lock
 ]
 
 [project.optional-dependencies]
