@@ -1,0 +1,12 @@
+$ document 'Laptop warranty': v1 published, vectors=4
+$ POST /documents/{id}/versions -> 202, version_number=2
+$ worker: job done, timings={'parsing': 32, 'chunking': 0, 'indexing': 29, 'embedding': 0, 'verifying': 20, 'embedding_tokens': 33}
+$ before publish: status=ready, active=v1, v2 vectors=1
+$ POST /documents/{id}/publish -> 200, active=v2, versions=[(2, 'published'), (1, 'archived')]
+$ python -m app.ingestion.worker --reconcile -> requeued=0 failed=0 files=0 vector_versions=1 drift=0
+$ vectors after reconcile: v1=0 (archived), v2=1 (published)
+$ DELETE as manager -> 403
+$ DELETE as admin -> 204
+$ GET deleted document -> 404
+$ python -m app.ingestion.worker --reconcile -> requeued=0 failed=0 files=0 vector_versions=1 drift=0
+$ vectors after delete + reconcile: v2=0

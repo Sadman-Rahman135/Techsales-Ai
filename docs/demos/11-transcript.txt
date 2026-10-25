@@ -1,0 +1,128 @@
+
+## 1. Health: API, Postgres, Chroma, storage, worker, queue (§11.3)
+{
+ "status": "ok",
+ "app_env": "development",
+ "checks": [
+  {
+   "name": "postgres",
+   "ok": true,
+   "latency_ms": 18,
+   "detail": null
+  },
+  {
+   "name": "chroma",
+   "ok": true,
+   "latency_ms": 3,
+   "detail": null
+  },
+  {
+   "name": "storage",
+   "ok": true,
+   "latency_ms": 0,
+   "detail": null
+  },
+  {
+   "name": "worker",
+   "ok": true,
+   "latency_ms": 19,
+   "detail": null
+  },
+  {
+   "name": "queue",
+   "ok": true,
+   "latency_ms": 24,
+   "detail": null
+  }
+ ]
+}
+
+## 2. API response headers (§11.2): nosniff, DENY, no-referrer, no-store; HSTS only when deployed
+x-content-type-options: nosniff
+x-frame-options: DENY
+referrer-policy: no-referrer
+cache-control: no-store
+
+## 3. BFF page headers (Next.js)
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+Referrer-Policy: strict-origin-when-cross-origin
+Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+
+## 4. Sign-in lockout (§11.2): 5 wrong passwords for one account, then 429 even with any password
+attempt 1 -> 401
+attempt 2 -> 401
+attempt 3 -> 401
+attempt 4 -> 401
+attempt 5 -> 401
+attempt 6 -> 429
+retry-after: 900
+{"error":{"code":"LOGIN_LOCKED","message":"Too many failed sign-ins. Try again in 15 minutes.","request_id":"req-…","details":{"retry_after_seconds":900}}}
+
+## 5. Internal voice API from an allowed network with the service token: passes network + token checks
+127.0.0.1 + token, empty body -> 422 (422 = past the network and token checks)
+(A caller outside INTERNAL_API_ALLOWED_NETWORKS gets 403 even with the token, and a forged X-Forwarded-For doesn't help: test_operations::test_the_internal_api_only_answers_allowed_networks)
+
+## 6. Log hygiene (§11.2): a signed file link, a search term and an email in URLs, as they appear in the API log
+INFO:     127.0.0.1:8648 - "POST /api/v1/internal/knowledge/answer HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:8653 - "GET /api/v1/files/[token] HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:8654 - "GET /api/v1/documents?q=[redacted] HTTP/1.1" 401 Unauthorized
+logging errors in the log since restart: 0
+
+## 7. Database timeouts (§11.3): settings of the API's own connection
+statement_timeout = 15s
+idle_in_transaction_session_timeout = 1min
+application_name = knowledgeai
+
+## 8. Backup and tested restore (§11.3)
+backup data\backups\knowledgeai-20261019T172641Z.dump 126598 bytes sha256=2dbeffe4ccb93b3d5a7cd580c08466979d10224b357427c1a347c6231fa93c24
+restore check: 15 tables, 1017 rows, 9 RLS policies, revision matches
+
+## 9. Retention run (§11.2, ADR-019): purge soft-deleted documents past their grace period, expire old chats
+documents_purged=0 conversations_deleted=0 failures=0
+
+## 10. Rebuild procedure exists and refuses to drop outside development (§11.3)
+usage: rebuild.py [-h] [--drop-existing]
+
+Rebuild the vector index from Postgres + stored originals (ADR-002, ADR-013; plan §7.3 "use a migration or
+rebuild process" when the embedding model or dimension changes).
+
+
+## 11. Worker crash detection (§11.3): the worker process was killed at 17:27:06 UTC (no clean stop)
+GET /health two minutes later -> HTTP 503 degraded; worker: "No worker heartbeat for 124 s."
+Worker restarted; GET /health now:
+ok [('postgres', True), ('chroma', True), ('storage', True), ('worker', True), ('queue', True)]
+Leftover row of the killed worker: deleted by the next heartbeat after a day (STALE_ROWS_AFTER); a clean stop (SIGINT/SIGTERM) removes its own row at once.
+
+## 12. Dependency and secret scanning, run locally with the CI commands (§11.2)
+$ pip-audit -r backend/constraints.txt (no exceptions)
+Name     Version ID              Fix Versions
+-------- ------- --------------- ------------
+chromadb 1.5.9   PYSEC-2026-311
+chromadb 1.5.9   PYSEC-2026-311
+chromadb 1.5.9   PYSEC-2026-3814
+chromadb 1.5.9   PYSEC-2026-3815
+chromadb 1.5.9   PYSEC-2026-3813
+
+$ pip-audit … --ignore-vuln <the 4 reviewed chromadb IDs>  (the CI gate)
+exit=0
+
+$ npm audit --omit=dev --audit-level=high  (runtime dependencies, the CI gate)
+found 0 vulnerabilities
+exit=0
+
+$ npm audit (all, reported only)
+braces  *
+braces vulnerable to stack-exhaustion denial of service through deeply nested patterns - https://github.com/advisories/GHSA-vfj7-8cjw-p6xm
+node_modules/braces
+
+$ pre-commit run gitleaks --all-files
+Detect hardcoded secrets.............................(no files to check)Skipped
+(pre-commit scans tracked files only, and nothing is committed yet. So the same gitleaks binary scanned the
+whole working tree instead:)
+
+$ gitleaks dir . --redact
+leaks found: 87, all in git-ignored paths: 69 backend/.venv (library test fixtures), 15 frontend/.next (build
+output), 2 .env (the local secrets file), 1 backend/tests/unit/__pycache__ (compiled test with a fake JWT).
+$ git check-ignore -v <each path>   -> .gitignore: .venv/, /.next/, .env, __pycache__/ (all ignored)
+Findings in files git would track: 0.

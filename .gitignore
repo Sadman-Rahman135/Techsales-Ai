@@ -1,0 +1,45 @@
+# Secrets — never commit usable keys (see docs/IMPLEMENTATION_PLAN.md §5.2)
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# Playwright
+test-results/
+playwright-report/
+
+# Local data (uploads, Chroma persistence, Postgres volumes)
+data/
+uploads/
+chroma-data/
+*.sqlite3
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Local models (ADR-026): large binaries, downloaded by scripts/download_models.py. The manifest and README are tracked.
+LLM/*
+!LLM/models.json
+!LLM/README.md

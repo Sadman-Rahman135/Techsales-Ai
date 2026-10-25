@@ -1,0 +1,27 @@
+# Deployment rehearsal (docs/deployment.md §5): TLS on every hop, from one local CA (Caddy's `internal`
+# issuer). A real host uses public certificates on the edge and its provider's TLS for managed services.
+{
+	local_certs
+	skip_install_trust
+	admin off
+}
+
+# Public edge: the only published port. HSTS comes from the Next.js app itself (next.config.ts).
+https://localhost:8443 {
+	encode gzip
+	reverse_proxy web:3000
+}
+
+# Internal TLS endpoints on the private data network (network aliases chroma-tls and s3-tls).
+https://chroma-tls {
+	reverse_proxy chroma:8000
+}
+
+https://s3-tls {
+	reverse_proxy s3:8333
+}
+
+# Not served: this site only makes Caddy issue the certificate Postgres presents (copied at its start).
+https://postgres {
+	respond 404
+}

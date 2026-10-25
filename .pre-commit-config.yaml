@@ -1,0 +1,38 @@
+# Install once: backend/.venv/Scripts/pre-commit install   (runs on every `git commit`)
+# Run manually:  backend/.venv/Scripts/pre-commit run --all-files
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-added-large-files
+        args: ["--maxkb=1024"]
+      - id: check-merge-conflict
+      - id: check-yaml
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+        exclude: \.md$
+
+  # Blocks committed secrets (§18: "no usable secrets in code, git history or screenshots").
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.1
+    hooks:
+      - id: gitleaks
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.0  # keep in sync with backend/pyproject.toml
+    hooks:
+      - id: ruff-check
+        args: ["--fix"]
+        files: ^backend/
+      - id: ruff-format
+        files: ^backend/
+
+  - repo: local
+    hooks:
+      - id: frontend-lint
+        name: frontend lint (eslint)
+        entry: npm --prefix frontend run lint
+        language: system
+        files: ^frontend/.*\.(ts|tsx|js|mjs)$
+        pass_filenames: false

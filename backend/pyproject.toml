@@ -1,0 +1,88 @@
+[project]
+name = "knowledgeai-backend"
+version = "0.1.0"
+description = "KnowledgeAI API and ingestion worker (FastAPI + LangGraph + Chroma + PostgreSQL)"
+requires-python = ">=3.12,<3.13"
+# Exact pins: see docs/dependency-versions.md (each pin is >= 7 days old when chosen).
+# Full transitive lock: backend/constraints.txt. Install with: pip install -c constraints.txt -e ".[dev]"
+dependencies = [
+    "fastapi[standard]==0.143.0",
+    "uvicorn[standard]==0.54.0",
+    "pydantic==2.14.1",
+    "pydantic-settings==2.15.0",
+    "sqlalchemy==2.1.4",
+    "alembic==1.20.0",
+    "psycopg[binary]==3.3.6",
+    "langgraph==1.2.14",
+    "langchain-core==1.6.9",
+    "langchain-openai==1.7.0",
+    "langchain-chroma==1.1.0",
+    "chromadb==1.5.9",
+    "pymupdf==1.28.2",
+    "python-docx==1.2.0",
+    "httpx==0.28.1",
+    "python-multipart==0.0.32",
+    "pyjwt==2.15.1",
+    "argon2-cffi==25.1.0",
+    "opentelemetry-sdk==1.45.1",
+    "langsmith==0.14.7",
+    "tzdata==2026.5",  # IANA zones for zoneinfo on Windows and slim containers
+    "boto3==1.43.112",  # S3 storage for staging/production (§16); s3transfer held at 0.19.2 in the lock
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==9.1.1",
+    "pytest-asyncio==1.4.0",
+    "ruff==0.17.0",
+    "mypy==2.4.0",
+    "pre-commit==4.6.2",
+]
+
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.fastapi]
+entrypoint = "app.main:app"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "integration: needs the local stack from compose.yaml (docker compose up -d)",
+]
+addopts = "-ra --strict-markers"
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "ASYNC", "RUF"]
+ignore = ["S101"]  # assert is fine in tests
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S105", "S106", "S107"]  # fake secrets in tests
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["pydantic.mypy"]
+
+[[tool.mypy.overrides]]
+# PyMuPDF and python-docx ship partial annotations; their calls are checked by the parser tests instead.
+module = ["app.ingestion.parsing", "app.ingestion.validation", "app.demo.builders"]
+disallow_untyped_calls = false
+
+[[tool.mypy.overrides]]
+# PyYAML ships no type hints; the evaluation runner validates the parsed dataset itself.
+module = ["yaml"]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+# boto3 ships no type hints; the S3 adapter is covered by integration tests against a real S3 server.
+module = ["boto3", "boto3.*", "botocore", "botocore.*"]
+ignore_missing_imports = true

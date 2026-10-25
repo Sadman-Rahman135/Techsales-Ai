@@ -1,0 +1,2821 @@
+{
+  "run_id": "eval-20261020-094437-db06ee",
+  "commit": null,
+  "dataset": "exploration",
+  "dataset_sha256": "f1eb5bb974f318aa48ec33b62dfc18eedccdf58b4d2cae8443bb1f00a216b237",
+  "gated": false,
+  "started_at": "2026-10-20T09:44:37.316956+00:00",
+  "config": {
+    "llm_model": "local:qwen3-4b-instruct-2507-q4_k_m",
+    "embedding_model": "local:nomic-embed-text-v1.5-q8_0",
+    "top_k": 5,
+    "retrieval_candidates": 10,
+    "min_term_coverage": 0.6,
+    "cases": 49
+  },
+  "gates": [
+    {
+      "id": "G1",
+      "metric": "recall_at_5",
+      "status": "pass",
+      "value": 1.0,
+      "numerator": 29,
+      "denominator": 29,
+      "ci95": [
+        0.883,
+        1.0
+      ],
+      "target": 0.9,
+      "comparator": ">=",
+      "below_min_sample": true,
+      "failing_cases": []
+    },
+    {
+      "id": "G3",
+      "metric": "invented_policy_count",
+      "status": "pass",
+      "value": 0,
+      "denominator": 12,
+      "upper95": 0.243,
+      "target": 0,
+      "comparator": "==",
+      "below_min_sample": true,
+      "failing_cases": []
+    },
+    {
+      "id": "G4",
+      "metric": "valid_citation_rate",
+      "status": "pass",
+      "value": 1.0,
+      "numerator": 23,
+      "denominator": 23,
+      "ci95": [
+        0.857,
+        1.0
+      ],
+      "target": 1.0,
+      "comparator": "==",
+      "below_min_sample": false,
+      "failing_cases": []
+    }
+  ],
+  "latency": {
+    "id": "G9",
+    "status": "no_target",
+    "full_answer_ms": {
+      "p50": 1592,
+      "p95": 2112,
+      "n": 49
+    },
+    "retrieval_ms": {
+      "p50": 100,
+      "p95": 584,
+      "n": 49
+    },
+    "note": "sequential runs, offline models; first-token latency needs a streaming client (G9)"
+  },
+  "by_category": {
+    "exploration": {
+      "passed": 8,
+      "total": 8
+    },
+    "typo": {
+      "passed": 6,
+      "total": 6
+    },
+    "unanswerable": {
+      "passed": 12,
+      "total": 12
+    },
+    "exact_code": {
+      "passed": 3,
+      "total": 5
+    },
+    "positive": {
+      "passed": 2,
+      "total": 6
+    },
+    "near_model": {
+      "passed": 4,
+      "total": 4
+    },
+    "multi_document": {
+      "passed": 0,
+      "total": 2
+    },
+    "follow_up": {
+      "passed": 5,
+      "total": 6
+    }
+  },
+  "m3_gate": {
+    "status": "fail",
+    "answered_from_expected_source": {
+      "numerator": 20,
+      "denominator": 29
+    },
+    "abstained_when_required": {
+      "numerator": 12,
+      "denominator": 12
+    },
+    "failing_cases": [
+      {
+        "case_id": "X17",
+        "request_id": "req-eval-20261020-094437-db06ee-X17",
+        "trace_id": "trace-eval-20261020-094437-db06ee-X17",
+        "problems": [
+          "answer lacks ['tray size']"
+        ]
+      },
+      {
+        "case_id": "X18",
+        "request_id": "req-eval-20261020-094437-db06ee-X18",
+        "trace_id": "trace-eval-20261020-094437-db06ee-X18",
+        "problems": [
+          "expected an answer, got insufficient_evidence"
+        ]
+      },
+      {
+        "case_id": "X22",
+        "request_id": "req-eval-20261020-094437-db06ee-X22",
+        "trace_id": "trace-eval-20261020-094437-db06ee-X22",
+        "problems": [
+          "expected an answer, got insufficient_evidence"
+        ]
+      },
+      {
+        "case_id": "X25",
+        "request_id": "req-eval-20261020-094437-db06ee-X25",
+        "trace_id": "trace-eval-20261020-094437-db06ee-X25",
+        "problems": [
+          "expected an answer, got insufficient_evidence"
+        ]
+      },
+      {
+        "case_id": "X26",
+        "request_id": "req-eval-20261020-094437-db06ee-X26",
+        "trace_id": "trace-eval-20261020-094437-db06ee-X26",
+        "problems": [
+          "expected an answer, got insufficient_evidence"
+        ]
+      },
+      {
+        "case_id": "X27",
+        "request_id": "req-eval-20261020-094437-db06ee-X27",
+        "trace_id": "trace-eval-20261020-094437-db06ee-X27",
+        "problems": [
+          "expected an answer, got insufficient_evidence"
+        ]
+      },
+      {
+        "case_id": "X32",
+        "request_id": "req-eval-20261020-094437-db06ee-X32",
+        "trace_id": "trace-eval-20261020-094437-db06ee-X32",
+        "problems": [
+          "expected an answer, got insufficient_evidence"
+        ]
+      },
+      {
+        "case_id": "X33",
+        "request_id": "req-eval-20261020-094437-db06ee-X33",
+        "trace_id": "trace-eval-20261020-094437-db06ee-X33",
+        "problems": [
+          "expected an answer, got insufficient_evidence"
+        ]
+      },
+      {
+        "case_id": "X37",
+        "request_id": "req-eval-20261020-094437-db06ee-X37",
+        "trace_id": "trace-eval-20261020-094437-db06ee-X37",
+        "problems": [
+          "answer lacks ['Reseat']"
+        ]
+      }
+    ]
+  },
+  "cases": [
+    {
+      "case_id": "X01",
+      "category": "exploration",
+      "persona": "customer",
+      "question": "my printer says E-04 what now",
+      "expect": "any",
+      "answer_status": "insufficient_evidence",
+      "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.",
+      "cited": [],
+      "retrieved_top_k": [
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "quotes": [],
+      "passages": [],
+      "latency_ms": 1600,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X01"
+    },
+    {
+      "case_id": "X02",
+      "category": "exploration",
+      "persona": "customer",
+      "question": "laptop warranty vs care plus which is better",
+      "expect": "any",
+      "answer_status": "insufficient_evidence",
+      "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.",
+      "cited": [],
+      "retrieved_top_k": [
+        {
+          "title": "TechCare Laptop Warranty",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechCare Laptop Warranty",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Care+ Protection Plan Terms",
+          "page_start": 1,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "TechCare Laptop Warranty",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Care+ Protection Plan Terms",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "quotes": [],
+      "passages": [],
+      "latency_ms": 641,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X02"
+    },
+    {
+      "case_id": "X03",
+      "category": "exploration",
+      "persona": "customer",
+      "question": "can i bring back headphones i opened",
+      "expect": "any",
+      "answer_status": "insufficient_evidence",
+      "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.",
+      "cited": [],
+      "retrieved_top_k": [
+        {
+          "title": "TechCare Returns Policy",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "TechCare Returns Policy",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Care+ Protection Plan Terms",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "quotes": [],
+      "passages": [],
+      "latency_ms": 1102,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X03"
+    },
+    {
+      "case_id": "X04",
+      "category": "exploration",
+      "persona": "customer",
+      "question": "is the hub compatible with 5ghz wifi",
+      "expect": "any",
+      "answer_status": "insufficient_evidence",
+      "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.",
+      "cited": [],
+      "retrieved_top_k": [
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        },
+        {
+          "title": "Smart Hub H1 Setup Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Smart Hub H1 Setup Guide",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Smart Hub H1 Setup Guide",
+          "page_start": 1,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "TechCare Store Hours and Contact",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "quotes": [],
+      "passages": [],
+      "latency_ms": 601,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X04"
+    },
+    {
+      "case_id": "X05",
+      "category": "exploration",
+      "persona": "customer",
+      "question": "what happens to my photos after you move them to my new laptop",
+      "expect": "any",
+      "answer_status": "answered",
+      "answer": "TechCare deletes any temporary copy of your data within 24 hours. [1]",
+      "cited": [
+        {
+          "title": "Data Transfer Service",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "retrieved_top_k": [
+        {
+          "title": "Data Transfer Service",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechCare Laptop Warranty",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "TechCare Returns Policy",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechCare Laptop Warranty",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechCare Laptop Warranty",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        }
+      ],
+      "quotes": [
+        "TechCare deletes any temporary copy of your data within 24 hours."
+      ],
+      "passages": [
+        "Data Transfer Service\n\nThe data transfer service moves photos, contacts and files from an old device to a new one.\n\nData transfer costs 39 dollars and is free with any new laptop purchase.\n\nBring both devices and their passwords; most data transfers take about 1 hour.\n\nTechCare deletes any temporary copy of your data within 24 hours.\n\nThis is a fictional document for the TechCare demo."
+      ],
+      "latency_ms": 1867,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X05"
+    },
+    {
+      "case_id": "X06",
+      "category": "exploration",
+      "persona": "customer",
+      "question": "free delivery threshold",
+      "expect": "any",
+      "answer_status": "insufficient_evidence",
+      "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.",
+      "cited": [],
+      "retrieved_top_k": [
+        {
+          "title": "Smart Hub H1 Setup Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Order Changes and Cancellations",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Shipping and Delivery",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "TechCare Store Hours and Contact",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Shipping and Delivery",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "quotes": [],
+      "passages": [],
+      "latency_ms": 658,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X06"
+    },
+    {
+      "case_id": "X07",
+      "category": "exploration",
+      "persona": "employee",
+      "question": "customer wants 600 dollar refund no receipt what do i do",
+      "expect": "any",
+      "answer_status": "insufficient_evidence",
+      "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.",
+      "cited": [],
+      "retrieved_top_k": [
+        {
+          "title": "Refund Approval Rules",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechCare Returns Policy",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechCare Returns Policy",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechCare Returns Policy",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "TechCare Laptop Warranty",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        }
+      ],
+      "quotes": [],
+      "passages": [],
+      "latency_ms": 450,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X07"
+    },
+    {
+      "case_id": "X08",
+      "category": "exploration",
+      "persona": "customer",
+      "question": "do gift cards work online",
+      "expect": "any",
+      "answer_status": "insufficient_evidence",
+      "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.",
+      "cited": [],
+      "retrieved_top_k": [
+        {
+          "title": "Gift Cards FAQ",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Smart Hub H1 Setup Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Trade-In Program",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "quotes": [],
+      "passages": [],
+      "latency_ms": 509,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X08"
+    },
+    {
+      "case_id": "X09",
+      "category": "typo",
+      "persona": "customer",
+      "question": "When does exprss delivery arrive?",
+      "expect": "answered",
+      "answer_status": "answered",
+      "answer": "Express delivery arrives the next business day if you order before 2pm. [1]",
+      "cited": [
+        {
+          "title": "Shipping and Delivery",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "retrieved_top_k": [
+        {
+          "title": "Shipping and Delivery",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Shipping and Delivery",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "TechCare Returns Policy",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechCare Returns Policy",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Order Changes and Cancellations",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "quotes": [
+        "Express delivery arrives the next business day if you order before 2pm."
+      ],
+      "passages": [
+        "Shipping and Delivery > Delivery times\n\nStandard delivery takes 3 to 5 business days.\n\nExpress delivery arrives the next business day if you order before 2pm.\n\nDelivery is free on orders over 50 dollars.\n\nTelevisions and other large items are delivered by a two-person team who will unpack them."
+      ],
+      "latency_ms": 1722,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X09"
+    },
+    {
+      "case_id": "X10",
+      "category": "typo",
+      "persona": "customer",
+      "question": "How many accidentl damage claims does Care+ allow per year?",
+      "expect": "answered",
+      "answer_status": "answered",
+      "answer": "Care+ allows two accidental damage claims per year. [1]",
+      "cited": [
+        {
+          "title": "Care+ Protection Plan Terms",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "retrieved_top_k": [
+        {
+          "title": "Care+ Protection Plan Terms",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Care+ Protection Plan Terms",
+          "page_start": 1,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "TechCare Laptop Warranty",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Care+ Protection Plan Terms",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Trade-In Program",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "quotes": [
+        "Care+ allows two accidental damage claims per year."
+      ],
+      "passages": [
+        "Care+ Protection Plan Terms > Claims\n\nEach accidental damage claim has a 79 dollar service fee.\n\nCare+ allows two accidental damage claims per year.\n\nTheft and loss are not covered by Care+.\n\nThis is a fictional document for the TechCare demo."
+      ],
+      "latency_ms": 1759,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X10"
+    },
+    {
+      "case_id": "X11",
+      "category": "typo",
+      "persona": "customer",
+      "question": "Is thefft covered by Care+?",
+      "expect": "answered",
+      "answer_status": "answered",
+      "answer": "No, theft and loss are not covered by Care+. [1]",
+      "cited": [
+        {
+          "title": "Care+ Protection Plan Terms",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "retrieved_top_k": [
+        {
+          "title": "Care+ Protection Plan Terms",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Care+ Protection Plan Terms",
+          "page_start": 1,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "TechCare Laptop Warranty",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Care+ Protection Plan Terms",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechCare Laptop Warranty",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "quotes": [
+        "Theft and loss are not covered by Care+."
+      ],
+      "passages": [
+        "Care+ Protection Plan Terms > Claims\n\nEach accidental damage claim has a 79 dollar service fee.\n\nCare+ allows two accidental damage claims per year.\n\nTheft and loss are not covered by Care+.\n\nThis is a fictional document for the TechCare demo."
+      ],
+      "latency_ms": 1680,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X11"
+    },
+    {
+      "case_id": "X12",
+      "category": "typo",
+      "persona": "customer",
+      "question": "How soon are store pikcup orders ready?",
+      "expect": "answered",
+      "answer_status": "answered",
+      "answer": "Store pickup orders are ready within 2 hours. [1]",
+      "cited": [
+        {
+          "title": "Shipping and Delivery",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "retrieved_top_k": [
+        {
+          "title": "Shipping and Delivery",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Shipping and Delivery",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechCare Returns Policy",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Price Match Policy",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 2
+        },
+        {
+          "title": "TechCare Store Hours and Contact",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "quotes": [
+        "Orders for store pickup are ready within 2 hours."
+      ],
+      "passages": [
+        "Shipping and Delivery > Store pickup\n\nOrders for store pickup are ready within 2 hours.\n\nBring photo ID and the order confirmation email when you collect an order.\n\nThis is a fictional document for the TechCare demo."
+      ],
+      "latency_ms": 1593,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X12"
+    },
+    {
+      "case_id": "X13",
+      "category": "typo",
+      "persona": "customer",
+      "question": "How long does standrd delivery take?",
+      "expect": "answered",
+      "answer_status": "answered",
+      "answer": "Standard delivery takes 3 to 5 business days. [1]",
+      "cited": [
+        {
+          "title": "Shipping and Delivery",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "retrieved_top_k": [
+        {
+          "title": "Shipping and Delivery",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Shipping and Delivery",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "TechCare Returns Policy",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Data Transfer Service",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechCare Returns Policy",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "quotes": [
+        "Standard delivery takes 3 to 5 business days."
+      ],
+      "passages": [
+        "Shipping and Delivery > Delivery times\n\nStandard delivery takes 3 to 5 business days.\n\nExpress delivery arrives the next business day if you order before 2pm.\n\nDelivery is free on orders over 50 dollars.\n\nTelevisions and other large items are delivered by a two-person team who will unpack them."
+      ],
+      "latency_ms": 1779,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X13"
+    },
+    {
+      "case_id": "X14",
+      "category": "typo",
+      "persona": "customer",
+      "question": "What does a trade-in devise have to do?",
+      "expect": "answered",
+      "answer_status": "answered",
+      "answer": "A trade-in device must power on and must not be reported stolen. [1]",
+      "cited": [
+        {
+          "title": "Trade-In Program",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "retrieved_top_k": [
+        {
+          "title": "Trade-In Program",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Price Match Policy",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 2
+        },
+        {
+          "title": "Data Transfer Service",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Order Changes and Cancellations",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Gift Cards FAQ",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "quotes": [
+        "A trade-in device must power on and must not be reported stolen."
+      ],
+      "passages": [
+        "Trade-In Program\n\nTrade in an old phone, tablet or laptop for TechCare store credit.\n\nA trade-in device must power on and must not be reported stolen.\n\nTrade-in credit is paid as a TechCare gift card.\n\nDevice | Maximum trade-in credit\nPhone | 300 dollars\nTablet | 200 dollars\nLaptop | 400 dollars\n\nThis is a fictional document for the TechCare demo."
+      ],
+      "latency_ms": 2014,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X14"
+    },
+    {
+      "case_id": "X15",
+      "category": "unanswerable",
+      "persona": "customer",
+      "question": "Do you repair refrigerater compressors?",
+      "expect": "insufficient_evidence",
+      "answer_status": "insufficient_evidence",
+      "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.",
+      "cited": [],
+      "retrieved_top_k": [
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Smart Hub H1 Setup Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        }
+      ],
+      "quotes": [],
+      "passages": [],
+      "latency_ms": 999,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X15"
+    },
+    {
+      "case_id": "X16",
+      "category": "unanswerable",
+      "persona": "customer",
+      "question": "What does error H9 mean on the Smart Hub H1?",
+      "expect": "insufficient_evidence",
+      "answer_status": "insufficient_evidence",
+      "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.",
+      "cited": [],
+      "retrieved_top_k": [
+        {
+          "title": "Smart Hub H1 Setup Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Smart Hub H1 Setup Guide",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Smart Hub H1 Setup Guide",
+          "page_start": 1,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "quotes": [],
+      "passages": [],
+      "latency_ms": 351,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X16"
+    },
+    {
+      "case_id": "X17",
+      "category": "exact_code",
+      "persona": "customer",
+      "question": "P-11 on my X2 Pro printer?",
+      "expect": "answered",
+      "answer_status": "answered",
+      "answer": "P-11 means there is a paper size mismatch. [1]",
+      "cited": [
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "retrieved_top_k": [
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "quotes": [
+        "P-11 | Paper size mismatch | Match the tray size in Settings"
+      ],
+      "passages": [
+        "DemoPrinter-X2 Pro Troubleshooting Guide > Error codes\n\nCode | Meaning | What to do\nE-04 | Duplex unit not detected | Reseat the duplex unit at the back\nE-09 | Scanner lid open | Close the scanner lid\nP-11 | Paper size mismatch | Match the tray size in Settings"
+      ],
+      "latency_ms": 1813,
+      "passed": false,
+      "problems": [
+        "answer lacks ['tray size']"
+      ],
+      "request_id": "req-eval-20261020-094437-db06ee-X17"
+    },
+    {
+      "case_id": "X18",
+      "category": "exact_code",
+      "persona": "customer",
+      "question": "hub shows H-01",
+      "expect": "answered",
+      "answer_status": "insufficient_evidence",
+      "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.",
+      "cited": [],
+      "retrieved_top_k": [
+        {
+          "title": "Smart Hub H1 Setup Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Smart Hub H1 Setup Guide",
+          "page_start": 1,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "TechCare Store Hours and Contact",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "quotes": [],
+      "passages": [],
+      "latency_ms": 478,
+      "passed": false,
+      "problems": [
+        "expected an answer, got insufficient_evidence"
+      ],
+      "request_id": "req-eval-20261020-094437-db06ee-X18"
+    },
+    {
+      "case_id": "X19",
+      "category": "exact_code",
+      "persona": "customer",
+      "question": "E-02 DemoPrinter-X2",
+      "expect": "answered",
+      "answer_status": "answered",
+      "answer": "E-02 on the DemoPrinter-X2 means the paper tray is empty. Load paper to resolve the issue. [1]",
+      "cited": [
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "retrieved_top_k": [
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "quotes": [
+        "E-02 | Paper tray empty | Load paper"
+      ],
+      "passages": [
+        "DemoPrinter-X2 Troubleshooting Guide > Error codes\n\nCode | Meaning | What to do\nE-02 | Paper tray empty | Load paper\nE-04 | Toner cartridge not detected | Reinstall the cartridge until it clicks\nE-07 | Fuser overheated | Turn the printer off for 30 minutes"
+      ],
+      "latency_ms": 1968,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X19"
+    },
+    {
+      "case_id": "X20",
+      "category": "exact_code",
+      "persona": "customer",
+      "question": "what do I do about H-07",
+      "expect": "answered",
+      "answer_status": "answered",
+      "answer": "For H-07, restart the hub and leave it on for 15 minutes. [1]",
+      "cited": [
+        {
+          "title": "Smart Hub H1 Setup Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "retrieved_top_k": [
+        {
+          "title": "Smart Hub H1 Setup Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Smart Hub H1 Setup Guide",
+          "page_start": 1,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Order Changes and Cancellations",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "quotes": [
+        "H-07 | Firmware update failed | Restart the hub and leave it on for 15 mi"
+      ],
+      "passages": [
+        "Smart Hub H1 Setup Guide > Hub error codes\n\nCode | Meaning | What to do\nH-01 | No internet connection | Check your router\nH-03 | Pairing timed out | Hold the reset button for 10 seconds and\nH-07 | Firmware update failed | Restart the hub and leave it on for 15 mi\n\nThis is a fictional document for the TechCare demo."
+      ],
+      "latency_ms": 2116,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X20"
+    },
+    {
+      "case_id": "X21",
+      "category": "exact_code",
+      "persona": "customer",
+      "question": "X2 Pro shows E-09",
+      "expect": "answered",
+      "answer_status": "answered",
+      "answer": "Close the scanner lid. [1]",
+      "cited": [
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "retrieved_top_k": [
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        }
+      ],
+      "quotes": [
+        "E-09 | Scanner lid open | Close the scanner lid"
+      ],
+      "passages": [
+        "DemoPrinter-X2 Pro Troubleshooting Guide > Error codes\n\nCode | Meaning | What to do\nE-04 | Duplex unit not detected | Reseat the duplex unit at the back\nE-09 | Scanner lid open | Close the scanner lid\nP-11 | Paper size mismatch | Match the tray size in Settings"
+      ],
+      "latency_ms": 1592,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X21"
+    },
+    {
+      "case_id": "X22",
+      "category": "positive",
+      "persona": "customer",
+      "question": "how many days does a normal parcel take to arrive",
+      "expect": "answered",
+      "answer_status": "insufficient_evidence",
+      "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.",
+      "cited": [],
+      "retrieved_top_k": [
+        {
+          "title": "Shipping and Delivery",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Shipping and Delivery",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "TechCare Returns Policy",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "quotes": [],
+      "passages": [],
+      "latency_ms": 611,
+      "passed": false,
+      "problems": [
+        "expected an answer, got insufficient_evidence"
+      ],
+      "request_id": "req-eval-20261020-094437-db06ee-X22"
+    },
+    {
+      "case_id": "X23",
+      "category": "positive",
+      "persona": "customer",
+      "question": "can I swap my old tablet for store credit, and how much do I get",
+      "expect": "answered",
+      "answer_status": "answered",
+      "answer": "Yes, you can swap your old tablet for store credit. You will receive up to $200 in trade-in credit. [1]",
+      "cited": [
+        {
+          "title": "Trade-In Program",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "retrieved_top_k": [
+        {
+          "title": "Trade-In Program",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Data Transfer Service",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechCare Returns Policy",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Gift Cards FAQ",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechCare Returns Policy",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "quotes": [
+        "Tablet | 200 dollars"
+      ],
+      "passages": [
+        "Trade-In Program\n\nTrade in an old phone, tablet or laptop for TechCare store credit.\n\nA trade-in device must power on and must not be reported stolen.\n\nTrade-in credit is paid as a TechCare gift card.\n\nDevice | Maximum trade-in credit\nPhone | 300 dollars\nTablet | 200 dollars\nLaptop | 400 dollars\n\nThis is a fictional document for the TechCare demo."
+      ],
+      "latency_ms": 2038,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X23"
+    },
+    {
+      "case_id": "X24",
+      "category": "positive",
+      "persona": "customer",
+      "question": "what do I need to bring to collect an order in store",
+      "expect": "answered",
+      "answer_status": "answered",
+      "answer": "You need to bring photo ID and the order confirmation email when you collect an order. [1]",
+      "cited": [
+        {
+          "title": "Shipping and Delivery",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "retrieved_top_k": [
+        {
+          "title": "Shipping and Delivery",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "TechCare Returns Policy",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "TechCare Laptop Warranty",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        },
+        {
+          "title": "Trade-In Program",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Order Changes and Cancellations",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "quotes": [
+        "Bring photo ID and the order confirmation email when you collect an order."
+      ],
+      "passages": [
+        "Shipping and Delivery > Store pickup\n\nOrders for store pickup are ready within 2 hours.\n\nBring photo ID and the order confirmation email when you collect an order.\n\nThis is a fictional document for the TechCare demo."
+      ],
+      "latency_ms": 1834,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X24"
+    },
+    {
+      "case_id": "X25",
+      "category": "positive",
+      "persona": "customer",
+      "question": "do you keep a copy of my files after moving them to my new computer",
+      "expect": "answered",
+      "answer_status": "insufficient_evidence",
+      "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.",
+      "cited": [],
+      "retrieved_top_k": [
+        {
+          "title": "Data Transfer Service",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Smart Hub H1 Setup Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Trade-In Program",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechCare Store Hours and Contact",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Shipping and Delivery",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "quotes": [],
+      "passages": [],
+      "latency_ms": 1471,
+      "passed": false,
+      "problems": [
+        "expected an answer, got insufficient_evidence"
+      ],
+      "request_id": "req-eval-20261020-094437-db06ee-X25"
+    },
+    {
+      "case_id": "X26",
+      "category": "positive",
+      "persona": "customer",
+      "question": "my phone glass is cracked, can you fix it today",
+      "expect": "answered",
+      "answer_status": "insufficient_evidence",
+      "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.",
+      "cited": [],
+      "retrieved_top_k": [
+        {
+          "title": "Phone Screen Repair Service",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Phone Screen Repair Service",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Smart Hub H1 Setup Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "quotes": [],
+      "passages": [],
+      "latency_ms": 618,
+      "passed": false,
+      "problems": [
+        "expected an answer, got insufficient_evidence"
+      ],
+      "request_id": "req-eval-20261020-094437-db06ee-X26"
+    },
+    {
+      "case_id": "X27",
+      "category": "positive",
+      "persona": "customer",
+      "question": "is moving my data over free if I buy a laptop from you",
+      "expect": "answered",
+      "answer_status": "insufficient_evidence",
+      "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.",
+      "cited": [],
+      "retrieved_top_k": [
+        {
+          "title": "Data Transfer Service",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechCare Returns Policy",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechCare Laptop Warranty",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Smart Hub H1 Setup Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Trade-In Program",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "quotes": [],
+      "passages": [],
+      "latency_ms": 601,
+      "passed": false,
+      "problems": [
+        "expected an answer, got insufficient_evidence"
+      ],
+      "request_id": "req-eval-20261020-094437-db06ee-X27"
+    },
+    {
+      "case_id": "X28",
+      "category": "near_model",
+      "persona": "customer",
+      "question": "Which charger does the TechBook 14 use?",
+      "expect": "answered",
+      "answer_status": "answered",
+      "answer": "The TechBook 14 uses the 65 W charger. [1]",
+      "cited": [
+        {
+          "title": "TechBook 14 User Guide",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "retrieved_top_k": [
+        {
+          "title": "TechBook 14 User Guide",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechBook 14 Pro User Guide",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechBook 14 User Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        },
+        {
+          "title": "TechBook 14 Pro User Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        },
+        {
+          "title": "TechBook 14 User Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "quotes": [
+        "A full charge takes about 2 hours with the 65 W charger."
+      ],
+      "passages": [
+        "TechBook 14 User Guide > Battery and charging\n\nThe TechBook 14 battery lasts up to 12 hours of web browsing. A full charge takes about 2 hours with the 65 W charger."
+      ],
+      "latency_ms": 1878,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X28"
+    },
+    {
+      "case_id": "X29",
+      "category": "near_model",
+      "persona": "customer",
+      "question": "How do I open the setup menu on a TechBook 14 Pro?",
+      "expect": "answered",
+      "answer_status": "answered",
+      "answer": "Press F10 during startup to open the TechBook 14 Pro setup menu. [1]",
+      "cited": [
+        {
+          "title": "TechBook 14 Pro User Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "retrieved_top_k": [
+        {
+          "title": "TechBook 14 Pro User Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "TechBook 14 User Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "TechBook 14 Pro User Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        },
+        {
+          "title": "TechBook 14 User Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        },
+        {
+          "title": "TechBook 14 Pro User Guide",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "quotes": [
+        "Press F10 during startup to open the TechBook 14 Pro setup menu."
+      ],
+      "passages": [
+        "TechBook 14 Pro User Guide > Keyboard and setup menu\n\nPress Fn and F7 to turn the TechBook 14 Pro keyboard backlight on or off.\n\nPress F10 during startup to open the TechBook 14 Pro setup menu."
+      ],
+      "latency_ms": 2006,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X29"
+    },
+    {
+      "case_id": "X30",
+      "category": "near_model",
+      "persona": "customer",
+      "question": "does the techbook 14 pro have hdmi",
+      "expect": "answered",
+      "answer_status": "answered",
+      "answer": "Yes, the TechBook 14 Pro has an HDMI port. [1]",
+      "cited": [
+        {
+          "title": "TechBook 14 Pro User Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        }
+      ],
+      "retrieved_top_k": [
+        {
+          "title": "TechBook 14 Pro User Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        },
+        {
+          "title": "TechBook 14 User Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        },
+        {
+          "title": "TechBook 14 Pro User Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "TechBook 14 Pro User Guide",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechBook 14 User Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "quotes": [
+        "The TechBook 14 Pro has three USB-C ports, an HDMI port and an SD card reader."
+      ],
+      "passages": [
+        "TechBook 14 Pro User Guide > Ports\n\nThe TechBook 14 Pro has three USB-C ports, an HDMI port and an SD card reader.\n\nThis is a fictional document for the TechCare demo."
+      ],
+      "latency_ms": 2106,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X30"
+    },
+    {
+      "case_id": "X31",
+      "category": "near_model",
+      "persona": "customer",
+      "question": "Can the X2 Pro printer use 5 GHz wifi?",
+      "expect": "answered",
+      "answer_status": "answered",
+      "answer": "Yes, the DemoPrinter-X2 Pro can use 5 GHz Wi-Fi. [1]",
+      "cited": [
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        }
+      ],
+      "retrieved_top_k": [
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "quotes": [
+        "The DemoPrinter-X2 Pro supports both 2.4 GHz and 5 GHz Wi-Fi networks."
+      ],
+      "passages": [
+        "DemoPrinter-X2 Pro Troubleshooting Guide > Wi-Fi setup\n\nThe DemoPrinter-X2 Pro supports both 2.4 GHz and 5 GHz Wi-Fi networks. Hold the Wi-Fi button for 5 seconds to start setup.\n\nThis is a fictional document for the TechCare demo."
+      ],
+      "latency_ms": 2145,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X31"
+    },
+    {
+      "case_id": "X32",
+      "category": "multi_document",
+      "persona": "customer",
+      "question": "What warranty comes with a screen repair, and how long does Care+ cover accidental damage?",
+      "expect": "answered",
+      "answer_status": "insufficient_evidence",
+      "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.",
+      "cited": [],
+      "retrieved_top_k": [
+        {
+          "title": "Care+ Protection Plan Terms",
+          "page_start": 1,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "TechCare Laptop Warranty",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Phone Screen Repair Service",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Care+ Protection Plan Terms",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "TechCare Laptop Warranty",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "quotes": [],
+      "passages": [],
+      "latency_ms": 737,
+      "passed": false,
+      "problems": [
+        "expected an answer, got insufficient_evidence"
+      ],
+      "request_id": "req-eval-20261020-094437-db06ee-X32"
+    },
+    {
+      "case_id": "X33",
+      "category": "multi_document",
+      "persona": "customer",
+      "question": "Is delivery free over 50 dollars, and can I still cancel before my order ships?",
+      "expect": "answered",
+      "answer_status": "insufficient_evidence",
+      "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.",
+      "cited": [],
+      "retrieved_top_k": [
+        {
+          "title": "Shipping and Delivery",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Order Changes and Cancellations",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechCare Returns Policy",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Shipping and Delivery",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Data Transfer Service",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "quotes": [],
+      "passages": [],
+      "latency_ms": 2033,
+      "passed": false,
+      "problems": [
+        "expected an answer, got insufficient_evidence"
+      ],
+      "request_id": "req-eval-20261020-094437-db06ee-X33"
+    },
+    {
+      "case_id": "X34",
+      "category": "follow_up",
+      "persona": "customer",
+      "question": "How much is a screen repair for a large phone?",
+      "expect": "answered",
+      "answer_status": "answered",
+      "answer": "A screen repair for a large phone costs 199 dollars. [1]",
+      "cited": [
+        {
+          "title": "Phone Screen Repair Service",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "retrieved_top_k": [
+        {
+          "title": "Phone Screen Repair Service",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Phone Screen Repair Service",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Trade-In Program",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Care+ Protection Plan Terms",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Data Transfer Service",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "quotes": [
+        "A screen repair costs 129 dollars for standard phones and 199 dollars for large phones."
+      ],
+      "passages": [
+        "Phone Screen Repair Service\n\nScreen repairs for most phones are completed the same day.\n\nA screen repair costs 129 dollars for standard phones and 199 dollars for large phones.\n\nEvery screen repair comes with a 90 day repair warranty.\n\nBack up your phone before a screen repair, because the phone may be reset during testing.\n\nThis is a fictional document for the TechCare demo."
+      ],
+      "latency_ms": 2094,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X34"
+    },
+    {
+      "case_id": "X35",
+      "category": "follow_up",
+      "persona": "customer",
+      "question": "and does it come with a warranty?",
+      "expect": "answered",
+      "answer_status": "answered",
+      "answer": "Yes, every screen repair comes with a 90 day repair warranty. [1]",
+      "cited": [
+        {
+          "title": "Phone Screen Repair Service",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "retrieved_top_k": [
+        {
+          "title": "Phone Screen Repair Service",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechCare Laptop Warranty",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechCare Laptop Warranty",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "TechCare Laptop Warranty",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechCare Laptop Warranty",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        }
+      ],
+      "quotes": [
+        "Every screen repair comes with a 90 day repair warranty."
+      ],
+      "passages": [
+        "Phone Screen Repair Service\n\nScreen repairs for most phones are completed the same day.\n\nA screen repair costs 129 dollars for standard phones and 199 dollars for large phones.\n\nEvery screen repair comes with a 90 day repair warranty.\n\nBack up your phone before a screen repair, because the phone may be reset during testing.\n\nThis is a fictional document for the TechCare demo."
+      ],
+      "latency_ms": 2105,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X35"
+    },
+    {
+      "case_id": "X36",
+      "category": "follow_up",
+      "persona": "customer",
+      "question": "What does E-04 mean on the DemoPrinter-X2 Pro?",
+      "expect": "answered",
+      "answer_status": "answered",
+      "answer": "E-04 means the duplex unit is not detected. [1]",
+      "cited": [
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "retrieved_top_k": [
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        }
+      ],
+      "quotes": [
+        "E-04 | Duplex unit not detected | Reseat the duplex unit at the back"
+      ],
+      "passages": [
+        "DemoPrinter-X2 Pro Troubleshooting Guide > Error codes\n\nCode | Meaning | What to do\nE-04 | Duplex unit not detected | Reseat the duplex unit at the back\nE-09 | Scanner lid open | Close the scanner lid\nP-11 | Paper size mismatch | Match the tray size in Settings"
+      ],
+      "latency_ms": 1791,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X36"
+    },
+    {
+      "case_id": "X37",
+      "category": "follow_up",
+      "persona": "customer",
+      "question": "How do I fix it?",
+      "expect": "answered",
+      "answer_status": "answered",
+      "answer": "E-04 means \"Duplex unit not detected\". [1]",
+      "cited": [
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "retrieved_top_k": [
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "quotes": [
+        "E-04 | Duplex unit not detected | Reseat the duplex unit at the back"
+      ],
+      "passages": [
+        "DemoPrinter-X2 Pro Troubleshooting Guide > Error codes\n\nCode | Meaning | What to do\nE-04 | Duplex unit not detected | Reseat the duplex unit at the back\nE-09 | Scanner lid open | Close the scanner lid\nP-11 | Paper size mismatch | Match the tray size in Settings"
+      ],
+      "latency_ms": 1928,
+      "passed": false,
+      "problems": [
+        "answer lacks ['Reseat']"
+      ],
+      "request_id": "req-eval-20261020-094437-db06ee-X37"
+    },
+    {
+      "case_id": "X38",
+      "category": "follow_up",
+      "persona": "employee",
+      "question": "What is the diagnostic fee?",
+      "expect": "answered",
+      "answer_status": "answered",
+      "answer": "The diagnostic fee is 49 dollars. [1]",
+      "cited": [
+        {
+          "title": "Repair Desk Procedures",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "retrieved_top_k": [
+        {
+          "title": "Repair Desk Procedures",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Phone Screen Repair Service",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Care+ Protection Plan Terms",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "TechCare Returns Policy",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Data Transfer Service",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "quotes": [
+        "The diagnostic fee is 49 dollars. Waive the diagnostic fee when the customer approves the repair or when the device is under warranty."
+      ],
+      "passages": [
+        "Repair Desk Procedures > Diagnostic fee\n\nThe diagnostic fee is 49 dollars. Waive the diagnostic fee when the customer approves the repair or when the device is under warranty."
+      ],
+      "latency_ms": 2208,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X38"
+    },
+    {
+      "case_id": "X39",
+      "category": "follow_up",
+      "persona": "employee",
+      "question": "When can we waive it?",
+      "expect": "answered",
+      "answer_status": "answered",
+      "answer": "The diagnostic fee can be waived when the customer approves the repair or when the device is under warranty. [1]",
+      "cited": [
+        {
+          "title": "Repair Desk Procedures",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "retrieved_top_k": [
+        {
+          "title": "Repair Desk Procedures",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Order Changes and Cancellations",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechCare Returns Policy",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechCare Laptop Warranty",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Care+ Protection Plan Terms",
+          "page_start": 1,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "quotes": [
+        "Waive the diagnostic fee when the customer approves the repair or when the device is under warranty."
+      ],
+      "passages": [
+        "Repair Desk Procedures > Diagnostic fee\n\nThe diagnostic fee is 49 dollars. Waive the diagnostic fee when the customer approves the repair or when the device is under warranty."
+      ],
+      "latency_ms": 2000,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X39"
+    },
+    {
+      "case_id": "X40",
+      "category": "unanswerable",
+      "persona": "customer",
+      "question": "What does error E-05 mean on the DemoPrinter-X2?",
+      "expect": "insufficient_evidence",
+      "answer_status": "insufficient_evidence",
+      "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.",
+      "cited": [],
+      "retrieved_top_k": [
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "quotes": [],
+      "passages": [],
+      "latency_ms": 620,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X40"
+    },
+    {
+      "case_id": "X41",
+      "category": "unanswerable",
+      "persona": "customer",
+      "question": "How much does Care+ cost?",
+      "expect": "insufficient_evidence",
+      "answer_status": "insufficient_evidence",
+      "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.",
+      "cited": [],
+      "retrieved_top_k": [
+        {
+          "title": "Care+ Protection Plan Terms",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Care+ Protection Plan Terms",
+          "page_start": 1,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Phone Screen Repair Service",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Data Transfer Service",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Trade-In Program",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "quotes": [],
+      "passages": [],
+      "latency_ms": 288,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X41"
+    },
+    {
+      "case_id": "X42",
+      "category": "unanswerable",
+      "persona": "customer",
+      "question": "What is the battery capacity in mAh of the TechBook 14?",
+      "expect": "insufficient_evidence",
+      "answer_status": "insufficient_evidence",
+      "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.",
+      "cited": [],
+      "retrieved_top_k": [
+        {
+          "title": "TechBook 14 User Guide",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechBook 14 Pro User Guide",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechBook 14 User Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        },
+        {
+          "title": "TechBook 14 Pro User Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        },
+        {
+          "title": "TechBook 14 User Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "quotes": [],
+      "passages": [],
+      "latency_ms": 463,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X42"
+    },
+    {
+      "case_id": "X43",
+      "category": "unanswerable",
+      "persona": "customer",
+      "question": "Does the Smart Hub H1 work with Alexa?",
+      "expect": "insufficient_evidence",
+      "answer_status": "insufficient_evidence",
+      "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.",
+      "cited": [],
+      "retrieved_top_k": [
+        {
+          "title": "Smart Hub H1 Setup Guide",
+          "page_start": 1,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Smart Hub H1 Setup Guide",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Smart Hub H1 Setup Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Trade-In Program",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        }
+      ],
+      "quotes": [],
+      "passages": [],
+      "latency_ms": 346,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X43"
+    },
+    {
+      "case_id": "X44",
+      "category": "unanswerable",
+      "persona": "customer",
+      "question": "How much does express delivery cost?",
+      "expect": "insufficient_evidence",
+      "answer_status": "insufficient_evidence",
+      "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.",
+      "cited": [],
+      "retrieved_top_k": [
+        {
+          "title": "Shipping and Delivery",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Data Transfer Service",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Order Changes and Cancellations",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Care+ Protection Plan Terms",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Phone Screen Repair Service",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "quotes": [],
+      "passages": [],
+      "latency_ms": 1323,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X44"
+    },
+    {
+      "case_id": "X45",
+      "category": "unanswerable",
+      "persona": "customer",
+      "question": "What is the price of the DemoPrinter-X2 Pro?",
+      "expect": "insufficient_evidence",
+      "answer_status": "insufficient_evidence",
+      "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.",
+      "cited": [],
+      "retrieved_top_k": [
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "quotes": [],
+      "passages": [],
+      "latency_ms": 1557,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X45"
+    },
+    {
+      "case_id": "X46",
+      "category": "unanswerable",
+      "persona": "customer",
+      "question": "How long does a laptop screen repair take?",
+      "expect": "insufficient_evidence",
+      "answer_status": "insufficient_evidence",
+      "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.",
+      "cited": [],
+      "retrieved_top_k": [
+        {
+          "title": "TechCare Returns Policy",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechCare Laptop Warranty",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechCare Laptop Warranty",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "quotes": [],
+      "passages": [],
+      "latency_ms": 702,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X46"
+    },
+    {
+      "case_id": "X47",
+      "category": "unanswerable",
+      "persona": "customer",
+      "question": "Which error code means low ink on the DemoPrinter-X2?",
+      "expect": "insufficient_evidence",
+      "answer_status": "insufficient_evidence",
+      "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.",
+      "cited": [],
+      "retrieved_top_k": [
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 3,
+          "page_end": 3,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Pro Troubleshooting Guide",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "quotes": [],
+      "passages": [],
+      "latency_ms": 390,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X47"
+    },
+    {
+      "case_id": "X48",
+      "category": "unanswerable",
+      "persona": "customer",
+      "question": "What is the warranty on the E3 earbuds?",
+      "expect": "insufficient_evidence",
+      "answer_status": "insufficient_evidence",
+      "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.",
+      "cited": [],
+      "retrieved_top_k": [
+        {
+          "title": "Wireless Earbuds E3 FAQ",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Care+ Protection Plan Terms",
+          "page_start": 1,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "TechCare Laptop Warranty",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "TechCare Laptop Warranty",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Phone Screen Repair Service",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        }
+      ],
+      "quotes": [],
+      "passages": [],
+      "latency_ms": 1549,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X48"
+    },
+    {
+      "case_id": "X49",
+      "category": "unanswerable",
+      "persona": "customer",
+      "question": "How many loyalty points do I earn per dollar?",
+      "expect": "insufficient_evidence",
+      "answer_status": "insufficient_evidence",
+      "answer": "I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.",
+      "cited": [],
+      "retrieved_top_k": [
+        {
+          "title": "Trade-In Program",
+          "page_start": 1,
+          "page_end": 1,
+          "version": 1
+        },
+        {
+          "title": "Smart Hub H1 Setup Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "Care+ Protection Plan Terms",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "DemoPrinter-X2 Troubleshooting Guide",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        },
+        {
+          "title": "TechCare Store Hours and Contact",
+          "page_start": 2,
+          "page_end": 2,
+          "version": 1
+        }
+      ],
+      "quotes": [],
+      "passages": [],
+      "latency_ms": 661,
+      "passed": true,
+      "problems": [],
+      "request_id": "req-eval-20261020-094437-db06ee-X49"
+    }
+  ]
+}

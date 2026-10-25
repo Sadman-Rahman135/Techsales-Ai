@@ -1,0 +1,135 @@
+# Continuous integration (blueprint §11.2 "dependency and secret scanning", §15 M1 CI, §18 engineering DoD).
+# The same commands as CLAUDE.md "Commands". Secrets for the test run are generated per job, never stored.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:18.6-alpine # compose.yaml
+        env:
+          POSTGRES_DB: knowledgeai
+          POSTGRES_USER: knowledgeai
+          POSTGRES_PASSWORD: knowledgeai-dev-only
+        ports: ["55432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U knowledgeai -d knowledgeai" --health-interval 5s --health-retries 12
+      chroma:
+        image: chromadb/chroma:1.5.9
+        ports: ["8001:8000"]
+    env:
+      APP_ENV: test
+      DATABASE_URL: postgresql+psycopg://knowledgeai_app:knowledgeai-app-dev-only@127.0.0.1:55432/knowledgeai
+      MIGRATION_DATABASE_URL: postgresql+psycopg://knowledgeai:knowledgeai-dev-only@127.0.0.1:55432/knowledgeai
+      EMBEDDING_PROVIDER: fake
+      EMBEDDING_MODEL: fake-embedding
+      EMBEDDING_DIMENSION: "384"
+      LLM_PROVIDER: fake
+      LLM_MODEL: fake-llm
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: backend/constraints.txt
+      - name: Throwaway secrets for this run
+        run: |
+          echo "AUTH_JWT_SECRET=$(python -c 'import secrets; print(secrets.token_urlsafe(48))')" >> "$GITHUB_ENV"
+          echo "INTERNAL_SERVICE_TOKEN=$(python -c 'import secrets; print(secrets.token_urlsafe(48))')" >> "$GITHUB_ENV"
+      - name: App role and test database (the compose init script)
+        env:
+          PGHOST: 127.0.0.1
+          PGPORT: "55432"
+          PGPASSWORD: knowledgeai-dev-only
+          POSTGRES_USER: knowledgeai
+          POSTGRES_DB: knowledgeai
+        run: sh ../infra/docker/postgres/init/01-roles-and-test-db.sh
+      - name: Local S3 (SeaweedFS, compose service `s3`) for the S3 storage tests
+        working-directory: .
+        run: |
+          docker compose up -d s3
+          for i in $(seq 1 60); do curl -s -o /dev/null http://127.0.0.1:8333/ && break; sleep 2; done
+      - run: python -m pip install -c constraints.txt -e ".[dev]"
+      - run: ruff check .
+      - run: ruff format --check .
+      - run: mypy app tests
+      - run: alembic upgrade head && alembic check
+      - run: python -m app.cli.contracts
+      - run: python -m pytest -q
+
+  frontend:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+
+  images:
+    # §15 M7 "containerize services": both images must build from a clean checkout (nothing is pushed).
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t knowledgeai-backend:ci backend
+      - run: docker build -t knowledgeai-web:ci frontend
+
+  security:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # gitleaks scans the history, not only the last commit
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Secret scan (gitleaks, same pin as .pre-commit-config.yaml)
+        run: |
+          python -m pip install pre-commit==4.6.2
+          pre-commit run gitleaks --all-files
+      - name: Python dependency audit
+        # Accepted, reviewed exceptions only (docs/architecture.md ADR-020): chromadb has no fixed release yet.
+        # Each ID is listed so any NEW advisory still fails the build. Review by 2026-12-31.
+        run: |
+          python -m pip install pip-audit==2.10.1
+          pip-audit -r backend/constraints.txt --no-deps --disable-pip --progress-spinner off \
+            --ignore-vuln PYSEC-2026-311 --ignore-vuln PYSEC-2026-3813 \
+            --ignore-vuln PYSEC-2026-3814 --ignore-vuln PYSEC-2026-3815
+      - name: npm audit (runtime dependencies gate; dev tooling reported)
+        working-directory: frontend
+        run: |
+          npm audit --omit=dev --audit-level=high
+          npm audit --audit-level=critical || true

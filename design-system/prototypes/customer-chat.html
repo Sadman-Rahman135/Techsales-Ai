@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TechCare Assistant: prototype</title>
+<!-- Static P0 prototype for docs/scope.md §4. Tokens mirror design-system/MASTER.md; copy mirrors content-guide.md.
+     The production app loads fonts with next/font and icons with lucide-react; this file uses CDN equivalents. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@500;600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.544.0/dist/umd/lucide.min.js"></script>
+<style>
+  :root {
+    --bg: #F8FAFC; --surface: #FFFFFF; --surface-muted: #F1F5F9;
+    --fg: #0F172A; --fg-muted: #475569;
+    --accent: #0369A1; --on-accent: #FFFFFF; --user-bubble: #E0F2FE;
+    --success: #047857; --warning: #B45309; --danger: #B91C1C;
+    --border: #E2E8F0; --border-strong: #64748B; --ring: #0369A1;
+    --scrim: rgb(15 23 42 / 0.55);
+    --shadow-sm: 0 1px 2px rgb(15 23 42 / .06);
+    --shadow-lg: 0 12px 32px rgb(15 23 42 / .16);
+    --ease-enter: cubic-bezier(0.2, 0, 0, 1); --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+    --font-heading: "Lexend", ui-sans-serif, system-ui, sans-serif;
+    --font-sans: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+    color-scheme: light;
+  }
+  :root[data-theme="dark"] {
+    --bg: #0B1220; --surface: #151E2E; --surface-muted: #1C2738;
+    --fg: #F1F5F9; --fg-muted: #A3B1C6;
+    --accent: #38BDF8; --on-accent: #0B1220; --user-bubble: #0C3A5B;
+    --success: #34D399; --warning: #FBBF24; --danger: #F87171;
+    --border: #273449; --border-strong: #7A8AA3; --ring: #38BDF8;
+    --scrim: rgb(0 0 0 / 0.6);
+    --shadow-lg: 0 12px 32px rgb(0 0 0 / .5);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    min-height: 100dvh; display: flex; flex-direction: column;
+    background: var(--bg); color: var(--fg);
+    font: 400 16px/1.625 var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  button, textarea { font: inherit; color: inherit; }
+  button { cursor: pointer; touch-action: manipulation; }
+  :focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: 6px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  svg.lucide { width: 20px; height: 20px; stroke-width: 2; flex: none; }
+  .icon-sm svg.lucide, svg.lucide.icon-sm { width: 16px; height: 16px; }
+
+  .skip-link { position: absolute; left: 16px; top: -48px; background: var(--accent); color: var(--on-accent); padding: 10px 16px; min-height: 44px; border-radius: 8px; z-index: 80; }
+  .skip-link:focus { top: 8px; }
+
+  /* Prototype controls: visibly not part of the product */
+  .proto-bar {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+    padding: 8px 16px; border-bottom: 1px dashed var(--border-strong);
+    background: var(--surface-muted); font-size: 14px; color: var(--fg-muted);
+  }
+  .proto-bar strong { color: var(--fg); font-weight: 600; margin-right: 4px; }
+  .seg { display: flex; flex-wrap: wrap; gap: 4px; }
+  .seg button {
+    min-height: 32px; padding: 4px 12px; border-radius: 999px; font-size: 14px;
+    border: 1px solid var(--border-strong); background: var(--surface);
+  }
+  .seg button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+
+  /* Top bar */
+  header.top {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; align-items: center; gap: 12px;
+    padding: 8px 16px; min-height: 60px;
+    background: color-mix(in srgb, var(--surface) 92%, transparent);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: saturate(1.2);
+  }
+  .brand { display: flex; align-items: center; gap: 8px; min-height: 44px; font: 600 18px/1 var(--font-heading); color: var(--fg); text-decoration: none; }
+  .brand-mark { width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; background: var(--fg); color: var(--bg); }
+  .brand-mark svg.lucide { width: 18px; height: 18px; }
+  .ai-badge {
+    display: inline-flex; align-items: center; gap: 4px; padding: 2px 10px; border-radius: 999px;
+    font-size: 12px; font-weight: 600; line-height: 20px; color: var(--fg-muted);
+    border: 1px solid var(--border-strong);
+  }
+  .top-actions { margin-left: auto; display: flex; align-items: center; gap: 4px; }
+  .link-btn {
+    display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 12px;
+    color: var(--accent); font-weight: 600; text-decoration: none; border-radius: 8px;
+    border: 0; background: none;
+  }
+  .link-btn:hover { background: var(--surface-muted); }
+  .icon-btn {
+    width: 44px; height: 44px; display: inline-grid; place-items: center;
+    border-radius: 8px; border: 0; background: none; color: var(--fg-muted);
+    transition: background-color 150ms var(--ease-enter), color 150ms var(--ease-enter);
+  }
+  .icon-btn:hover { background: var(--surface-muted); color: var(--fg); }
+  .icon-btn[aria-pressed="true"] { color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); }
+
+  /* Layout */
+  .shell { flex: 1; display: flex; min-height: 0; }
+  main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+  .column { width: 100%; max-width: 768px; margin: 0 auto; padding: 24px 16px 16px; }
+  .messages { flex: 1; }
+
+  /* Empty state */
+  .empty { text-align: center; padding: 48px 0 24px; }
+  .empty h1 { font: 600 30px/36px var(--font-heading); margin: 0 0 12px; letter-spacing: -0.01em; }
+  .empty p { margin: 0 auto 24px; max-width: 56ch; color: var(--fg-muted); }
+  .empty a { color: var(--accent); font-weight: 600; }
+  .suggestions { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; list-style: none; padding: 0; margin: 0; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 16px;
+    border-radius: 999px; border: 1px solid var(--border-strong); background: var(--surface); text-align: left;
+    transition: border-color 150ms var(--ease-enter), background-color 150ms var(--ease-enter);
+  }
+  .chip:hover { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 6%, var(--surface)); }
+  .chip svg.lucide { color: var(--accent); width: 16px; height: 16px; }
+
+  /* Messages */
+  .turn { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
+  .user-msg {
+    align-self: flex-end; max-width: min(85%, 60ch);
+    background: var(--user-bubble); padding: 10px 16px; border-radius: 16px 16px 4px 16px;
+  }
+  .answer {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px 20px; box-shadow: var(--shadow-sm);
+  }
+  .status {
+    display: flex; align-items: center; gap: 8px; margin: 0 0 8px;
+    font-size: 14px; font-weight: 600; line-height: 20px;
+  }
+  .status.success { color: var(--success); }
+  .status.warning { color: var(--warning); }
+  .status.danger { color: var(--danger); }
+  .status.muted { color: var(--fg-muted); font-weight: 400; }
+  .answer-text { max-width: 68ch; margin: 0 0 12px; }
+  .answer.provisional .answer-text { color: var(--fg-muted); }
+  .icon-btn:disabled { opacity: .45; cursor: not-allowed; background: none; }
+  .answer-text p { margin: 0 0 8px; }
+  .cite-ref { color: var(--accent); font-weight: 600; font-size: 14px; vertical-align: 1px; }
+  .citations { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0 0 12px; }
+  .citation {
+    display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 4px 12px;
+    border-radius: 999px; border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border));
+    background: color-mix(in srgb, var(--accent) 6%, var(--surface)); color: var(--accent);
+    font-size: 14px; font-weight: 600; line-height: 20px; text-align: left;
+    position: relative;
+  }
+  .citation::after { content: ""; position: absolute; inset: -4px 0; } /* 44px hit area */
+  .citation:hover { background: color-mix(in srgb, var(--accent) 12%, var(--surface)); }
+  .citation .n { font-variant-numeric: tabular-nums; }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; border-top: 1px solid var(--border); padding-top: 8px; margin-top: 4px; }
+  .actions .spacer { flex: 1; }
+  .actions .hint { font-size: 14px; color: var(--fg-muted); }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 44px; padding: 0 16px; border-radius: 8px; font-weight: 600;
+    border: 1px solid transparent;
+    transition: background-color 150ms var(--ease-enter), border-color 150ms var(--ease-enter);
+  }
+  .btn-primary { background: var(--accent); color: var(--on-accent); }
+  .btn-primary:hover { background: color-mix(in srgb, var(--accent) 88%, var(--fg)); }
+  .btn-secondary { background: var(--surface); border-color: var(--border-strong); }
+  .btn-secondary:hover { background: var(--surface-muted); }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  details.ref { margin-top: 12px; font-size: 14px; color: var(--fg-muted); }
+  details.ref summary { cursor: pointer; min-height: 32px; display: inline-flex; align-items: center; }
+  code { font: 13px/1.4 ui-monospace, "JetBrains Mono", monospace; background: var(--surface-muted); padding: 2px 6px; border-radius: 4px; }
+
+  .feedback-form { margin-top: 12px; padding: 12px; border-radius: 8px; background: var(--surface-muted); }
+  .feedback-form legend { font-weight: 600; padding: 0; margin-bottom: 8px; }
+  .feedback-form fieldset { border: 0; padding: 0; margin: 0 0 12px; }
+  .reason-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .reason-chips label { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 4px 12px; border-radius: 999px; border: 1px solid var(--border-strong); background: var(--surface); cursor: pointer; font-size: 14px; }
+  .reason-chips input { accent-color: var(--accent); width: 16px; height: 16px; margin: 0; }
+  .feedback-form label.field { display: block; font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .feedback-form textarea { width: 100%; min-height: 72px; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border-strong); background: var(--surface); resize: vertical; }
+
+  /* Thinking */
+  .dots { display: inline-flex; gap: 4px; }
+  .dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--fg-muted); animation: pulse 1.2s infinite var(--ease-enter); }
+  .dots span:nth-child(2) { animation-delay: .15s; } .dots span:nth-child(3) { animation-delay: .3s; }
+  @keyframes pulse { 0%, 80%, 100% { opacity: .3; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
+
+  /* Composer */
+  .composer-wrap {
+    position: sticky; bottom: 0; z-index: 20;
+    background: linear-gradient(to top, var(--bg) 70%, transparent);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .composer-wrap .column { padding-top: 8px; padding-bottom: 12px; }
+  form.composer {
+    display: flex; align-items: flex-end; gap: 8px; padding: 6px 6px 6px 16px;
+    background: var(--surface); border: 1px solid var(--border-strong); border-radius: 12px; box-shadow: var(--shadow-sm);
+  }
+  form.composer:focus-within { border-color: var(--ring); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 25%, transparent); }
+  form.composer textarea {
+    flex: 1; border: 0; outline: none; resize: none; background: transparent;
+    min-height: 44px; max-height: 160px; padding: 10px 0; line-height: 24px; font-size: 16px;
+  }
+  .send { width: 44px; height: 44px; border-radius: 8px; border: 0; background: var(--accent); color: var(--on-accent); display: grid; place-items: center; }
+  .send:disabled { opacity: .45; cursor: not-allowed; }
+  .composer-note { margin: 8px 0 0; text-align: center; font-size: 12px; line-height: 16px; color: var(--fg-muted); }
+
+  /* Source panel: drawer >=1024px, bottom sheet below */
+  .scrim { position: fixed; inset: 0; background: var(--scrim); z-index: 50; opacity: 0; transition: opacity 200ms var(--ease-exit); }
+  .panel {
+    position: fixed; z-index: 51; background: var(--surface); color: var(--fg); box-shadow: var(--shadow-lg);
+    display: flex; flex-direction: column;
+    left: 0; right: 0; bottom: 0; max-height: 85dvh; border-radius: 16px 16px 0 0;
+    transform: translateY(100%); transition: transform 210ms var(--ease-exit);
+  }
+  .panel.open { transform: none; transition: transform 300ms var(--ease-enter); }
+  .scrim.open { opacity: 1; transition: opacity 300ms var(--ease-enter); }
+  @media (min-width: 1024px) {
+    /* Docked, non-modal: the answer stays readable beside its source */
+    .panel { left: auto; top: 0; bottom: 0; width: 420px; max-height: none; border-radius: 0; transform: translateX(100%); box-shadow: none; border-left: 1px solid var(--border); }
+    body.panel-docked { padding-right: 420px; }
+  }
+  .panel-head { display: flex; align-items: center; gap: 8px; padding: 12px 12px 12px 20px; border-bottom: 1px solid var(--border); }
+  .panel-head h2 { font: 600 16px/24px var(--font-heading); margin: 0; flex: 1; }
+  .panel-body { padding: 20px; overflow: auto; }
+  .doc-title { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 16px; }
+  .doc-title .file { width: 40px; height: 40px; border-radius: 8px; display: grid; place-items: center; background: var(--surface-muted); color: var(--accent); flex: none; }
+  .doc-title h3 { font: 600 18px/26px var(--font-heading); margin: 0; }
+  .meta { font-size: 14px; color: var(--fg-muted); margin: 2px 0 0; }
+  .badge { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; line-height: 20px; padding: 0 8px; border-radius: 999px; }
+  .badge.success { color: var(--success); background: color-mix(in srgb, var(--success) 12%, transparent); }
+  blockquote.excerpt { margin: 0 0 20px; padding: 12px 16px; border-left: 3px solid var(--accent); background: var(--surface-muted); border-radius: 0 8px 8px 0; }
+  blockquote.excerpt p { margin: 0 0 8px; color: var(--fg-muted); } blockquote.excerpt p:last-child { margin: 0; }
+  mark { background: color-mix(in srgb, var(--accent) 22%, transparent); color: var(--fg); padding: 1px 2px; border-radius: 3px; }
+  .panel-foot { margin-top: auto; padding: 12px 20px calc(12px + env(safe-area-inset-bottom)); border-top: 1px solid var(--border); display: flex; gap: 8px; }
+  .panel-foot .btn { flex: 1; }
+
+  [hidden] { display: none !important; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition-duration: 0ms !important; animation: none !important; }
+  }
+  @media (max-width: 480px) {
+    .empty { padding-top: 24px; }
+    .empty h1 { font-size: 24px; line-height: 32px; }
+    .ai-badge .label-long { display: none; }
+    .link-btn .label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to chat</a>
+
+<div class="proto-bar" role="region" aria-label="Prototype controls (not part of the product)">
+  <strong>Prototype</strong>
+  <div class="seg" role="group" aria-label="Show state">
+    <button type="button" data-state="empty" aria-pressed="false">Empty</button>
+    <button type="button" data-state="thinking" aria-pressed="false">Searching</button>
+    <button type="button" data-state="streaming" aria-pressed="false">Checking sources</button>
+    <button type="button" data-state="answered" aria-pressed="true">Answered</button>
+    <button type="button" data-state="none" aria-pressed="false">Not in documents</button>
+    <button type="button" data-state="error" aria-pressed="false">Error</button>
+  </div>
+</div>
+
+<header class="top">
+  <a class="brand" href="#" aria-label="TechCare home">
+    <span class="brand-mark" aria-hidden="true"><i data-lucide="wrench"></i></span>
+    TechCare
+  </a>
+  <span class="ai-badge"><i data-lucide="bot" class="icon-sm" aria-hidden="true"></i>AI<span class="label-long">&nbsp;assistant</span></span>
+  <div class="top-actions">
+    <a class="link-btn" href="#support"><i data-lucide="life-buoy" aria-hidden="true"></i><span class="label">Contact support</span></a>
+    <button class="icon-btn" id="theme" type="button" aria-label="Switch to dark theme"><i data-lucide="moon"></i></button>
+  </div>
+</header>
+
+<div class="shell">
+<main id="main" tabindex="-1">
+  <div class="column messages" role="log" aria-live="polite" aria-relevant="additions" aria-label="Conversation">
+
+    <!-- EMPTY -->
+    <section class="empty" data-view="empty" hidden>
+      <h1>Ask TechCare</h1>
+      <p>TechCare's AI assistant answers from our published guides and policies, and shows you the source. It can make mistakes. For orders, repairs or anything urgent, <a href="#support">contact support</a>.</p>
+      <ul class="suggestions" aria-label="Suggested questions">
+        <li><button class="chip" type="button" data-ask="Can I return headphones after 20 days?"><i data-lucide="rotate-ccw"></i>Can I return headphones after 20 days?</button></li>
+        <li><button class="chip" type="button" data-ask="Why is my DemoPrinter-X2 printing faded pages?"><i data-lucide="printer"></i>Why is my printer printing faded pages?</button></li>
+        <li><button class="chip" type="button" data-ask="What does the 1-year warranty cover?"><i data-lucide="shield-check"></i>What does the warranty cover?</button></li>
+        <li><button class="chip" type="button" data-ask="How do I book a repair assessment?"><i data-lucide="calendar-check"></i>How do I book a repair?</button></li>
+      </ul>
+    </section>
+
+    <!-- CONVERSATION -->
+    <section class="turn" data-view="turn">
+      <div class="user-msg"><span class="sr-only">You asked: </span><span id="question">Why is my DemoPrinter-X2 printing faded pages?</span></div>
+
+      <!-- Searching -->
+      <article class="answer" data-answer="thinking" hidden aria-busy="true">
+        <p class="status muted"><span class="dots" aria-hidden="true"><span></span><span></span><span></span></span>Searching TechCare documents…</p>
+      </article>
+
+      <!-- Streaming: provisional text until the final event validates citations (ADR-006) -->
+      <article class="answer provisional" data-answer="streaming" hidden aria-busy="true">
+        <p class="status muted"><span class="dots" aria-hidden="true"><span></span><span></span><span></span></span>Checking sources…</p>
+        <div class="answer-text"><p id="stream-text">Faded pages usually mean low toner or a low print-density setting. Check the toner level first, then raise Print density in the printer's settings menu.</p></div>
+        <div class="actions">
+          <button class="icon-btn" type="button" aria-label="Copy answer" disabled><i data-lucide="copy"></i></button>
+          <button class="icon-btn" type="button" aria-label="Helpful" disabled><i data-lucide="thumbs-up"></i></button>
+          <button class="icon-btn" type="button" aria-label="Not helpful" disabled><i data-lucide="thumbs-down"></i></button>
+        </div>
+      </article>
+
+      <!-- Answered -->
+      <article class="answer" data-answer="answered" aria-labelledby="st-answered">
+        <p class="status success" id="st-answered"><i data-lucide="badge-check"></i>Answered from 2 sources</p>
+        <div class="answer-text">
+          <p>Faded pages usually mean low toner or a low print-density setting. Check the toner level first, then raise <strong>Print density</strong> in the printer's settings menu <span class="cite-ref" aria-hidden="true">[1]</span>.</p>
+          <p>If pages are still faded, clean the transfer roller as shown in the care guide before requesting service <span class="cite-ref" aria-hidden="true">[2]</span>.</p>
+        </div>
+        <ul class="citations" aria-label="Sources">
+          <li><button class="citation" type="button" data-source="1"><span class="n">[1]</span> DemoPrinter-X2 User Manual · p. 17–18</button></li>
+          <li><button class="citation" type="button" data-source="2"><span class="n">[2]</span> Printer care guide · p. 4</button></li>
+        </ul>
+        <div class="actions">
+          <button class="icon-btn" type="button" aria-label="Copy answer" data-copy><i data-lucide="copy"></i></button>
+          <button class="icon-btn" type="button" aria-label="Helpful" aria-pressed="false" data-fb="up"><i data-lucide="thumbs-up"></i></button>
+          <button class="icon-btn" type="button" aria-label="Not helpful" aria-pressed="false" aria-expanded="false" aria-controls="fb-form" data-fb="down"><i data-lucide="thumbs-down"></i></button>
+          <span class="spacer"></span>
+          <span class="hint" id="fb-status" role="status"></span>
+        </div>
+        <form class="feedback-form" id="fb-form" hidden>
+          <fieldset>
+            <legend>Sorry this didn't help. What was missing?</legend>
+            <div class="reason-chips">
+              <label><input type="checkbox" name="r" value="wrong">Wrong</label>
+              <label><input type="checkbox" name="r" value="outdated">Outdated</label>
+              <label><input type="checkbox" name="r" value="incomplete">Incomplete</label>
+              <label><input type="checkbox" name="r" value="unanswered">Didn't answer</label>
+            </div>
+          </fieldset>
+          <label class="field" for="fb-note">Anything else? (optional)</label>
+          <textarea id="fb-note" maxlength="500"></textarea>
+          <div class="btn-row">
+            <button class="btn btn-primary" type="submit">Send feedback</button>
+            <a class="btn btn-secondary" href="#support" style="text-decoration:none;color:inherit">Contact support</a>
+          </div>
+        </form>
+      </article>
+
+      <!-- Not in documents -->
+      <article class="answer" data-answer="none" hidden aria-labelledby="st-none">
+        <p class="status warning" id="st-none"><i data-lucide="search-x"></i>Not in our documents</p>
+        <div class="answer-text"><p>I couldn't find this in TechCare's published guides or policies, so I won't guess. You can rephrase your question or ask our support team.</p></div>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#support" style="text-decoration:none"><i data-lucide="life-buoy"></i>Contact support</a>
+          <button class="btn btn-secondary" type="button" data-rephrase><i data-lucide="pencil"></i>Rephrase question</button>
+        </div>
+      </article>
+
+      <!-- Error -->
+      <article class="answer" data-answer="error" hidden aria-labelledby="st-error" role="alert">
+        <p class="status danger" id="st-error"><i data-lucide="triangle-alert"></i>Something went wrong</p>
+        <div class="answer-text"><p>Something went wrong while answering. Your question is saved, so try again in a moment.</p></div>
+        <div class="btn-row">
+          <button class="btn btn-primary" type="button" data-retry><i data-lucide="rotate-cw"></i>Try again</button>
+          <a class="btn btn-secondary" href="#support" style="text-decoration:none;color:inherit">Contact support</a>
+        </div>
+        <details class="ref"><summary>Details</summary>Reference: <code>req-7f3a91c2</code>. Support can use this to find your request.</details>
+      </article>
+    </section>
+  </div>
+
+  <div class="composer-wrap">
+    <div class="column">
+      <form class="composer" id="composer">
+        <label class="sr-only" for="q">Ask a question about TechCare products, returns, warranties or repairs</label>
+        <textarea id="q" rows="1" placeholder="Ask TechCare a question" autocomplete="off"></textarea>
+        <button class="send" type="submit" aria-label="Send question" disabled><i data-lucide="arrow-up"></i></button>
+      </form>
+      <p class="composer-note">Answers come from TechCare's guides and policies. Check the source before you decide.</p>
+    </div>
+  </div>
+</main>
+</div>
+
+<!-- Source panel -->
+<div class="scrim" id="scrim" hidden></div>
+<aside class="panel" id="panel" role="dialog" aria-modal="true" aria-labelledby="panel-title" hidden>
+  <div class="panel-head">
+    <h2 id="panel-title">Source 1 of 2</h2>
+    <button class="icon-btn" type="button" id="panel-close" aria-label="Close source"><i data-lucide="x"></i></button>
+  </div>
+  <div class="panel-body">
+    <div class="doc-title">
+      <span class="file" aria-hidden="true"><i data-lucide="file-text"></i></span>
+      <div>
+        <h3 id="src-title">DemoPrinter-X2 User Manual</h3>
+        <p class="meta" id="src-meta">Version 3 · Pages 17–18 · Updated 2 Oct 2026</p>
+        <span class="badge success"><i data-lucide="badge-check" class="icon-sm"></i>Published</span>
+      </div>
+    </div>
+    <blockquote class="excerpt" id="src-quote">
+      <p>Section 6.2: Print quality</p>
+      <p><mark>Check toner level and print density before servicing.</mark> Low density settings produce light or faded output on all paper types.</p>
+    </blockquote>
+    <p class="meta">Excerpt shown exactly as it appears in the document. Fictional demo content.</p>
+  </div>
+  <div class="panel-foot">
+    <a class="btn btn-secondary" href="#" style="text-decoration:none;color:inherit"><i data-lucide="external-link"></i>Open document</a>
+  </div>
+</aside>
+
+<script>
+  lucide.createIcons();
+
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const root = document.documentElement;
+
+  // Theme: follow the OS by default; the toggle sets an explicit choice
+  const themeBtn = $('#theme');
+  const setTheme = (t) => {
+    root.dataset.theme = t;
+    themeBtn.setAttribute('aria-label', t === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+    themeBtn.innerHTML = `<i data-lucide="${t === 'dark' ? 'sun' : 'moon'}"></i>`;
+    lucide.createIcons();
+  };
+  setTheme(matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  themeBtn.addEventListener('click', () => setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark'));
+
+  // State switching
+  // Example question that fits each state when switched from the prototype bar
+  const sampleQ = {
+    answered: 'Why is my DemoPrinter-X2 printing faded pages?',
+    streaming: 'Why is my DemoPrinter-X2 printing faded pages?',
+    none: 'Do you price-match other stores?',
+    error: 'Can I return headphones after 20 days?',
+  };
+  const show = (state, fromBar = false) => {
+    if (fromBar && sampleQ[state]) $('#question').textContent = sampleQ[state];
+    $$('.seg button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.state === state)));
+    $('[data-view="empty"]').hidden = state !== 'empty';
+    $('[data-view="turn"]').hidden = state === 'empty';
+    $$('[data-answer]').forEach(a => a.hidden = a.dataset.answer !== state);
+  };
+  $$('.seg button').forEach(b => b.addEventListener('click', () => show(b.dataset.state, true)));
+
+  // Simulates the SSE sequence from docs/architecture.md §4: status searching → delta (provisional) → final
+  const STREAM = 'Faded pages usually mean low toner or a low print-density setting. Check the toner level first, then raise Print density in the printer\'s settings menu.';
+  let timers = [];
+  const ask = (text) => {
+    timers.forEach(clearTimeout); timers = [];
+    $('#question').textContent = text;
+    show('thinking');
+    const out = $('#stream-text'), words = STREAM.split(' ');
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    timers.push(setTimeout(() => {
+      show('streaming'); out.textContent = reduced ? STREAM : '';
+      if (!reduced) words.forEach((w, i) => timers.push(setTimeout(() => { out.textContent += (i ? ' ' : '') + w; }, i * 45)));
+      timers.push(setTimeout(() => show('answered'), (reduced ? 0 : words.length * 45) + 700));
+    }, 900));
+  };
+  $$('[data-ask]').forEach(b => b.addEventListener('click', () => ask(b.dataset.ask)));
+  $('[data-retry]').addEventListener('click', () => ask($('#question').textContent));
+  $('[data-rephrase]').addEventListener('click', () => { const q = $('#q'); q.value = $('#question').textContent; q.dispatchEvent(new Event('input')); q.focus(); });
+
+  // Composer: Enter sends, Shift+Enter adds a newline; auto-grow
+  const q = $('#q'), send = $('.send');
+  q.addEventListener('input', () => { send.disabled = !q.value.trim(); q.style.height = 'auto'; q.style.height = Math.min(q.scrollHeight, 160) + 'px'; });
+  q.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); $('#composer').requestSubmit(); } });
+  $('#composer').addEventListener('submit', (e) => {
+    e.preventDefault(); if (!q.value.trim()) return;
+    ask(q.value.trim()); q.value = ''; q.dispatchEvent(new Event('input'));
+  });
+
+  // Feedback
+  const up = $('[data-fb="up"]'), down = $('[data-fb="down"]'), form = $('#fb-form'), fbStatus = $('#fb-status');
+  up.addEventListener('click', () => {
+    const on = up.getAttribute('aria-pressed') !== 'true';
+    up.setAttribute('aria-pressed', on); down.setAttribute('aria-pressed', 'false');
+    down.setAttribute('aria-expanded', 'false'); form.hidden = true;
+    fbStatus.textContent = on ? 'Thanks for the feedback.' : '';
+  });
+  down.addEventListener('click', () => {
+    const on = down.getAttribute('aria-pressed') !== 'true';
+    down.setAttribute('aria-pressed', on); down.setAttribute('aria-expanded', on); up.setAttribute('aria-pressed', 'false');
+    form.hidden = !on; fbStatus.textContent = '';
+    if (on) $('input', form).focus();
+  });
+  form.addEventListener('submit', (e) => { e.preventDefault(); form.hidden = true; down.setAttribute('aria-expanded', 'false'); fbStatus.textContent = 'Thanks. We use this to improve our documents.'; down.focus(); });
+  $('[data-copy]').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText($('.answer-text', $('[data-answer="answered"]')).innerText); fbStatus.textContent = 'Answer copied.'; }
+    catch { fbStatus.textContent = 'Copy is not available here.'; }
+  });
+
+  // Source panel with focus trap and focus return
+  const sources = {
+    1: { title: 'DemoPrinter-X2 User Manual', meta: 'Version 3 · Pages 17–18 · Updated 2 Oct 2026',
+         quote: '<p>Section 6.2: Print quality</p><p><mark>Check toner level and print density before servicing.</mark> Low density settings produce light or faded output on all paper types.</p>' },
+    2: { title: 'Printer care guide', meta: 'Version 1 · Page 4 · Updated 14 Aug 2026',
+         quote: '<p>Cleaning the transfer roller</p><p><mark>If output remains faded after replacing toner, clean the transfer roller with a dry, lint-free cloth.</mark> Do not touch the roller surface with bare hands.</p>' },
+  };
+  const panel = $('#panel'), scrim = $('#scrim');
+  const docked = () => matchMedia('(min-width: 1024px)').matches;
+  let opener = null, modal = false;
+  const openPanel = (id, btn) => {
+    const s = sources[id]; opener = btn; modal = !docked();
+    $('#panel-title').textContent = `Source ${id} of 2`;
+    $('#src-title').textContent = s.title; $('#src-meta').textContent = s.meta; $('#src-quote').innerHTML = s.quote;
+    // Desktop: docked side panel (non-modal, no scrim). Mobile: modal bottom sheet with scrim + focus trap.
+    panel.setAttribute('aria-modal', String(modal));
+    document.body.classList.toggle('panel-docked', !modal);
+    panel.hidden = false; scrim.hidden = !modal;
+    requestAnimationFrame(() => { panel.classList.add('open'); if (modal) scrim.classList.add('open'); $('#panel-close').focus(); });
+  };
+  const closePanel = () => {
+    panel.classList.remove('open'); scrim.classList.remove('open');
+    const done = () => { panel.hidden = scrim.hidden = true; document.body.classList.remove('panel-docked'); };
+    matchMedia('(prefers-reduced-motion: reduce)').matches ? done() : setTimeout(done, 220);
+    opener?.focus();
+  };
+  $$('[data-source]').forEach(b => b.addEventListener('click', () => openPanel(b.dataset.source, b)));
+  $('#panel-close').addEventListener('click', closePanel);
+  scrim.addEventListener('click', closePanel);
+  document.addEventListener('keydown', (e) => {
+    if (panel.hidden) return;
+    if (e.key === 'Escape') { e.preventDefault(); closePanel(); }
+    if (e.key === 'Tab' && modal) {
+      const f = $$('button, a[href]', panel); const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+
+  show('answered');
+</script>
+</body>
+</html>

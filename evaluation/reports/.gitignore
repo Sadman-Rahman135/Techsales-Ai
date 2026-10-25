@@ -1,0 +1,17 @@
+# Run reports: one JSON per run. Only reports quoted as evidence are kept in git.
+*.json
+!golden-v1-baseline.json
+!golden-v1-m7.json
+!load-m7.json
+!golden-v1-release.json
+!golden-v1-local.json
+# ADR-028 (§8.5): before/after on golden, the exploration variants and the benchmark
+!golden-v1-local-tables.json
+!golden-v1-local-p1.json
+!golden-v2-local-p1.json
+!exploration-local-before.json
+!exploration-local-A.json
+!exploration-local-B.json
+!exploration-local-C.json
+!exploration-local-p1.json
+!bench-*.json
