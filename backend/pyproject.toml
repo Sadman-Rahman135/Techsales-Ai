@@ -6,7 +6,7 @@ requires-python = ">=3.12,<3.13"
 # Exact pins: see docs/dependency-versions.md (each pin is >= 7 days old when chosen).
 # Full transitive lock: backend/constraints.txt. Install with: pip install -c constraints.txt -e ".[dev]"
 dependencies = [
-    "fastapi[standard]==0.143.0",
+    "fastapi[standard]==0.159.1",
     "uvicorn[standard]==0.54.0",
     "pydantic==2.14.1",
     "pydantic-settings==2.15.0",
