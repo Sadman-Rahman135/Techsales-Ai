@@ -72,8 +72,8 @@ Added when first used (to avoid unused dependencies): `@tanstack/react-query` 5.
 pre-commit-hooks v6.0.0 · gitleaks v8.30.1 · ruff-pre-commit v0.17.0 · local ESLint hook.
 
 ## CI only (`.github/workflows/ci.yml`, never installed into the app)
-pip-audit 2.10.1 · actions/checkout v4 · actions/setup-python v5 · actions/setup-node v4 · Dependabot weekly for pip,
-npm, Actions and Docker. Frontend unit tests use Node 24's built-in runner (`node --test`), so no test dependency.
+pip-audit 2.10.1 · actions/checkout v4 · actions/setup-python v5 · actions/setup-node v4. Dependency
+updates are checked by hand (pip-audit and npm audit run in CI). Frontend unit tests use Node 24's built-in runner (`node --test`), so no test dependency.
 Known accepted advisories: `chromadb 1.5.9` (four, no fixed release; ADR-020, review by 2026-12-31).
 
 ## Verification status

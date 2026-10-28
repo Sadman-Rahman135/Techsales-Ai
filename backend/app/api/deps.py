@@ -1,7 +1,7 @@
 """Request dependencies: who is calling (Principal, Caller, service) and the services they may use.
 
 The Principal is built server-side from a verified token plus the current membership row, never from request
-fields (CLAUDE.md "Authorization before retrieval"). Tests override the service getters with fixtures.
+fields (ADR-004: authorization before retrieval). Tests override the service getters with fixtures.
 """
 
 import hashlib

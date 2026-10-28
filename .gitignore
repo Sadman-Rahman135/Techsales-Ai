@@ -32,6 +32,11 @@ uploads/
 chroma-data/
 *.sqlite3
 
+# AI coding-assistant files: kept locally, not published
+.claude/
+CLAUDE.md
+skills-lock.json
+
 # OS / editors
 .DS_Store
 Thumbs.db

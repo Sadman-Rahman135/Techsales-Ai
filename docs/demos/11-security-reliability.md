@@ -30,7 +30,7 @@ New for §11: `tests/integration/test_operations.py` (9), `tests/integration/tes
 | Retention and deletion, tested in all stores | ✓ | ADR-019: chats deleted on request or after 180 days idle; deleted documents purged after 30 days from Chroma, storage and Postgres; audit kept. Periods for real data: §19 | `test_operations::test_retention_purges_every_store` (file, vectors, rows, grace period, audit), `test_screens_api::test_owners_delete_one_conversation_or_clear_their_history` | transcript §9; `10-ui.md` steps 9-10 |
 | Provider data handling and regions | Open | Needs the provider decision (§19); nothing real is uploaded | — | — |
 | Restrict debugging traces; redact secrets | ✓ | Generic 500 body with a request ID only; `/docs`, `/redoc`, `/openapi.json` hidden outside development; secrets are `SecretStr`; logs scrubbed | `test_hygiene::test_deployed_environments_add_hsts_and_hide_the_docs`, `test_health::test_component_down_returns_503_without_leaking_details` | transcript §2, §6 |
-| Dependency and secret scanning in CI | Built, not yet run on GitHub | `.github/workflows/ci.yml` (gitleaks on history, pip-audit, npm audit) + Dependabot. Ran the same commands locally: one accepted, documented exception (chromadb, ADR-020); runtime npm deps clean; no secrets in files git would track | — (the workflow is the test) | transcript §12 |
+| Dependency and secret scanning in CI | Built, not yet run on GitHub | `.github/workflows/ci.yml` (gitleaks on history, pip-audit, npm audit). Ran the same commands locally: one accepted, documented exception (chromadb, ADR-020); runtime npm deps clean; no secrets in files git would track | — (the workflow is the test) | transcript §12 |
 
 ## §11.3 Reliability
 
@@ -60,4 +60,4 @@ New for §11: `tests/integration/test_operations.py` (9), `tests/integration/tes
 
 - Encryption at rest, managed backups, S3 timeouts, network policy for Chroma: deployment work (M7, §16).
 - Provider data handling and prompt-injection red-teaming: need the real model (§19).
-- The first CI run on GitHub (you push; the workflow and Dependabot config are ready).
+- The first CI run on GitHub (you push; the workflow is ready).

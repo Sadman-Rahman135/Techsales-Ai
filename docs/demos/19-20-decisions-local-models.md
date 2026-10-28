@@ -39,7 +39,7 @@ into an `LLM` folder in the project and answer with it locally.
   - The model omits inline markers, so the validator marks the answer with its validated citations.
 - `test_adversarial` can red-team a real model: set `RED_TEAM_LLM_URL`.
 - Docs updated:
-  - Status and setup: README, CLAUDE.md, `.env.example`.
+  - Status and setup: README, `.env.example`.
   - Deployment: deployment.md (§1a the VM, CPU time limits).
   - Results: evaluation-report.md (§4a), evaluation.md.
   - Risk and data: risk-register.md, threat-model.md, data-model.md, definition-of-done.md.

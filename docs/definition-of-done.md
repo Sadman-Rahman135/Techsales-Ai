@@ -1,7 +1,7 @@
 # Definition of Done audit (blueprint §18, 2026-10-20)
 
 Each §18 item with its evidence, or the reason it's open. An item is ticked in the plan only with automated
-tests, a manual run and a demo (CLAUDE.md). Result: **16 of 18 met**; the two open items need things outside
+tests, a manual run and a demo (the project rules). Result: **16 of 18 met**; the two open items need things outside
 this machine (the first GitHub CI run, and a staging environment). The project is therefore **not "finished"**
 in the §18 sense yet.
 
@@ -24,7 +24,7 @@ in the §18 sense yet.
 | No usable secrets in code, git history or screenshots | ✓ | gitleaks (pre-commit) passes on every tracked file; no commits exist yet, and CI scans the full history from the first push; secrets are generated into git-ignored files (`.env`, `data/`); the evidence pages and transcripts contain no tokens (searched for JWT, provider-key and AWS-key patterns); the screenshots that could show credentials (API docs, sign-in) show none, and the UI never displays tokens (they stay in the BFF's httpOnly cookie) |
 | Production/staging error logs and metrics available | **Open** | Built and shown locally: structured logs with request IDs, the metrics API, Operations, alerts (`demos/13-observability.md`), and in the rehearsal. A staging environment doesn't exist yet (the host is decided, one VM with Compose (ADR-027); deployment.md §1a and §9 say what to set up) |
 | Backups/restores and vector index rebuild tested | ✓ | `test_backup` (restore check incl. RLS policies), `test_ingestion::test_rebuild_reindexes_live_versions_into_a_new_collection`, rollback drill (index switch) in the rehearsal |
-| Dependency versions and migration instructions documented | ✓ | `docs/dependency-versions.md` (pins with release dates, lock policy), `scripts/lock_backend.py`; migrations: README, CLAUDE.md, deployment.md §3 and §7 (expand/contract, downgrade round-trip in every test run) |
+| Dependency versions and migration instructions documented | ✓ | `docs/dependency-versions.md` (pins with release dates, lock policy), `scripts/lock_backend.py`; migrations: README, deployment.md §3 and §7 (expand/contract, downgrade round-trip in every test run) |
 | Demo dataset is permitted/public or completely fictional | ✓ | Every document is generated and fictional (`test_evaluation::test_the_corpus_is_fictional_varied_and_canaried`); people and orders are invented |
 
 ## Documentation and presentation

@@ -11,7 +11,7 @@ A package resolved to different versions on the two platforms is an error: fix t
     backend/.venv/Scripts/python scripts/lock_backend.py            # writes the lock
     backend/.venv/Scripts/python scripts/lock_backend.py --check    # exits 1 if the lock is out of date
 
-Then re-run the backend tests (CLAUDE.md "Dependencies").
+Then re-run the backend tests (README, backend checks).
 """
 
 import argparse

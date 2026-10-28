@@ -1,5 +1,5 @@
 # Continuous integration (blueprint §11.2 "dependency and secret scanning", §15 M1 CI, §18 engineering DoD).
-# The same commands as CLAUDE.md "Commands". Secrets for the test run are generated per job, never stored.
+# The same commands as the README's setup and check steps. Secrets for the test run are generated per job, never stored.
 name: CI
 
 on:

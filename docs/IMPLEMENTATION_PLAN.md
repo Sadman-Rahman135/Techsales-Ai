@@ -455,7 +455,7 @@ class RAGState(TypedDict, total=False):
 - [x] Fuse lexical/vector candidates and use an optional reranker. *(RRF k = 60; reranker optional, on in compose)* *(evidence: `docs/demos/p1-retrieval.md`)*
 - [x] Handle near-duplicate chunks and version conflicts. *(same-text chunks dropped; only active versions are searched (ADR-003))* *(evidence: `docs/demos/p1-retrieval.md`)*
 - [x] Add conversational-question rewriting with short recent history, not unbounded full history. *(the previous question only, on the one retry)* *(evidence: `docs/demos/p1-retrieval.md`)*
-- [x] Benchmark chunk-size, overlap, top-k and reranker choices on the golden dataset. *(measured on exploration per CLAUDE.md, then checked once on golden-v1/v2)* *(evidence: `docs/demos/p1-retrieval.md`)*
+- [x] Benchmark chunk-size, overlap, top-k and reranker choices on the golden dataset. *(measured on the exploration set, then checked once on golden-v1/v2)* *(evidence: `docs/demos/p1-retrieval.md`)*
 - [x] Filter by publication status and permitted audience before ranking/LLM context. *(evidence: `docs/demos/8-rag-workflow.md`)*
 - [x] Handle questions requiring information from multiple documents and cite each relevant source. *(complementary sources for two-part questions)* *(evidence: `docs/demos/p1-retrieval.md`)*
 
@@ -637,7 +637,7 @@ Define `400` malformed input, `401` unauthenticated, `403` forbidden, `404` abse
 - [x] Verify provider data handling and regional restrictions before uploading real documents. *(no third-party provider: the models run on our own host, ADR-026/027)* *(evidence: `docs/demos/19-20-decisions-local-models.md`)*
 - [x] Restrict exposed debugging traces and redact secrets/token values. *(evidence: `docs/demos/11-security-reliability.md`)*
 - [ ] Add dependency and secret scanning to CI.
-  - Done: `.github/workflows/ci.yml` (gitleaks, pip-audit, npm audit) and Dependabot; the same commands pass locally (evidence: `docs/demos/11-transcript.txt` §12). **Remaining:** the first run on GitHub.
+  - Done: `.github/workflows/ci.yml` (gitleaks, pip-audit, npm audit); the same commands pass locally (evidence: `docs/demos/11-transcript.txt` §12). **Remaining:** the first run on GitHub.
 
 ### 11.3 Reliability
 

@@ -2,9 +2,9 @@
 
 Sample: 30 of 97 answered cases (seeded by the run ID). Models: fake:fake-llm / fake:fake-embedding.
 
-Fill in **Verdict** for every claim: `supported` (the cited passage states it), `unsupported`, or `partial`. G2 = supported ÷ all claims, target ≥ 95% (gates.yaml). The pre-screen and **Proposed (Claude)** are only hints: Claude read every claim against its passage and proposed a verdict with a reason; G2 counts only the reviewer's **Verdict** column (`python -m app.evaluation.audit --score <sheet>`).
+Fill in **Verdict** for every claim: `supported` (the cited passage states it), `unsupported`, or `partial`. G2 = supported ÷ all claims, target ≥ 95% (gates.yaml). The pre-screen and **Proposed** column are only hints: a first reviewer read every claim against its passage and proposed a verdict with a reason; G2 counts only the reviewer's **Verdict** column (`python -m app.evaluation.audit --score <sheet>`).
 
-| Case | Claim | Cited passage | Pre-screen | Proposed (Claude) | Why | Verdict |
+| Case | Claim | Cited passage | Pre-screen | Proposed | Why | Verdict |
 | --- | --- | --- | --- | --- | --- | --- |
 | G003 | Accidental damage, liquid damage and cosmetic wear are not covered by the standard warranty. | TechCare Laptop Warranty > What is not covered  Accidental damage, liquid damage and cosmetic wear are not covered by the standard warranty.  Plan \| Length \| Accidental damage Standard \| 12 months \| No Care+ \| 24 months \| Yes | supported | supported | A sentence of the passage, word for word (extractive model) | |
 | G003 | Plan: Standard; Length: 12 months; Accidental damage: No. | TechCare Laptop Warranty > What is not covered  Accidental damage, liquid damage and cosmetic wear are not covered by the standard warranty.  Plan \| Length \| Accidental damage Standard \| 12 months \| No Care+ \| 24 months \| Yes | supported | supported | A table row of the passage, as written | |

@@ -6,7 +6,7 @@ import { ChatHeader } from "@/components/chat/chat-header";
 
 export const metadata: Metadata = { title: "Contact support" };
 
-// The "Contact support" destination (content-guide.md "Escalation CTA"). Fictional TechCare details (CLAUDE.md:
+// The "Contact support" destination (content-guide.md "Escalation CTA"). Fictional TechCare details (the project rules:
 // demo data only); a deployment sets NEXT_PUBLIC_SUPPORT_URL to its real help desk instead.
 const CHANNELS = [
   { icon: Phone, label: "Call us", value: "(555) 010-0199", note: "Mon–Sat, 9 am–6 pm" },

@@ -9,7 +9,6 @@ silently go stale: move a folder, update the row.
 | Path | What it holds |
 | --- | --- |
 | `README.md` | Purpose, features, setup, scripts, testing, deployment, what is not built |
-| `CLAUDE.md` | Working rules for coding agents (and a good summary for people) |
 | `compose.yaml` | Local data services; profile `llm` the local models; profile `app` the whole system from its images |
 | `compose.gpu.yaml` | Runs the local models on an NVIDIA GPU (`-f compose.yaml -f compose.gpu.yaml`) |
 | `LLM/models.json` | The local models: repository, pinned revision, size and SHA-256 of each file (ADR-026) |

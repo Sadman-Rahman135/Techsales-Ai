@@ -105,7 +105,7 @@ FROM answers a JOIN messages m ON m.id = a.message_id WHERE a.request_id = 'req-
 ## 7. Scanning and updates
 
 CI (`.github/workflows/ci.yml`) runs gitleaks on the history, `pip-audit` on `backend/constraints.txt` and
-`npm audit --omit=dev`. Dependabot opens weekly update PRs; follow `docs/dependency-versions.md` before merging.
+`npm audit --omit=dev`. Upgrades are made by hand: follow `docs/dependency-versions.md`, then run the tests.
 One accepted exception is tracked in ADR-020 (`chromadb`, no fixed release): Chroma must never be reachable from outside
 the app network.
 

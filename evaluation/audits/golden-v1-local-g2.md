@@ -2,9 +2,9 @@
 
 Sample: 30 of 99 answered cases (seeded by the run ID). Models: local:qwen3-4b-instruct-2507-q4_k_m / local:nomic-embed-text-v1.5-q8_0.
 
-Fill in **Verdict** for every claim: `supported` (the cited passage states it), `unsupported`, or `partial`. G2 = supported ÷ all claims, target ≥ 95% (gates.yaml). The pre-screen and **Proposed (Claude)** are only hints: Claude read every claim against its passage and proposed a verdict with a reason; G2 counts only the reviewer's **Verdict** column (`python -m app.evaluation.audit --score <sheet>`).
+Fill in **Verdict** for every claim: `supported` (the cited passage states it), `unsupported`, or `partial`. G2 = supported ÷ all claims, target ≥ 95% (gates.yaml). The pre-screen and **Proposed** column are only hints: a first reviewer read every claim against its passage and proposed a verdict with a reason; G2 counts only the reviewer's **Verdict** column (`python -m app.evaluation.audit --score <sheet>`).
 
-| Case | Claim | Cited passage | Pre-screen | Proposed (Claude) | Why | Verdict |
+| Case | Claim | Cited passage | Pre-screen | Proposed | Why | Verdict |
 | --- | --- | --- | --- | --- | --- | --- |
 | G001 | TechCare laptops are covered by the warranty for 12 months from the date of purchase. | TechCare Laptop Warranty > Coverage period  Laptops are covered for 12 months from the date of purchase. Batteries are covered for 6 months. | supported | supported | Paraphrase of 'Laptops are covered for 12 months from the date of purchase' | |
 | G006 | The restocking fee for an opened laptop is 15%. | TechCare Returns Policy > Laptops and tablets  Unopened laptops can be returned within 30 days for a full refund.  Opened laptops can be returned within 14 days and have a 15% restocking fee unless faulty.  Condition \| Refund \| Window Unopened \| 100% \| 30 days Opened \| 85% \| 14 days Faulty \| 100% \| 30 days | supported | supported | Passage: '15% restocking fee' for opened laptops | |

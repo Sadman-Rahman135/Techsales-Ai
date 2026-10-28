@@ -51,7 +51,7 @@ becomes an issue (label `P0` if it blocks the task) and is fixed before the sess
 
 ## Facilitator walkthrough (2026-10-20, not a participant)
 
-Before any participant, Claude ran all six tasks in the browser as a first-time manager would, on the containers with
+Before any participant, the developer ran all six tasks in the browser as a first-time manager would, on the containers with
 the local models (an "Engraving Service" policy instead of gift wrapping, which already existed in the development
 data). It found friction a participant would hit; everything below was fixed and re-checked before the kit was
 handed over. This doesn't count towards the gate: the walkthrough's author built the app.
